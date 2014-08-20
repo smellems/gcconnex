@@ -1,0 +1,7 @@
+start logging
+disable/enable - 
+banner style - 
+font style - 
+notice msg EN - 
+notice msg FR - 
+end logging

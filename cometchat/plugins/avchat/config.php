@@ -1,0 +1,31 @@
+<?php
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* SETTINGS START */
+
+$vidWidth = '220';
+$vidHeight = '165';
+$maxP = '10';
+$quality = '90';
+$connectUrl = '';
+$camWidth = '320';
+$camHeight = '240';
+$fps = '30';
+$soundQuality = '7';
+$videoPluginType = '3';
+$applicationid = '';
+$appAuthSecret = '';
+$winWidth = '650';
+$winHeight = '365';
+
+
+/* SETTINGS END */
+/* videoPluginType
+0.stratus
+1.red5
+2.FMS
+3.otavchat
+4.AddLive
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

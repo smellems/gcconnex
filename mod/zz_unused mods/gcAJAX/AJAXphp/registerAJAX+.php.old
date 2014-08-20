@@ -1,0 +1,193 @@
+<?php
+/**
+ * Username generator for GCCONNEX register.php
+ *
+ * The users email is used to generate the username, so it is assumed that all emails are in standard GC format:
+ * givenname.familyname@institution.gc.ca
+ * duplicate usernames are incremented by (int)1 until they are available
+ *
+ * @param  $emailInput <string> users email address
+ *
+ * @return always returns "" because we use the response text directly
+ *
+ * 
+ */
+
+function regAJAX( $args ){
+	$emailInput = $args;
+/*$con = mysql_connect("localhost","root","");
+mysql_select_db("elgg", $con);*/
+// database connection
+global $CONFIG;
+require_once( dirname(dirname(dirname(dirname(__FILE__)))) . '/engine/settings.php' );
+$mysql_dblink = mysql_connect($CONFIG->dbhost, $CONFIG->dbuser, $CONFIG->dbpass, true);
+if (!$mysql_dblink) {
+	echo 'Cache error: unable to connect to database server';
+	exit;
+}
+if (!mysql_select_db($CONFIG->dbname, $mysql_dblink) && isset($CONFIG)) {
+	echo 'Cache error: unable to connect to Elgg database: ' . $CONFIG->dbname;
+	exit;
+}
+
+	$email = trim($emailInput);
+	
+	//echo $args . " ... " . $email . "<br />";
+	if ( strlen( $email ) > 0 ) {
+		
+		$domainPos = strpos($email, '@') + 1;
+		$domain = substr($email, $domainPos);
+		
+		# make sure selected domain is not the example domain (this is already checked for in the JS, but do it anyway)
+		if( checkInvalidDomain($domain) ) {
+			# NOTE: the '>' character is used to make the username invalid.
+			echo "> Invalid domain";
+			die;	// prevent any extra text from being generated
+			return "";
+		}
+		
+		
+		#count number of emails
+		$query2 = "SELECT count(*) AS num FROM `elggusers_entity` WHERE email = '". $email ."'";
+		$result2 = mysql_query($query2);
+			$result2 = mysql_fetch_array( $result2 );
+		$emailrow = $result2['num'];
+		
+		#check if email in use
+		if ( $emailrow[0] > 0 ) {
+			# NOTE: the '>' character is used to make the username invalid.
+			echo ">  " . elgg_echo('email-in-use'); //translate this
+			die;	// prevent any extra text from being generated
+			return "";
+		}
+
+		$usrname = ucfirst( strtolower( strtok( $email, '@' ) ) );
+		
+		##Capitalize first and last name##
+		if(substr_count($usrname, ".") == 1) { #make sure they have one, and only one period in their username (should typically be the case, but check anyway)
+			
+			$lastnamePos = strpos($usrname, ".") + 1;
+			$lastnameLetter = substr($usrname, $lastnamePos, 1); #first letter of last name
+			$lastnameLetter = strtoupper($lastnameLetter); #force uppercase
+			
+			$usrname = substr_replace($usrname, $lastnameLetter, $lastnamePos, 1); #replace original with uppercase
+		}
+
+		if(rtrim($usrname, "0..9") != "") {
+			$usrname = rtrim($usrname, "0..9");
+		}
+		#select matching usernames
+		$query1 = "SELECT count(*) AS 'num' FROM `elggusers_entity` WHERE username = '". $usrname ."'";
+
+		$result1 = mysql_query($query1);
+			$result1 = mysql_fetch_array( $result1 );
+
+		#check if username exists and increment it
+		if ( $result1['num'][0] > 0 ){
+			
+			$unamePostfix = 0;
+			$usrnameQuery = $usrname;
+			
+			do {
+				$unamePostfix++;
+				
+				$tmpUsrnameQuery = $usrnameQuery . $unamePostfix;
+				
+				$query = "SELECT count(*) AS 'num' FROM `elggusers_entity` WHERE username = '". $tmpUsrnameQuery ."'";
+				$tmpResult = mysql_query($query1);
+					$tmpResult = mysql_fetch_array( $result1 );
+				
+				$uname = $tmpUsrnameQuery;
+				
+			} while ( $tmpResult['num'][0] > 0);
+			
+		}else{
+			#username is available
+			$uname = $usrname;
+		}
+			
+		#username output
+		echo $uname;
+								
+	}
+	else echo "Enter an email";
+	
+	//echo'test123';
+	die;
+	return "";
+	
+}
+	
+/**
+ * 
+ * Checks for invalid / external domains
+ * 
+ * @param  $domain <string> domain part of the user's email address
+ *
+ * @return true if domain is invalid, false otherwise
+ * 
+ **/
+function checkInvalidDomain( $dom ){
+	$dotPos = strpos($dom, '.');
+	$dom = substr($dom, 0, $dotPos);
+	
+	if ( $dom == "example" ||
+			$dom == "gmail" ||
+			$dom == "yahoo" ||
+			$dom == "hotmail" ||
+			$dom == "live" ||
+			$dom == "rogers" ||
+			$dom == "example" ||
+			$dom == "example" ||
+			$dom == "example" ||
+			$dom == "example" )
+		return true;
+	
+	else
+		return false;
+}
+/**
+ * Email character filter
+ *
+ * Filters out the french characters in an email and replaces them with the english equivelant
+ * Array key is the character to remove and the associated item is what will replace it.
+ *
+ * @param  $emailInput <string> users email address
+ *
+ * @return always returns "" because we use the response text directly
+ *
+ * @author Matthew April <Matthew.April@tbs-sct.gc.ca>
+ */
+
+function characterFilter( $email ) {
+
+	$filter = array(
+	
+		'â' => 'a',
+		'à' => 'a',
+		'á' => 'a',
+		'ç' => 'c',
+		'ê' => 'e',
+		'é' => 'e',
+		'è' => 'e',
+		'ô' => 'o',
+		'Â' => 'A',
+		'À' => 'A',
+		'Á' => 'A',
+		'Ç' => 'C',
+		'Ê' => 'E',
+		'É' => 'E',
+		'È' => 'E',
+		'Ô' => 'O',
+	);
+	
+	foreach( $filter as $remove => $replace ) {
+		if( strpos( $email, $remove) ) {
+			$email = str_replace($remove, $replace, $email);
+		}
+	}
+	echo $email;
+	return "";
+}
+
+?>

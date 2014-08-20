@@ -1,0 +1,22 @@
+/**
+ * Change Log
+ */ 
+
+/**
+ * @version 1.8-12.01.27b
+ */
+- fixed "edit" bug (created multiple instances)
+- enable/disable profiles backgrounds for users
+ 
+/**
+ * @version 1.8-12.01.25b
+ */
+- Initial release
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+<?php
+$trayiconinfo = array('languagechanger','Change Language');
+$trayicondata = 'JHRyYXlpY29uW10gPSBhcnJheSgnbGFuZ3VhZ2VjaGFuZ2VyJywnQ2hhbmdlIExhbmd1YWdlJywnbW9kdWxlcy9sYW5ndWFnZWNoYW5nZXIvaW5kZXgucGhwJywnX3BvcHVwJywnMjAwJywnMTAwJywnJywnMScsJycpOw';

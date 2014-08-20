@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>GSA</name>
+	<author>Capital Technology Partners</author>
+	<version>1.0</version>
+	<category>enhancement</category>
+	<category>Third Party Integration</category>
+	<description>Add google search appliance search to your site</description>
+	<website>http://www.ctpartners.ca/</website>
+	<copyright>Capital Technology Partners Inc.</copyright>
+	<license>GNU General Public License version 2</license>
+	<requires>
+		<type>elgg_release</type>
+		<version>1.8</version>
+	</requires>
+</plugin_manifest>

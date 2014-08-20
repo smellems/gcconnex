@@ -1,0 +1,17 @@
+Version 2.0
+* forum/topic thumbnail
+* Topic status: topic updated, new comment, important, stick, closed
+* Comments handler plugin
+* Improve post full view page
+* Improve visual of post creation page
+
+Version 3.0
+* Category system
+* Category thumbnail
+* To group sessions
+* Widget that shows forum last activities for dashboard
+* Widget that shows forum "my last activities" for profile
+* Widget that shows "my topics" for dashboard and profile
+* Notify topic owner by email/message when new comment be created
+* Notify forum moderator when topic be created or edited
+* Limit of topics per page

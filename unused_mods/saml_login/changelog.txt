@@ -1,0 +1,5 @@
+Changelog
+---------
+
+Versión 1.1  Fix a bug on the saml_login_login function (lib/saml_login.php)
+Versión 1.0  Initial plugin

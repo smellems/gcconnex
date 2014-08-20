@@ -1,0 +1,13 @@
+<?php
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* LANGUAGE */
+
+$transliterate_language[0] = 'Écrire dans votre langue';
+$transliterate_language[1] = 'En quelle langue voudriez-vous transcrire ce que vous écrivez ?';
+$transliterate_language[2] = 'Écrivez en Anglais et utilisez la barre d\'espace pour transcrire dans votre langue';
+$transliterate_language[3] = 'Envoyer';
+$transliterate_language[4] = '(changer de langue)';
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

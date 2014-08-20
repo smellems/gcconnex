@@ -1,0 +1,204 @@
+[
+    {
+        "name": "treffynnon/navigator",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/treffynnon/Navigator.git",
+            "reference": "60b9c19277f9453403e0a583c2abacd85404bf0f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/treffynnon/Navigator/zipball/60b9c19277f9453403e0a583c2abacd85404bf0f",
+            "reference": "60b9c19277f9453403e0a583c2abacd85404bf0f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "time": "2013-02-21 12:04:53",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Treffynnon\\Navigator": "lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Simon Holywell",
+                "email": "treffynnon@php.net",
+                "homepage": "http://simonholywell.com",
+                "role": "Maintainer"
+            }
+        ],
+        "description": "Geographic calculations for PHP",
+        "homepage": "http://github.com/treffynnon/Navigator",
+        "keywords": [
+            "distance",
+            "geography",
+            "navigaton"
+        ]
+    },
+    {
+        "name": "composer/installers",
+        "version": "v1.0.15",
+        "version_normalized": "1.0.15.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "8e6a72a78f6cfd537fde3350720dfdc9ae3c5621"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/8e6a72a78f6cfd537fde3350720dfdc9ae3c5621",
+            "reference": "8e6a72a78f6cfd537fde3350720dfdc9ae3c5621",
+            "shasum": ""
+        },
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2014-06-23 16:25:28",
+        "type": "composer-installer",
+        "extra": {
+            "class": "Composer\\Installers\\Installer",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Composer\\Installers\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama",
+                "role": "Developer"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "http://composer.github.com/installers/",
+        "keywords": [
+            "Craft",
+            "Dolibarr",
+            "Hurad",
+            "MODX Evo",
+            "OXID",
+            "WolfCMS",
+            "agl",
+            "annotatecms",
+            "bitrix",
+            "cakephp",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "drupal",
+            "elgg",
+            "fuelphp",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "lithium",
+            "magento",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "moodle",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "willdurand/geocoder",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/geocoder-php/Geocoder.git",
+            "reference": "50e54f88b539de0ca3864e8e6a48412d1358d8b7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/50e54f88b539de0ca3864e8e6a48412d1358d8b7",
+            "reference": "50e54f88b539de0ca3864e8e6a48412d1358d8b7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "geoip/geoip": "~1.13",
+            "guzzle/guzzle": "@stable",
+            "kriswallsmith/buzz": "@stable",
+            "zendframework/zend-http": "~2.1"
+        },
+        "suggest": {
+            "ext-curl": "Enabling the curl extension allows you to use the CurlHttpAdapter.",
+            "ext-geoip": "Enabling the geoip extension allows you to use the MaxMindProvider.",
+            "geoip/geoip": "If you are going to use the MaxMindBinaryProvider (conflict with geoip extension).",
+            "guzzle/guzzle": "Enabling Guzzle allows you to use the GuzzleHttpAdapter.",
+            "kriswallsmith/buzz": "Enabling Buzz allows you to use the BuzzHttpAdapter.",
+            "zendframework/zend-http": "Enabling Zend Http allows you to use the ZendHttpAdapter."
+        },
+        "time": "2014-05-16 09:11:44",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Geocoder": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "William Durand",
+                "email": "william.durand1@gmail.com",
+                "homepage": "http://www.willdurand.fr"
+            }
+        ],
+        "description": "The almost missing Geocoder PHP 5.3 library.",
+        "homepage": "http://geocoder-php.org",
+        "keywords": [
+            "abstraction",
+            "geocoder",
+            "geocoding",
+            "geoip"
+        ]
+    }
+]

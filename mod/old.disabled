@@ -1,0 +1,1 @@
+<script src="/my/js/file.js?<?=time()?>"></script>

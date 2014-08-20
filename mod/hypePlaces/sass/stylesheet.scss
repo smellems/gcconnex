@@ -1,0 +1,194 @@
+@import "compass/css3"; // compass css3 helpers
+
+@import "font-awesome/variables";
+@import "font-awesome/mixins";
+
+@import "variables";
+@import "mixins";
+
+
+body {
+	@include loader(places-state-loading);
+}
+
+$grid : (6, 12, 18, 24);
+$cols : (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24);
+@each $total in $grid {
+	@each $width in $cols {
+		@if $total >= $width {
+			.gateway-col-#{$width}of#{$total} {
+				@include elgg-col($columns: $width, $total-columns: $total);
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+.places-row {
+	@include clearfix;
+	[class*="places-col"] {
+		@include box-sizing(border-box);
+	}
+}
+
+.elgg-form.places-form {
+	* {
+		@include box-sizing(border-box);
+	}
+	font-size: 13px;
+	fieldset.has-legend {
+		padding: 15px;
+		border: 1px solid $border-color;
+		margin: 15px 0;
+		legend {
+			font-size: 110%;
+		}
+	}
+	input[type="text"],
+	input[type="password"],
+	textarea {
+		width: 100%;
+		margin-bottom: 0;
+	}
+	select {
+		width: auto;
+		max-width: 300px;
+	}
+	input[type="file"], input[type="checkbox"], input[type="radio"], select, label {
+		margin: 0 0 5px 0;
+	}
+	.required:after {
+		display: inline-block;
+		width: 10px;
+		margin: -5px 0 0 5px;
+		content: "*";
+		font-weight: bold;
+		color: #ee5f5b;
+	}
+	.elgg-text-help {
+		padding: 5px;
+		& + input, & + select, & + textarea {
+			margin: 10px;
+		}
+	}
+	.elgg-foot {
+		margin-top: 10px;
+		text-align: right;
+	}
+	.parsley-error {
+		border-color: #ee5f5b;
+		@include box-shadow(0 0 6px #f8b9b7);
+	}
+	.parsley-error-list {
+		font-size: 12px;
+		color: #ee5f5b;
+		li {
+			margin: 4px 0;
+		}
+	}
+}
+
+.places-profile-header {
+	@include photo;
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+	
+	* {
+		@include box-sizing(border-box);
+	}
+	.places-profile-details {
+		padding: 10px;
+	}
+	.elgg-menu-interactions {
+		& > li a {
+			font-size: 12px;
+		}
+	}
+}
+
+.places-icon-specialties {
+	background: none;
+	@include icon;
+	&:before {
+		content: $fa-var-glass;
+	}
+}
+
+.places-featured-ribbon {
+	@include ribbon;
+}
+
+
+.places-gallery {
+	@media #{$medium} {
+		@include block-grid(2);
+	}
+	@media #{$large} {
+		@include block-grid(3);
+	}
+	& > li {
+		ul {
+			margin-left: 0;
+		}
+	}
+	& > li > .elgg-module {
+		@include photo;
+		position: relative;
+	}
+}
+
+img.places-static-map {
+	width: 100%;
+	height: auto;
+}
+
+.places-meta {
+	font-size: 12px;
+	font-style: normal;
+	padding: 3px;
+}
+
+
+[data-place] {
+	
+	&.show-counter[data-count] {
+		position: relative;
+		&:after {
+			content: attr(data-count);
+			height: 16px;
+			display: inline-block;
+			margin-left: 4px;
+			background: lighten($border-color, 5%);
+			color: #666;
+			@include border-radius(5px);
+			font-size: 10px;
+			font-weight: 600;
+			line-height: 16px;
+			vertical-align: top;
+			padding: 0 3px;
+		}
+	}
+	&[data-counter="checkins"] {
+		&:before {
+			@include icon;
+			content: $fa-var-check-circle-o;
+			color: #aaa;
+			margin-right: 4px;
+		}
+	}
+	&[data-counter="bookmarks"] {
+		&:before {
+			@include icon;
+			content: $fa-var-star-o;
+			color: #aaa;
+			margin-right: 4px;
+		}
+	}
+	&[data-status="on"] {
+		color: $primary-color;
+		&:before {
+			color: $primary-color;
+		}
+	}
+}

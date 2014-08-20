@@ -1,0 +1,37 @@
+{
+	"name": "hypejunction/hypeplaces",
+	"type": "elgg-plugin",
+	"repository": "hypeJunction/hypePlaces",
+	"description": "Directory of Businesses, Places of Interests and Private Locations",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg", "plugin", "places", "maps", "directory"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Ismayil Khayredinov",
+			"email": "ismayil.khayredinov@gmail.com"
+		}
+	],
+	"extra": {
+		"installer-name": "hypePlaces"
+	},
+	"config": {
+		"vendor-dir": "vendors",
+		"preferred-install": "dist"
+	},
+	"require": {
+		"php": ">=5.3.3",
+		"composer/installers": ">=1.0.8",
+		"smottt/wideimage": "dev-master",
+		"hypejunction/cmp-filestore": "dev-master",
+		"hypejunction/cmp-lists": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"hypeJunction\\": "classes/hypeJunction/"
+		}
+	}
+}
+

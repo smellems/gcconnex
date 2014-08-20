@@ -1,0 +1,6 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !/GCconnex_down/maintenance.html$ 
+# RewriteCond %{REMOTE_HOST} !^192\.168\.36\.120
+
+RewriteRule $ /GCconnex_down/maintenance.html [R=302,L] 

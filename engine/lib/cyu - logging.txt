@@ -1,0 +1,2 @@
+start logging - engine library
+enging/lib/language.php - if cookie is not set, default is english
