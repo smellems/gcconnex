@@ -2,12 +2,12 @@
 /**
  * Installer English Language
  *
- * @package GCConnexLanguage
+ * @package GCconnexLanguage
  * @subpackage Installer
  */
 
 $english = array(
-	'install:title' => 'GCConnex Install',
+	'install:title' => 'GCconnex Install',
 	'install:welcome' => 'Welcome',
 	'install:requirements' => 'Requirements check',
 	'install:database' => 'Database installation',
@@ -32,20 +32,20 @@ If you are ready to proceed, click the Next button.",
 	'install:require:settings' => 'Settings file',
 	'install:require:database' => 'Database',
 
-	'install:check:root' => 'Your web server does not have permission to create an .htaccess file in the root directory of GCConnex. You have two choices:
+	'install:check:root' => 'Your web server does not have permission to create an .htaccess file in the root directory of GCconnex. You have two choices:
 
 		1. Change the permissions on the root directory
 
 		2. Copy the file htaccess_dist to .htaccess',
 
-	'install:check:php:version' => 'GCConnex requires PHP %s or above. This server is using version %s.',
-	'install:check:php:extension' => 'GCConnex requires the PHP extension %s.',
+	'install:check:php:version' => 'GCconnex requires PHP %s or above. This server is using version %s.',
+	'install:check:php:extension' => 'GCconnex requires the PHP extension %s.',
 	'install:check:php:extension:recommend' => 'It is recommended that the PHP extension %s is installed.',
-	'install:check:php:open_basedir' => 'The open_basedir PHP directive may prevent GCConnex from saving files to its data directory.',
-	'install:check:php:safe_mode' => 'Running PHP in safe mode is not recommened and may cause problems with GCConnex.',
-	'install:check:php:arg_separator' => 'arg_separator.output must be & for GCConnex to work and your server\'s value is %s',
+	'install:check:php:open_basedir' => 'The open_basedir PHP directive may prevent GCconnex from saving files to its data directory.',
+	'install:check:php:safe_mode' => 'Running PHP in safe mode is not recommened and may cause problems with GCconnex.',
+	'install:check:php:arg_separator' => 'arg_separator.output must be & for GCconnex to work and your server\'s value is %s',
 	'install:check:php:register_globals' => 'Register globals must be turned off.',
-	'install:check:php:session.auto_start' => "session.auto_start must be off for GCConnex to work. Either change the configuration of your server or add this directive to GCConnex's .htaccess file.",
+	'install:check:php:session.auto_start' => "session.auto_start must be off for GCconnex to work. Either change the configuration of your server or add this directive to GCconnex's .htaccess file.",
 
 	'install:check:enginedir' => 'Your web server does not have permission to create the settings.php file in the engine directory. You have two choices:
 
@@ -54,12 +54,12 @@ If you are ready to proceed, click the Next button.",
 		2. Copy the file settings.example.php to settings.php and follow the instructions in it for setting your database parameters.',
 	'install:check:readsettings' => 'A settings file exists in the engine directory, but the web server cannot read it. You can delete the file or change the read permissions on it.',
 
-	'install:check:php:success' => "Your server's PHP satisfies all of GCConnex's requirements.",
+	'install:check:php:success' => "Your server's PHP satisfies all of GCconnex's requirements.",
 	'install:check:rewrite:success' => 'The test of the rewrite rules was successful.',
-	'install:check:database' => 'The database requirements are checked when GCConnex loads its database.',
+	'install:check:database' => 'The database requirements are checked when GCconnex loads its database.',
 
-	'install:database:instructions' => "If you haven't already created a database for GCConnex, do that now. Then fill in the values below to initialize the GCConnex database.",
-	'install:database:error' => 'There was an error creating the GCConnex database and installation cannot continue. Review the message above and correct any problems. If you need more help, visit the Install troubleshooting link below or post to the GCConnex community forums.',
+	'install:database:instructions' => "If you haven't already created a database for GCconnex, do that now. Then fill in the values below to initialize the GCconnex database.",
+	'install:database:error' => 'There was an error creating the GCconnex database and installation cannot continue. Review the message above and correct any problems. If you need more help, visit the Install troubleshooting link below or post to the GCconnex community forums.',
 
 	'install:database:label:dbuser' =>  'Database Username',
 	'install:database:label:dbpassword' => 'Database Password',
@@ -67,29 +67,29 @@ If you are ready to proceed, click the Next button.",
 	'install:database:label:dbhost' => 'Database Host',
 	'install:database:label:dbprefix' => 'Database Table Prefix',
 
-	'install:database:help:dbuser' => 'User that has full privileges to the MySQL database that you created for GCConnex',
+	'install:database:help:dbuser' => 'User that has full privileges to the MySQL database that you created for GCconnex',
 	'install:database:help:dbpassword' => 'Password for the above database user account',
-	'install:database:help:dbname' => 'Name of the GCConnex database',
+	'install:database:help:dbname' => 'Name of the GCconnex database',
 	'install:database:help:dbhost' => 'Hostname of the MySQL server (usually localhost)',
-	'install:database:help:dbprefix' => "The prefix given to all of GCConnex's tables (usually GCConnex_)",
+	'install:database:help:dbprefix' => "The prefix given to all of GCconnex's tables (usually GCconnex_)",
 
-	'install:settings:instructions' => 'We need some information about the site as we configure GCConnex. If you haven\'t <a href="http://docs.GCConnex.org/wiki/Data_directory" target="_blank">created a data directory</a> for GCConnex, you need to do so now.',
+	'install:settings:instructions' => 'We need some information about the site as we configure GCconnex. If you haven\'t <a href="http://docs.GCconnex.org/wiki/Data_directory" target="_blank">created a data directory</a> for GCconnex, you need to do so now.',
 
 	'install:settings:label:sitename' => 'Site Name',
 	'install:settings:label:siteemail' => 'Site Email Address',
 	'install:settings:label:wwwroot' => 'Site URL',
-	'install:settings:label:path' => 'GCConnex Install Directory',
+	'install:settings:label:path' => 'GCconnex Install Directory',
 	'install:settings:label:dataroot' => 'Data Directory',
 	'install:settings:label:language' => 'Site Language',
 	'install:settings:label:siteaccess' => 'Default Site Access',
-	'install:label:combo:dataroot' => 'GCConnex creates data directory',
+	'install:label:combo:dataroot' => 'GCconnex creates data directory',
 
-	'install:settings:help:sitename' => 'The name of your new GCConnex site',
-	'install:settings:help:siteemail' => 'Email address used by GCConnex for communication with users',
-	'install:settings:help:wwwroot' => 'The address of the site (GCConnex usually guesses this correctly)',
-	'install:settings:help:path' => 'The directory where you put the GCConnex code (GCConnex usually guesses this correctly)',
-	'install:settings:help:dataroot' => 'The directory that you created for GCConnex to save files (the permissions on this directory are checked when you click Next). It must be an absolute path.',
-	'install:settings:help:dataroot:apache' => 'You have the option of GCConnex creating the data directory or entering the directory that you already created for storing user files (the permissions on this directory are checked when you click Next)',
+	'install:settings:help:sitename' => 'The name of your new GCconnex site',
+	'install:settings:help:siteemail' => 'Email address used by GCconnex for communication with users',
+	'install:settings:help:wwwroot' => 'The address of the site (GCconnex usually guesses this correctly)',
+	'install:settings:help:path' => 'The directory where you put the GCconnex code (GCconnex usually guesses this correctly)',
+	'install:settings:help:dataroot' => 'The directory that you created for GCconnex to save files (the permissions on this directory are checked when you click Next). It must be an absolute path.',
+	'install:settings:help:dataroot:apache' => 'You have the option of GCconnex creating the data directory or entering the directory that you already created for storing user files (the permissions on this directory are checked when you click Next)',
 	'install:settings:help:language' => 'The default language for the site',
 	'install:settings:help:siteaccess' => 'The default access level for new user created content',
 
@@ -112,7 +112,7 @@ If you are ready to proceed, click the Next button.",
 	'install:admin:password:tooshort' => 'Your password was too short',
 	'install:admin:cannot_create' => 'Unable to create an admin account.',
 
-	'install:complete:instructions' => 'Your GCConnex site is now ready to be used. Click the button below to be taken to your site.',
+	'install:complete:instructions' => 'Your GCconnex site is now ready to be used. Click the button below to be taken to your site.',
 	'install:complete:gotosite' => 'Go to site',
 
 	'InstallationException:UnknownStep' => '%s is an unknown installation step.',
@@ -128,7 +128,7 @@ If you are ready to proceed, click the Next button.",
 	'install:error:oldmysql' => 'MySQL must be version 5.0 or above. Your server is using %s.',
 	'install:error:nodatabase' => 'Unable to use database %s. It may not exist.',
 	'install:error:cannotloadtables' => 'Cannot load the database tables',
-	'install:error:tables_exist' => 'There are already GCConnex tables in the database. You need to either drop those tables or restart the installer and we will attempt to use them. To restart the installer, remove \'?step=database\' from the URL in your browser\'s address bar and press Enter.',
+	'install:error:tables_exist' => 'There are already GCconnex tables in the database. You need to either drop those tables or restart the installer and we will attempt to use them. To restart the installer, remove \'?step=database\' from the URL in your browser\'s address bar and press Enter.',
 	'install:error:readsettingsphp' => 'Unable to read engine/settings.example.php',
 	'install:error:writesettingphp' => 'Unable to write engine/settings.php',
 	'install:error:requiredfield' => '%s is required',
@@ -146,12 +146,12 @@ If you are ready to proceed, click the Next button.",
 	'install:error:rewrite:nginx' => 'We think your server is running the Nginx web server.',
 	'install:error:rewrite:lighttpd' => 'We think your server is running the Lighttpd web server.',
 	'install:error:rewrite:iis' => 'We think your server is running the IIS web server.',
-	'install:error:rewrite:allowoverride' => "The rewrite test failed and the most likely cause is that AllowOverride is not set to All for GCConnex's directory. This prevents Apache from processing the .htaccess file which contains the rewrite rules.
-				\n\nA less likely cause is Apache is configured with an alias for your GCConnex directory and you need to set the RewriteBase in your .htaccess. There are further instructions in the .htaccess file in your GCConnex directory.",
+	'install:error:rewrite:allowoverride' => "The rewrite test failed and the most likely cause is that AllowOverride is not set to All for GCconnex's directory. This prevents Apache from processing the .htaccess file which contains the rewrite rules.
+				\n\nA less likely cause is Apache is configured with an alias for your GCconnex directory and you need to set the RewriteBase in your .htaccess. There are further instructions in the .htaccess file in your GCconnex directory.",
 	'install:error:rewrite:htaccess:write_permission' => 'Your web server does not have permission to create the .htaccess file in gcconnex\'s directory. You need to manually copy htaccess_dist to .htaccess or change the permissions on the directory.',
 	'install:error:rewrite:htaccess:read_permission' => 'There is an .htaccess file in gcconnex\'s directory, but your web server does not have permission to read it.',
-	'install:error:rewrite:htaccess:non_GCConnex_htaccess' => 'There is an .htaccess file in gcconnex\'s directory that was not not created by GCConnex. Please remove it.',
-	'install:error:rewrite:htaccess:old_GCConnex_htaccess' => 'There appears to be an old GCConnex .htaccess file in gcconnex\'s directory. It does not contain the rewrite rule for testing the web server.',
+	'install:error:rewrite:htaccess:non_GCconnex_htaccess' => 'There is an .htaccess file in gcconnex\'s directory that was not not created by GCconnex. Please remove it.',
+	'install:error:rewrite:htaccess:old_GCconnex_htaccess' => 'There appears to be an old GCconnex .htaccess file in gcconnex\'s directory. It does not contain the rewrite rule for testing the web server.',
 	'install:error:rewrite:htaccess:cannot_copy' => 'A unknown error occurred while creating the .htaccess file. You need to manually copy htaccess_dist to .htaccess in gcconnex\'s directory.',
 	'install:error:rewrite:altserver' => 'The rewrite rules test failed. You need to configure your web server with gcconnex\'s rewrite rules and try again.',
 	'install:error:rewrite:unknown' => 'Oof. We couldn\'t figure out what kind of web server is running on your server and it failed the rewrite rules. We cannot offer any specific advice. Please check the troubleshooting link.',
