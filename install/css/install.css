@@ -19,7 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body {
 	color: #333333;
-	background: #4690d6;
+	background: #426E92;
 	font-size: 80%;
 	font-family: "Lucida Grande",Arial,Tahoma,Verdana,sans-serif;
 	text-align: left;
@@ -36,7 +36,7 @@ h5 { font-size: 0.9em; }
 h6 { font-size: 0.8em; }
 
 a {
-	color: #4690d6;
+	color: #426E92;
 	text-decoration: none;
 }
 
@@ -173,7 +173,7 @@ input[type="password"]  {
 	width: 220px;
 }
 input[type="password"]:focus, input[type="text"]:focus {
-	border: solid 1px #4690d6;
+	border: solid 1px #426E92;
 	background: #e4ecf5;
 	color: #333333;
 }
@@ -182,8 +182,8 @@ input[type="submit"] {
 	font-size: 16px;
 	font-weight: bold;
 	color: #fff;
-	background: #4690d6;
-	border: 4px solid #4690d6;
+	background: #426E92;
+	border: 4px solid #426E92;
 	
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -218,8 +218,8 @@ select {
 	font-size: 16px;
 	font-weight: bold;
 	color: #ffffff;
-	background: #4690d6;
-	border: 4px solid #4690d6;
+	background: #426E92;
+	border: 4px solid #426E92;
 	
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
