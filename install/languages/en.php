@@ -13,6 +13,7 @@ $english = array(
 	'install:database' => 'Database installation',
 	'install:settings' => 'Configure site',
 	'install:admin' => 'Create admin account',
+    'install:modules' => 'Install modules',
 	'install:complete' => 'Finished',
 
 	'install:next' => 'Next',
