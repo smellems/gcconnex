@@ -553,19 +553,29 @@ class ElggInstaller {
             elgg_invalidate_simplecache();
             elgg_reset_system_cache();
 
+            elgg_generate_plugin_entities();
             $this_plugin->activate();
 
-            /*
-             *  if a plugin can't be activated, tell us why
-             *  used for debugging purposes.. safe to delete once everything is working
+
+             // if a plugin can't be activated, tell us why
+             //  used for debugging purposes.. safe to delete once everything is working
 
             if($this_plugin->canActivate() == false){
-                print_r("ERROR: " . $this_plugin->getError());
+                print_r("ERROR: ");
+                print_r($plugin_list[activate][$i]);
+                print_r(" ERROR CODE: " . $this_plugin->getError());
+                print_r(" REASON: ");
+                $reasons = $this_plugin->getManifest()->getRequires();
+                $morereasons = $this_plugin->getManifest()->getConflicts();
+                //$this_plugin->getManifest()->
+                print_r($reasons);
+                print_r("MORE INFO: ");
+                var_dump($morereasons);
                 print_r("<br>");
             }
             else{
-                print_r("Plugin successfully loaded. <br>");
-            }*/
+                print_r("Plugin successfully loaded: ". $plugin_list[activate][$i] . " <br>");
+            }
         }
 
 
