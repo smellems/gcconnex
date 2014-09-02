@@ -35,6 +35,7 @@ class ElggInstaller {
 		'database',
 		'settings',
 		'admin',
+        'modules',
 		'complete',
 		);
 
@@ -43,6 +44,7 @@ class ElggInstaller {
 		'database' => FALSE,
 		'settings' => FALSE,
 		'admin' => FALSE,
+        'modules' => FALSE,
 	);
 
 	protected $isAction = FALSE;
@@ -521,7 +523,68 @@ class ElggInstaller {
 		$this->render('admin', array('variables' => $formVars));
 	}
 
-	/**
+    /**
+     * Controller for installing gcconnex modules
+     * Created by: Bryden Arndt
+     * Date: Aug 22, 2014
+     *
+     * @return void
+     */
+    protected function modules() {
+
+        // read the gcconnex-mods.ini file to get a list of modules to activate/deactivate
+        $plugin_list = parse_ini_file("gcconnex-mods.ini");
+
+        // deactivate modules
+        for($i=0; $plugin_list[deactivate][$i]!=NULL; $i++) {
+            $this_plugin = elgg_get_plugin_from_id($plugin_list[deactivate][$i]);
+            $this_plugin->deactivate();
+            $this_plugin->setPriority('last');
+        }
+
+        // activate modules
+        for($i=0; $plugin_list[activate][$i]!=NULL; $i++) {
+
+            $this_plugin = elgg_get_plugin_from_id($plugin_list[activate][$i]);
+
+            // send each plugin to the bottom of the priority list, then enable it
+            $this_plugin->setPriority('last');
+            //reset the cache so that new priorities take effect immediately
+            elgg_invalidate_simplecache();
+            elgg_reset_system_cache();
+
+            elgg_generate_plugin_entities();
+            $this_plugin->activate();
+
+
+             // if a plugin can't be activated, tell us why
+             //  used for debugging purposes.. safe to delete once everything is working
+
+            if($this_plugin->canActivate() == false){
+                print_r("ERROR: ");
+                print_r($plugin_list[activate][$i]);
+                print_r(" ERROR CODE: " . $this_plugin->getError());
+                print_r(" REASON: ");
+                $reasons = $this_plugin->getManifest()->getRequires();
+                $morereasons = $this_plugin->getManifest()->getConflicts();
+                //$this_plugin->getManifest()->
+                print_r($reasons);
+                print_r("MORE INFO: ");
+                var_dump($morereasons);
+                print_r("<br>");
+            }
+            else{
+                print_r("Plugin successfully loaded: ". $plugin_list[activate][$i] . " <br>");
+            }
+        }
+
+
+
+        $this->render('modules');
+
+    }
+
+    /**
 	 * Controller for last step
 	 *
 	 * @return void
@@ -705,6 +768,10 @@ class ElggInstaller {
 		if ($this->status['admin'] == FALSE) {
 			forward("install.php?step=admin");
 		}
+
+        if ($this->status['modules'] == FALSE) {
+            forward("install.php?step=modules");
+        }
 
 		// everything appears to be set up
 		forward("install.php?step=complete");

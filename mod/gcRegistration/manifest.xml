@@ -9,13 +9,4 @@
 		<type>elgg_release</type>
 		<version>1.8</version>
 	</requires>
-	<requires>
-		<type>plugin</type>
-		<name>c_email_extensions</name>
-	</requires>
-	<requires>
-		<type>priority</type>
-		<priority>after</priority>
-		<plugin>c_email_extensions</plugin>
-	</requires>
 </plugin_manifest>
