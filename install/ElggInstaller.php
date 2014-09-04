@@ -536,52 +536,48 @@ class ElggInstaller {
         $plugin_list = parse_ini_file("gcconnex-mods.ini");
 
         // deactivate modules
-        for($i=0; $plugin_list[deactivate][$i]!=NULL; $i++) {
-            $this_plugin = elgg_get_plugin_from_id($plugin_list[deactivate][$i]);
+        foreach($plugin_list[deactivate] as $pluginID) {
+            $this_plugin = elgg_get_plugin_from_id($pluginID);
             $this_plugin->deactivate();
             $this_plugin->setPriority('last');
         }
 
         // activate modules
-        for($i=0; $plugin_list[activate][$i]!=NULL; $i++) {
+        foreach($plugin_list[activate] as $pluginID) {
+            $this_plugin = elgg_get_plugin_from_id($pluginID);
 
-            $this_plugin = elgg_get_plugin_from_id($plugin_list[activate][$i]);
-
-            // send each plugin to the bottom of the priority list, then enable it
+            // send each plugin to the bottom of the priority list
             $this_plugin->setPriority('last');
-            //reset the cache so that new priorities take effect immediately
-            elgg_invalidate_simplecache();
-            elgg_reset_system_cache();
 
-            elgg_generate_plugin_entities();
-            $this_plugin->activate();
-
-
-             // if a plugin can't be activated, tell us why
-             //  used for debugging purposes.. safe to delete once everything is working
-
-            if($this_plugin->canActivate() == false){
-                print_r("ERROR: ");
-                print_r($plugin_list[activate][$i]);
-                print_r(" ERROR CODE: " . $this_plugin->getError());
-                print_r(" REASON: ");
-                $reasons = $this_plugin->getManifest()->getRequires();
-                $morereasons = $this_plugin->getManifest()->getConflicts();
-                //$this_plugin->getManifest()->
-                print_r($reasons);
-                print_r("MORE INFO: ");
-                var_dump($morereasons);
-                print_r("<br>");
+            //For some reason a list of modules can't always be activated on the first attempt.
+            //Sometimes, even though requirements and dependencies are met, the page must be
+            //refreshed for whatever reason. In order not to make an infinite loop, the following
+            //code will attempt refreshing once for a module that encounters this hiccup.
+            //
+            //If we haven't already set the mod_hiccup and we can activate, do it!
+            if(!isset($_GET['mod_hiccup']) && $this_plugin->canActivate()) {
+                $this_plugin->activate();
             }
-            else{
-                print_r("Plugin successfully loaded: ". $plugin_list[activate][$i] . " <br>");
+            elseif(!isset($_GET['mod_hiccup']) && !$this_plugin->canActivate()) { //if we haven't set mod_hiccup and we can't activate..
+                //set the mod variable so we know which one is hanging and then refresh the page
+                header('Location: install.php?mod_hiccup=' . $this_plugin->getGUID());
+            }
+            elseif(isset($_GET['mod_hiccup']) && !$this_plugin->canActivate()) { //if we have set the mod_hiccup and we can't activate..
+                if($_GET['mod_hiccup'] == $this_plugin->getGUID()) { // check if this is the 2nd attempt to activate
+                    //error twice with same module, skip this module (otherwise we will infinite loop)
+                    // do nothing
+                }
+                else {
+                    //we are hanging on a different mod, it's safe to reset the mod flag and refresh the page
+                    header('Location: install.php?mod_hiccup=' . $this_plugin->getGUID());
+                }
             }
         }
 
-
+        elgg_invalidate_simplecache();
+        elgg_reset_system_cache();
 
         $this->render('modules');
-
     }
 
     /**
