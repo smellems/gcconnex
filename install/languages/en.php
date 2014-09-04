@@ -19,7 +19,7 @@ $english = array(
 	'install:next' => 'Next',
 	'install:refresh' => 'Refresh',
 
-	'install:welcome:instructions' => "Installing GCconnex has 6 simple steps and reading this welcome is the first one!
+	'install:welcome:instructions' => "Installing GCconnex has 7 simple steps and reading this welcome is the first one!
 
 If you haven't already, read through the installation instructions included with GCconnex (or click the instructions link at the bottom of the page).
 
@@ -112,6 +112,8 @@ If you are ready to proceed, click the Next button.",
 	'install:admin:password:empty' => 'Password cannot be empty.',
 	'install:admin:password:tooshort' => 'Your password was too short',
 	'install:admin:cannot_create' => 'Unable to create an admin account.',
+
+    'install:modules:notice' => 'Required modules have been activated.',
 
 	'install:complete:instructions' => 'Your GCconnex site is now ready to be used. Click the button below to be taken to your site.',
 	'install:complete:gotosite' => 'Go to site',

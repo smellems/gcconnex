@@ -9,6 +9,6 @@
  *
  */
 
-echo elgg_autop(elgg_echo('install:welcome:instructions'));
+echo elgg_autop(elgg_echo('install:modules:notice'));
 
 echo elgg_view('install/nav', $vars);
