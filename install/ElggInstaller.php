@@ -580,6 +580,12 @@ class ElggInstaller {
         //		"60|40" => elgg_echo('widget_manager:settings:widget_layout:60|40')
         //
         // installation ? Maybe for the advanced settings?? views/default/forms/admin/site/updateadvanced
+
+        elgg_save_config('default_access', 1);
+        elgg_save_config('simplecache_enabled', FALSE);
+        elgg_save_config('system_cache_enabled', FALSE);
+        elgg_save_config('disable_api', TRUE);
+
         $plugin_list = array(
             'custom_index_widgets' => array(
                 'ciw_showdashboard' => 'no',
@@ -629,9 +635,6 @@ class ElggInstaller {
                 'quota' => '200',
                 'im_path' => '/usr/bin/',
             ),
-            //'' => array(
-            //    '' => '',
-            //),
         );
 
         foreach($plugin_list as $key => $value) {
