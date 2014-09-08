@@ -549,8 +549,8 @@ class ElggInstaller {
             // send each plugin to the bottom of the priority list
             $this_plugin->setPriority('last');
 
-            //For some reason a list of modules can't always be activated on the first attempt.
-            //Sometimes, even though requirements and dependencies are met, the page must be
+            //For some reason, a list of modules can't always be activated on the first attempt.
+            //Sometimes, even though requirements and dependencies are being met, the page must be
             //refreshed for whatever reason. In order not to make an infinite loop, the following
             //code will attempt refreshing once for a module that encounters this hiccup.
             //
@@ -572,6 +572,77 @@ class ElggInstaller {
                     header('Location: install.php?mod_hiccup=' . $this_plugin->getGUID());
                 }
             }
+        }
+
+        // create the elgg plugin for widget_manager
+
+        // adjust the $widget_layout_options to be...
+        //		"60|40" => elgg_echo('widget_manager:settings:widget_layout:60|40')
+        //
+        // installation ? Maybe for the advanced settings?? views/default/forms/admin/site/updateadvanced
+        $plugin_list = array(
+            'custom_index_widgets' => array(
+                'ciw_showdashboard' => 'no',
+            ),
+            'event_calendar' => array(
+                'reminders' => 'yes',
+                'timeformat' => '12',
+                'autogroup' => 'yes',
+                'add_to_group_calendar' => 'yes',
+                'venue_view' => 'yes',
+                'site_calendar' => 'loggedin',
+                'group_always_display' => 'yes',
+                'personal_manage' => 'by_event',
+            ),
+            'file_tools' => array(
+                'allowed_extensions' => 'txt, jpg, jpeg, png, bmp, gif, pdf, doc, docx, xls, xlsx, ppt, pptx, odt, ods, odp, mpp, mpg, vsd, ai, wpd, rtf, dfr, zip, wma',
+                'user_folder_structure' => 'yes',
+            ),
+            'widget_manager' => array(
+                'widget_layout' => '40|60',
+                'group_enable' => 'yes',
+                'group_option_default_enabled' => 'yes',
+                'multi_dashboard_enabled' => 'yes',
+            ),
+            'garbagecollector' => array(
+                'period' => 'weekly',
+            ),
+            'groups' => array(
+                'hidden_groups' => 'yes',
+            ),
+            'html_email_handler' => array(
+                'notifications' => 'yes',
+            ),
+            'logrotate' => array(
+                'period' => 'weekly',
+            ),
+            'mobilize' => array(
+                'use_friendspicker' => 'yes',
+                'header_color' => '#FFFFFF',
+            ),
+            'tidypics' => array(
+                'tagging' => 'checked',
+                'exif' => 'checked',
+                'slideshow' => 'checked',
+                'album_contents' => 'checked',
+                'maxfilesize' => '16',
+                'quota' => '200',
+                'im_path' => '/usr/bin/',
+            ),
+            //'' => array(
+            //    '' => '',
+            //),
+        );
+
+        foreach($plugin_list as $key => $value) {
+
+                $this_plugin = elgg_get_plugin_from_id($key);
+                print_r($key); //just for debugging purposes
+
+                foreach ($value as $k => $v) {
+                    $result = $this_plugin->setSetting($k, $v);
+                    print_r($result . '<br>');
+                }
         }
 
         elgg_invalidate_simplecache();
