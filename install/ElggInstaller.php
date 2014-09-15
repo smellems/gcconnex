@@ -717,8 +717,14 @@ class ElggInstaller {
         $groupedit = new ElggGroup;
 
         $groupedit->guid = $new_group;
-        $groupedit->name = "This is the name";
-        $groupedit->description = "This is descrrtpition";
+        $groupedit->name = 'This is the name';
+        $groupedit->description = '<h1>Adding Group Members</h1>' .
+            '<br><b>STEP 1</b> - Click on "Invite Users"' .
+            '<br><b>STEP 2</b> - Choose colleagues/users to invite' .
+            '<br><b>STEP 3</b> - Click "Invite"' .
+            '<br><h1>Removing Group Members</h1>' .
+            '<br><b>STEP 1</b> - Click on "View All Members"' .
+            '<br><b>STEP 2</b> - Remove collagues/users from the group"';
         $groupedit->save();
 
         //make sure the admin is a member of the group so that it shows up in his list
@@ -726,7 +732,7 @@ class ElggInstaller {
             $groupedit->join($groupedit->getOwnerEntity());
         }
 
-        
+
 
 		$params = array();
 		if ($this->autoLogin) {
