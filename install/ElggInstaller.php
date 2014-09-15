@@ -532,6 +532,7 @@ class ElggInstaller {
      */
     protected function modules() {
 
+        global $CONFIG;
         // read the gcconnex-mods.ini file to get a list of modules to activate/deactivate
         $plugin_list = parse_ini_file("gcconnex-mods.ini");
 
@@ -586,6 +587,8 @@ class ElggInstaller {
         elgg_save_config('system_cache_enabled', FALSE);
         elgg_save_config('disable_api', TRUE);
 
+
+
         $plugin_list = array(
             'custom_index_widgets' => array(
                 'ciw_showdashboard' => 'no',
@@ -616,6 +619,18 @@ class ElggInstaller {
             'groups' => array(
                 'hidden_groups' => 'yes',
             ),
+            'group_tools' => array(
+                'admin_transfer' => 'owner',
+                'auto_notification_site' => TRUE,
+                'auto_notification_email' => TRUE,
+                'multiple_admin' => 'yes',
+                'mail' => 'yes',
+                'group_listing' => 'newest',
+                'invite' => 'yes',
+                'invite_email' => 'yes',
+                'invite_csv' => 'yes',
+                'group_default_access' => '-10',
+            ),
             'html_email_handler' => array(
                 'notifications' => 'yes',
             ),
@@ -637,19 +652,44 @@ class ElggInstaller {
             ),
         );
 
+
+
+
+
+
+        //$user->username();
+
+        //$user = elgg_get_logged_in_user_guid();
+
+        //$user = new ElggUser();
+        /*
+        print_r("USER: " . $user->guid);
+        print_r($result[0]->guid);
+        if(!($new_group->isMember())) {
+            $new_group->join($user);
+        }
+        */
+
+
+
+        //create_group_entity($new_group, "test", "this is descr");
+        //$new_group->setContainerGUID(create_group_entity($new_group->guid, "test", "this is descr"))
+
+
+        //$new_group = new ElggGroup();
+
+
+
         foreach($plugin_list as $key => $value) {
 
                 $this_plugin = elgg_get_plugin_from_id($key);
-                print_r($key); //just for debugging purposes
-
                 foreach ($value as $k => $v) {
-                    $result = $this_plugin->setSetting($k, $v);
-                    print_r($result . '<br>');
+                    $this_plugin->setSetting($k, $v);
                 }
         }
 
-        elgg_invalidate_simplecache();
-        elgg_reset_system_cache();
+        //elgg_invalidate_simplecache();
+        //elgg_reset_system_cache();
 
         $this->render('modules');
     }
@@ -658,8 +698,35 @@ class ElggInstaller {
 	 * Controller for last step
 	 *
 	 * @return void
+     * edited by: Bryden Arndt
+     * edited on: Sep 15, 2014
+     * changes made: added code to create an example group
 	 */
 	protected function complete() {
+
+        //find the admin user in the database
+        $query = "select guid from elgg_users_entity";
+        $result = get_data($query);
+        $user = get_entity($result[0]->guid);
+
+        //create an example group
+        $new_group = create_entity('group', null, 0, 0);
+
+        login($user);
+
+        $groupedit = new ElggGroup;
+
+        $groupedit->guid = $new_group;
+        $groupedit->name = "This is the name";
+        $groupedit->description = "This is descrrtpition";
+        $groupedit->save();
+
+        //make sure the admin is a member of the group so that it shows up in his list
+        if(!$groupedit->isMember(get_current_user())) {
+            $groupedit->join($groupedit->getOwnerEntity());
+        }
+
+        
 
 		$params = array();
 		if ($this->autoLogin) {
