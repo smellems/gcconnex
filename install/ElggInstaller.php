@@ -717,12 +717,13 @@ class ElggInstaller {
         $groupedit = new ElggGroup;
 
         $groupedit->guid = $new_group;
-        $groupedit->name = 'This is the name';
-        $groupedit->description = '<h1>Adding Group Members</h1>' .
+        $groupedit->name = 'Example Group';
+        $groupedit->description = '<h3>Adding Group Members</h3>' .
             '<br><b>STEP 1</b> - Click on "Invite Users"' .
             '<br><b>STEP 2</b> - Choose colleagues/users to invite' .
             '<br><b>STEP 3</b> - Click "Invite"' .
-            '<br><h1>Removing Group Members</h1>' .
+            
+            '<br><h3>Removing Group Members</h3>' .
             '<br><b>STEP 1</b> - Click on "View All Members"' .
             '<br><b>STEP 2</b> - Remove collagues/users from the group"';
         $groupedit->save();
