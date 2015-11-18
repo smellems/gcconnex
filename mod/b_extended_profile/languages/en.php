@@ -66,7 +66,8 @@ $english = array(
     // EDUCATION
     'gcconnex_profile:education:school' => 'Institution Name: ',
     'gcconnex_profile:education:start_month' => 'Start Month: ',
-    'gcconnex_profile:education:year' => 'Year: ',
+    'gcconnex_profile:education:start_year' => 'Start Year: ',
+    'gcconnex_profile:education:end_year' => 'End Year: ',
     'gcconnex_profile:education:end_month' => 'End Month: ',
     'gcconnex_profile:education:ongoing' => 'Present',
     'gcconnex_profile:education:degree' => 'Degree: ',
@@ -77,6 +78,8 @@ $english = array(
     'gcconnex_profile:education:access' => 'Who can see my education entries:',
     'gcconnex_profile:education:present' => 'Present',
     'gcconnex_profile:education:empty' => 'Begin entering your education details by clicking "Edit" in the top right corner of this box.',
+    'gcconnex_profile:education:start' => 'Start',
+    'gcconnex_profile:education:end' => 'End',
 
     // WORK EXPERIENCE
     'gcconnex_profile:experience:organization' => 'Name of Organization: ',
@@ -117,7 +120,9 @@ $english = array(
     'gcconnex_profile:languages:writtenexp' => 'Written Expression',
     'gcconnex_profile:languages:oral' => 'Oral Proficiency',
     'gcconnex_profile:languages:english' => 'English',
+    'gcconnex_profile:languages:ENG' => 'English',
     'gcconnex_profile:languages:french' => 'French',
+    'gcconnex_profile:languages:FRA' => 'French',
     'gcconnex_profile:languages:expiry' => 'Expiry',
 
     // PORTFOLIO
