@@ -1,0 +1,21 @@
+<?php
+
+$now = time();
+
+$ts_token = "&__elgg_ts=" .$now."&__elgg_token=" . generate_action_token($now);
+
+echo elgg_view('output/longtext', array('value' => $vars['entity']->objetive));
+echo elgg_view('output/longtext', array('value' => $vars['entity']->container_guid));
+$guid= $vars['entity']->guid;
+$delete_url = "action/etherpad/delete?guid=".$guid.$ts_token;
+echo elgg_view('output/url', array(
+	'href' => $delete_url,
+	'text' => $guid,
+));
+echo "<br \>";
+echo elgg_view('output/url', array(
+	'href' => $vars['entity']->url,
+	'text' => $vars['entity']->url,
+        'target' => "_blank"
+));
+
