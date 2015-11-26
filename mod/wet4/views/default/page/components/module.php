@@ -26,10 +26,12 @@ $title = elgg_extract('title', $vars, '');
 $body = elgg_extract('body', $vars, '');
 $footer = elgg_extract('footer', $vars, '');
 $show_inner = elgg_extract('show_inner', $vars, false);
-
+$item_class = elgg_extract('item_class', $vars, '');
 $attrs = [
 	'id' => elgg_extract('id', $vars),
 	'class' => (array) elgg_extract('class', $vars, []),
+    //'item_class' => (array) elgg_extract('item_class', $vars, []),
+    
 ];
 
 
@@ -44,7 +46,7 @@ $attrs = [
 if($checkPage == 'group_profile' && $type == 'GPmod'){
   
     if ($type) {
-        $attrs['class'][] = "elgg-module-$type";
+        $attrs['class'][] = "elgg-module-$type ";
     }
 
 
@@ -60,7 +62,36 @@ if($checkPage == 'group_profile' && $type == 'GPmod'){
 
     echo elgg_format_element('div', $attrs, $contents);
 
-} else { //Normal Style Below
+} else if ($checkPage =='gallery'){
+    // check to see if the page is a photo gallery to style the photo stuff :)
+    
+        $attrs['class'][] = 'panel panel-custom hght-inhrt ';
+    if ($type) {
+        $attrs['class'][] = "elgg-module-$type";
+    }
+
+    $header = elgg_extract('header', $vars);
+    if ($title) {
+        $header = elgg_format_element('h4', ['class' => ''], $title);
+    }
+
+    if ($header !== null) {
+        $header = elgg_format_element('div', ['class' => 'panel-heading'], $header);
+    }
+    $body = elgg_format_element('div', ['class' => 'panel-body-gallery  clearfix'], $body);
+    if ($footer) {
+        $footer = elgg_format_element('div', ['class' => 'panel-body-gallery'], $footer);
+    }
+
+    $contents =  $body  .$footer ;
+    if ($show_inner) {
+        $contents = elgg_format_element('div', ['class' => 'elgg-inner'], $contents);
+    }
+
+    echo elgg_format_element('div', $attrs, $contents);
+    
+    
+}else{ //Normal Style Below
     
     $attrs['class'][] = 'panel panel-custom';
     if ($type) {
@@ -86,5 +117,6 @@ if($checkPage == 'group_profile' && $type == 'GPmod'){
     }
 
     echo elgg_format_element('div', $attrs, $contents);
+    //echo $checkPage;
 
 }

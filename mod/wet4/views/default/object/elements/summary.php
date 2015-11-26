@@ -44,8 +44,15 @@ if ($tags === '') {
 }
 
 if ($title_link) {
-	echo "<h3 class=\"mrgn-bttm-0 panel-title\">$title_link</h3>";
+    echo "<h3 class=\"mrgn-bttm-0 panel-title\">$title_link</h3>";
 }
+//This tests to see if you are looking at a group list and does't outpout the subtitle variable here, It's called at the end of this file
+if($entity->getType() == 'group'){
+   echo '';
+}else{
+  echo "<div class=\" mrgn-bttm-sm mrgn-tp-md timeStamp clearfix\">$subtitle</div>";   
+}
+
 
 echo "<div class=\"tags\">$tags</div>";
 
@@ -58,4 +65,8 @@ echo elgg_view('object/summary/extend', $vars);
 if ($content) {
 	echo "<div class=\"elgg-content mrgn-tp-sm\">$content</div>";
 }
-echo "<div class=\" mrgn-bttm-sm mrgn-tp-md timeStamp clearfix\">$subtitle</div>";
+
+if($entity->getType() == 'group'){
+   echo "<div class=\" mrgn-bttm-sm mrgn-tp-md timeStamp clearfix\">$subtitle</div>"; 
+}
+

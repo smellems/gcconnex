@@ -54,7 +54,7 @@ echo '<div id="customWidgets">';
                         $column_widgets = array();
                     }
                     
-                    echo "<div class=\"$widget_class elgg-widgets col-sm-6 widget-area-col\" id=\"elgg-widget-col-$column_index\">";
+                    echo "<div class=\"$widget_class elgg-widgets col-sm-6 col-xs-12 widget-area-col\" id=\"elgg-widget-col-$column_index\">";
                     
                     if (sizeof($column_widgets) > 0) {
                         foreach ($column_widgets as $widget) {

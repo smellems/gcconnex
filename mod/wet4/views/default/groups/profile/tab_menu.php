@@ -50,6 +50,15 @@ if(elgg_get_context() == 'groupSubPage'){
     ));
     
     elgg_register_menu_item('owner_block', array(
+    'name' => 'portfolio',
+    'href' => '#portfolio',
+    'text' => elgg_echo('gcconnex_profile:portfolio'),
+    'data-toggle' => 'tab',
+    'class' => '',
+    'priority' => '0',
+    ));
+    
+    elgg_register_menu_item('owner_block', array(
     'name' => 'widgets',
     'href' => '#splashboard',
     'text' => elgg_echo('gcconnex_profile:widgets'),
@@ -58,14 +67,7 @@ if(elgg_get_context() == 'groupSubPage'){
     'priority' => '0',
     ));
     
-    elgg_register_menu_item('owner_block', array(
-    'name' => 'portfolio',
-    'href' => '#portfolio',
-    'text' => elgg_echo('gcconnex_profile:portfolio'),
-    'data-toggle' => 'tab',
-    'class' => '',
-    'priority' => '0',
-    ));
+    
 }
  
 elgg_register_menu_item('owner_block', array(

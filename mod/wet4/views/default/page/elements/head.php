@@ -57,6 +57,15 @@ foreach ($css as $url) {
 	<script><?php echo $elgg_init; ?></script>
 <?php
 foreach ($js as $url) {
+    
+    if (strpos($url,'jquery-1.11.0.min.js') !== false) {
+        //$url = 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js';
+    }
+    
+    if (strpos($url,'require-2.1.10.min.js') !== false) {
+        
+    }
+    
 	echo elgg_format_element('script', array('src' => $url));
 }
 

@@ -19,7 +19,7 @@ if ($message->toId == elgg_get_page_owner_guid()) {
 	if ($user) {
 		$icon = elgg_view_entity_icon($user, 'small');
 		$user_link = elgg_view('output/url', array(
-			'href' => "messages/compose?send_to=$user->guid",
+			//'href' => "messages/compose?send_to=$user->guid",
 			'text' => $user->name,
 			'is_trusted' => true,
 		));
@@ -73,23 +73,33 @@ $checkbox = elgg_view('input/checkbox', array(
 			'value' => $message->guid,
 			'default' => false,
 		));
+$messageLink = $message->getURL();
 
 $body = <<<HTML
+
 <div class="mrgn-bttm-md clearfix">
+
 <div class="messages-chkbx">$checkbox</div>
 <div class="messages-owner">$user_link</div>
 <div class="messages-subject">$subject_info</div>
 <div class="messages-timestamp">$timestamp</div>
 <div class="messages-delete">$delete_link</div>
+
 </div>
+
 HTML;
 
 if ($full) {
-	echo elgg_view_image_block($icon, $body, array('class' => $class));
+    //echo '<a href="'.$messageLink.'">';
+  
+	echo   elgg_view_image_block($icon, $body, array('class' => $class));
 	echo elgg_view('output/longtext', array('value' => $message->description));
+    //echo '</a>';
+
 } else {
 	
-	$body .= elgg_view("output/longtext", array("value" => elgg_get_excerpt($message->description), "class" => "elgg-subtext clearfloat"));
+    //Making the body preview dissapear!
+	//$body .= elgg_view("output/longtext", array("value" => elgg_get_excerpt($message->description), "class" => "elgg-subtext clearfloat "));
 	
 	if ($bulk_actions) {
 		$checkbox = elgg_view('input/checkbox', array(
@@ -105,5 +115,6 @@ if ($full) {
         
         //echo elgg_view_image_block($checkbox, $entity_listing);
 		echo elgg_view_image_block( $icon, $body, array('class' => $class));
+      
 	}
 }

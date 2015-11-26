@@ -29,6 +29,9 @@ function wet4_theme_init() {
 	
 	elgg_register_plugin_hook_handler('head', 'page', 'wet4_theme_setup_head');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'my_owner_block_handler');
+	elgg_register_plugin_hook_handler('register', 'menu:river', 'river_handler');
+    
+    //elgg_register_plugin_hook_handler("register", "menu:entity", array('\ColdTrick\TheWireTools\EntityMenu', 'registerReshare'));
     
     //replace files lost while removing require.js
     elgg_register_js('elgg/dev', elgg_get_site_url() . 'mod/wet4/views/default/js/elgg/dev.js', 'footer');
@@ -49,6 +52,7 @@ function wet4_theme_pagesetup() {
     
     //elgg_load_js('elgg/dev');
     //elgg_load_js('elgg/reportedcontent');
+    
     
 	if (elgg_is_logged_in()) {
 
@@ -135,7 +139,7 @@ function wet4_theme_pagesetup() {
     $params = array(
 				"name" => "Colleagues",
 				"href" => "friends/" . $user->username,
-				"text" => '<i class="fa fa-users mrgn-rght-sm mrgn-tp-sm fa-lg"></i>' . elgg_echo("friends"),
+				"text" => '<i class="fa fa-users mrgn-rght-sm mrgn-tp-sm fa-lg"></i><span class="hidden-xs">' . elgg_echo("friends") . '</span>',
 				"title" => elgg_echo('friends'),
                 "class" => '',
                 'item_class' => '',
@@ -166,11 +170,18 @@ function wet4_theme_pagesetup() {
             
             //user menu
             
+            $countTitle = $count;
+            
+            //display 9+ instead of huge numbers in notif badge
+            if($count >= 10){
+                $count = '9+';
+            }
+            
 			$params = array(
 				"name" => "Colleagues",
 				"href" => "friends/" . $user->username,
-				"text" => '<i class="fa fa-users mrgn-rght-sm mrgn-tp-sm fa-lg"></i>'. elgg_echo("friends") . "<span class='notif-badge'>" . $count . "</span>",
-				"title" => elgg_echo('userMenu:colleagues') . ' - ' . $count . ' ' . elgg_echo('friend_request') .'(s)',
+				"text" => '<i class="fa fa-users mrgn-rght-sm mrgn-tp-sm fa-lg"></i><span class="hidden-xs">'. elgg_echo("friends") . "</span><span class='notif-badge'>" . $count . "</span>",
+				"title" => elgg_echo('userMenu:colleagues') . ' - ' . $countTitle . ' ' . elgg_echo('friend_request') .'(s)',
                 "class" => '',
                 'item_class' => '',
 				'priority' => '1'
@@ -333,19 +344,20 @@ function wet4_elgg_entity_menu_setup($hook, $type, $return, $params) {
 	$entity = $params['entity'];
 	/* @var \ElggEntity $entity */
 	$handler = elgg_extract('handler', $params, false);
-
+    
     if($entity->canAnnotate()){
         $options = array(
 			'name' => 'thewire_tools_reshare',
 			'text' => '<i class="fa fa-share-alt fa-lg icon-unsel"><span class="wb-inv">Share this on the Wire</span></i>',
 			'title' => elgg_echo('thewire_tools:reshare'),
-			'href' => 'ajax/view/thewire_tools/reshare?reshare_guid=' . $reshare_guid,
+			'href' => 'ajax/view/thewire_tools/reshare?reshare_guid=' . $entity->getGUID(),
 			'link_class' => 'elgg-lightbox',
 			'is_trusted' => true,
 			'priority' => 500
 		);
 		$return[] = \ElggMenuItem::factory($options);   
     }
+    
 	
 	if ($entity->canEdit() && $handler) {
 		// edit link
@@ -545,6 +557,7 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                 case 'photos':
                     $item->setText(elgg_echo('gprofile:photos'));
                     $item->setHref('#' . strtolower(elgg_echo('gprofile:photoCatch')));
+                    $item->addItemClass('removeMe');
                     $item->setPriority('10');
                     break;
                 case 'photo_albums':
@@ -624,7 +637,7 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                     break;
                 case 'photos':
                     $item->setText(elgg_echo('gprofile:photos'));
-
+                    $item->addItemClass('removeMe');
                     $item->setPriority('10');
                     break;
                 case 'photo_albums':
@@ -735,5 +748,14 @@ function my_owner_block_handler($hook, $type, $menu, $params){
     
 }
 
-
+function river_handler($hook, $type, $menu, $params){
+    foreach ($menu as $key => $item){
+             
+            switch ($item->getName()) {
+                case 'comment':
+                    $item->setItemClass('removeMe');
+            }
+        
+    }
+}
 

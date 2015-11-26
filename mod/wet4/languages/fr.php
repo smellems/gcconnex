@@ -1,14 +1,21 @@
 <?php
 return array(
     
+    
+/**
+ * The Wire
+ */
+    
+    'thewire:post' => "Create a Wire Post",
+    
 /**
  * User Menu
  */
     
     'userMenu:profile' => "Mon profil",
     'userMenu:account' => "Paramètres",
-    'userMenu:messages' => "My Messages",
-    'userMenu:colleagues' => "My Colleagues",
+    'userMenu:messages' => "Mes messages",
+    'userMenu:colleagues' => "Mes collègues",
     
   /**
  * Group Profile
@@ -30,6 +37,8 @@ return array(
     'gprofile:albumsCatch' => "Albums",
     'gprofile:ideas' => "Idées",
     'gprofile:more' => "Plus",
+    
+    'gprofile:create' => "Create Group",
     
 /**
  * Sites
@@ -230,7 +239,7 @@ return array(
  * Friends
  */
 
-	'friends' => "Contacts",
+	'friends' => "Mes collègues",//Contacts
 	'friends:yours' => "Vos contacts",
 	'friends:owned' => "Les contacts de %s",
 	'friend:add' => "Ajouter un contact",

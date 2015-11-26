@@ -18,6 +18,7 @@
  * @uses $vars['class']       Optional additional class for media element
  * @uses $vars['id']          Optional id for the media element
  */
+$checkPage = elgg_get_context();
 
 $body = elgg_extract('body', $vars, '');
 $image = elgg_extract('image', $vars, '');
@@ -35,7 +36,13 @@ if (isset($vars['id'])) {
 }
 
 
-$body = "<div class=\"mrgn-tp-sm col-sm-10\">$body</div>";
+
+//elgg body appends the edit comment text box thing
+
+if (elgg_get_context() == 'messages'){
+    //tests to see if the image block is a message and don't display an image
+    // I tried to make the whole block a link but elgg doesn't like that :(
+$body = "<div class=\" mrgn-tp-sm col-sm-12\">$body</div>";
 
 if ($image) {
 	$image = "<div class=\"mrgn-tp-sm col-sm-2\">$image</div>";
@@ -43,9 +50,36 @@ if ($image) {
 
 if ($alt_image) {
 	$alt_image = "<div class=\"elgg-image-alt\">$alt_image</div>";
+}    
+    
+ echo <<<HTML
+
+<div class="$class clearfix " $id>
+
+	$alt_image$body
+
+    <div class=" elgg-body clearfix edit-comment">
+    
+    </div>
+</div>
+
+HTML;
+    
+    
+}else{
+    
+    $body = "<div class=\"mrgn-tp-sm col-xs-10\">$body</div>";
+
+if ($image) {
+	$image = "<div class=\"mrgn-tp-sm col-xs-2\">$image</div>";
 }
-//elgg body appends the edit comment text box thing
+
+if ($alt_image) {
+	$alt_image = "<div class=\"elgg-image-alt\">$alt_image</div>";
+}
+
 echo <<<HTML
+
 <div class="$class clearfix mrgn-bttm-md" $id>
 	$image$alt_image$body
     <div class=" elgg-body clearfix edit-comment">
@@ -53,3 +87,4 @@ echo <<<HTML
     </div>
 </div>
 HTML;
+}

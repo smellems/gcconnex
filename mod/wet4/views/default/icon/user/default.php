@@ -22,15 +22,20 @@ if (!array_key_exists($size, $icon_sizes)) {
 	$size = 'medium';
 }
 
+if(elgg_get_context() == 'friends'){
+    $size = 'medium';
+}
+
 if (!($user instanceof ElggUser)) {
 	return;
 }
-
-
+if (elgg_get_context() == 'blog'){
+$size = 'large'; // Set all image in the sidebar only at small size.
+}
 $name = htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8', false);
 $username = $user->username;
 
-$class = "elgg-avatar elgg-avatar-$size";
+$class = "elgg-avatar elgg-avatar-$size-wet4 ";
 if (isset($vars['class'])) {
 	$class = "$class {$vars['class']}";
 }
@@ -52,7 +57,7 @@ if ($js) {
 	elgg_deprecated_notice("Passing 'js' to icon views is deprecated.", 1.8, 5);
 }
 
-$img_class = '';
+$img_class = 'img-responsive';
 if (isset($vars['img_class'])) {
 	$img_class = $vars['img_class'];
 }

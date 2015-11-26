@@ -18,6 +18,20 @@ $displayName = get_loggedin_user()->name;
 $user_avatar = get_loggedin_user()->geticonURL('medium');
 $email = get_loggedin_user()->email;
 
+
+/* RANDOM COLOUR BADGE - WIP
+
+if (!isset($activeUser->badgeColour)){
+    $activeUser = get_loggedin_user();
+    $colors = array('#1E4D81', '#A05100', '#333333', '#246C23', '#686868', '#7A53A4', '#E21700');
+
+   //$chosen = rand(0, 6);
+    
+    //$activeUser->badgeColour = $colors[$chosen];
+}
+*/
+
+
 //create dropdown menu
 /*
 elgg_register_menu_item('user_menu_subMenu', array(
@@ -60,7 +74,7 @@ if(elgg_is_admin_logged_in()){
     elgg_register_menu_item('user_menu', array(
         'name' => 'Admin',
         'href' => $site_url . 'admin',
-        'text' => '<i class="fa fa-wrench fa-lg mrgn-rght-sm"></i>' . 'Admin',
+        'text' => '<i class="fa fa-wrench fa-lg mrgn-rght-sm"></i>' . '<span class="hidden-xs">Admin</span>',
         'title' => 'Admin',
         'item_class' => 'brdr-rght',
         'class' => '',
@@ -77,7 +91,7 @@ $initials = substr($breakup[0], 0, 1) . substr($breakup[1], 0, 1);
 //create user menu
 elgg_register_menu_item('user_menu', array(
     'name' => 'Profile',
-    'text' => '<span class="init-badge">' . strtoupper($initials) . '</span>' . $displayName . $dropdown,
+    'text' => '<span class="init-badge">' . strtoupper($initials) . '</span><span class="hidden-xs">' . $displayName . '</span>' . $dropdown,
     'title' => elgg_echo('userMenu:profile'),
     'item_class' => 'brdr-lft dropdown',
     'data-toggle' => 'dropdown',
@@ -92,9 +106,16 @@ elgg_register_menu_item('user_menu', array(
 if(elgg_is_active_plugin('messages')){
     $unread = messages_count_unread();
     
-    $msgbadge = "<span class='notif-badge'>" . $unread . "</span>";
+    
     
     $title = ' - ' . $unread . ' ' . elgg_echo('messages:unreadmessages');
+    
+    //display 9+ insted of huge numbers in notif badge
+    if($unread >= 10){
+        $unread = '9+';
+    }
+    
+    $msgbadge = "<span class='notif-badge'>" . $unread . "</span>";
     
     if($unread == 0){
         $msgbadge = '';
@@ -104,7 +125,7 @@ if(elgg_is_active_plugin('messages')){
 elgg_register_menu_item('user_menu', array(
     'name' => 'messages',
     'href' => 'messages/inbox/' . $user,
-    'text' => '<i class="fa fa-envelope mrgn-rght-sm mrgn-tp-sm fa-lg"></i>' . elgg_echo('messages') . $msgbadge,
+    'text' => '<i class="fa fa-envelope mrgn-rght-sm mrgn-tp-sm fa-lg"></i><span class="hidden-xs">' . elgg_echo('messages') . '</span>' . $msgbadge,
     'title' => elgg_echo('userMenu:messages') . $title,
     'item_class' => 'brdr-lft ',
     'class' => '',
@@ -140,5 +161,15 @@ elgg_register_menu_item('user_menu', array(
 
 
 echo elgg_view_menu('user_menu', array('sort_by' => 'priority', 'id' => 'userMenu', 'class' => 'list-inline visited-link'));
+
+/*
+<script>
+    //adds the color to badge
+    $('.init-badge').css('background-color','<?php echo get_loggedin_user()->badgeColour; ?>');
+    
+
+</script>
+    */
 ?>
+
 

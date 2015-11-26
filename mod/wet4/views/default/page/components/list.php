@@ -74,14 +74,14 @@ foreach ($items as $item) {
 	} else if (is_callable(array($item, 'getType'))) {
 		$li_attrs['id'] = "item-{$item->getType()}-{$item->id}";
 	}
-    //li created here
+
 	$list_items .= elgg_format_element('li', $li_attrs, $item_view);
 }
 
 if ($position == 'before' || $position == 'both') {
 	echo $nav;
 }
-//ul created here
+
 echo elgg_format_element('ul', ['class' => $list_classes], $list_items);
 
 if ($position == 'after' || $position == 'both') {
