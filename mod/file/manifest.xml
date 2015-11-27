@@ -19,6 +19,7 @@
 	<provides>
 		<type>plugin</type>
 		<name>file_uploading</name>
+		<version>1.8.1</version>
 	</provides>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>
