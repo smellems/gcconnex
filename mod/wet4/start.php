@@ -26,6 +26,11 @@ function wet4_theme_init() {
 
 	//elgg_unextend_view('page/elements/header', 'search/header');
 	//elgg_extend_view('page/elements/sidebar', 'search/header', 0);
+    
+    
+    //the wire reply and thread
+    elgg_register_ajax_view("thewire_tools/reply");
+	elgg_register_ajax_view("thewire_tools/thread");
 	
 	elgg_register_plugin_hook_handler('head', 'page', 'wet4_theme_setup_head');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'my_owner_block_handler');
@@ -356,9 +361,36 @@ function wet4_elgg_entity_menu_setup($hook, $type, $return, $params) {
 			'priority' => 500
 		);
 		$return[] = \ElggMenuItem::factory($options);   
-    }
-    
-	
+        
+        if($entity->getSubtype() == 'thewire' && elgg_is_logged_in()){
+            $options = array(
+                'name' => 'reply',
+                'text' => elgg_echo('reply'),
+                'title' => elgg_echo('reply'),
+                'href' => 'ajax/view/thewire_tools/reply?guid=' . $entity->getGUID(),
+                'link_class' => 'elgg-lightbox',
+                'is_trusted' => true,
+                'priority' => 100
+            );
+            $return[] = \ElggMenuItem::factory($options); 
+        }
+        
+            
+            
+ 
+
+    }   
+	if (($entity->countEntitiesFromRelationship("parent") || $entity->countEntitiesFromRelationship("parent", true))) {
+                $options = array(
+                    'name' => 'thread',
+                    'text' => elgg_echo('thewire:thread'),
+                    'href' => 'ajax/view/thewire_tools/thread?thread_id=' . $entity->wire_thread,
+                    'link_class' => 'elgg-lightbox',
+                    'is_trusted' => true,
+                    'priority' => 170,
+                );
+                $return[] = ElggMenuItem::factory($options);
+            }
 	if ($entity->canEdit() && $handler) {
 		// edit link
         /*
