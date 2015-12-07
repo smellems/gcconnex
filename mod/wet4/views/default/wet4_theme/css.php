@@ -1216,11 +1216,11 @@ ol {
 .list-inline {
   padding-left: 0;
   list-style: none;
-  margin-left: -5px; }
+  margin-left: -10px; }
   .list-inline > li {
     display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px; }
+    padding-left: 10px;
+    padding-right: 10px; }
 
 dl {
   margin-top: 0;
@@ -10843,10 +10843,52 @@ a.shr-opn, a.shr-opn:hover {
     }  
 
 /*Here are my custom styles for this prototype*/
+#thewire-tools-reshare-wrapper-wet4 {
+    max-width: 600px;
+}
 
 .elgg-menu-hz .removeMe {
     display: none;
 }
+.list-inline .removeMe {
+    display: none;
+}
+/******Padding Classes********/
+/*
+.pad-lft-0 {
+    padding-left: 0;
+}
+.pad-lft-xs {
+    padding-left: 5px;
+}
+.pad-lft-sm {
+    padding-left: 10px;
+}
+.pad-lft-md {
+    padding-left: 15px;
+}
+
+.pad-rght-0 {
+    padding-right: 0;
+}
+.pad-rght-xs {
+    padding-right: 5px;
+}
+.pad-rght-sm {
+    padding-right: 10px;
+}
+.pad-rght-md {
+    padding-right: 15px;
+}
+*/
+.list-inline .pad-rght-xs {
+    padding-right: 5px;
+}
+
+.list-inline .pad-lft-0 {
+    padding-left: 0;
+}
+
 
 /* Red Flag */
 .red {
@@ -10855,7 +10897,7 @@ a.shr-opn, a.shr-opn:hover {
 
 .replyContainer {
     max-width: 510px;
-    margin: 0 auto;
+
 }
 
 .thewire-characters-remaining {
