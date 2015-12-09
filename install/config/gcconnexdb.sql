@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2015 at 08:46 PM
+-- Generation Time: Dec 08, 2015 at 09:00 PM
 -- Server version: 5.6.27-0ubuntu1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `elgg_entities` (
   `time_updated` int(11) NOT NULL,
   `last_action` int(11) NOT NULL DEFAULT '0',
   `enabled` enum('yes','no') NOT NULL DEFAULT 'yes'
-) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `elgg_entities`
@@ -357,7 +357,12 @@ INSERT INTO `elgg_entities` (`guid`, `type`, `subtype`, `owner_guid`, `site_guid
 (140, 'object', 1, 1, 1, 1, 2, 1448972706, 1448972706, 1448972706, 'yes'),
 (141, 'user', 0, 0, 1, 0, 2, 1449493835, 1449493835, 1449493835, 'yes'),
 (142, 'object', 2, 141, 1, 141, 1, 1449502517, 1449541548, 1449502517, 'yes'),
-(144, 'object', 1, 1, 1, 1, 2, 1449541380, 1449541380, 1449541380, 'yes');
+(144, 'object', 1, 1, 1, 1, 2, 1449541380, 1449541380, 1449541380, 'yes'),
+(145, 'object', 3, 141, 1, 141, 1, 1449626385, 1449626385, 1449626385, 'yes'),
+(146, 'object', 3, 141, 1, 141, 1, 1449626385, 1449626385, 1449626385, 'yes'),
+(147, 'object', 3, 141, 1, 141, 1, 1449626385, 1449626385, 1449626385, 'yes'),
+(148, 'object', 3, 141, 1, 141, 1, 1449626385, 1449626385, 1449626385, 'yes'),
+(149, 'object', 3, 141, 1, 141, 1, 1449626385, 1449626385, 1449626385, 'yes');
 
 -- --------------------------------------------------------
 
@@ -569,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `elgg_metadata` (
   `access_id` int(11) NOT NULL,
   `time_created` int(11) NOT NULL,
   `enabled` enum('yes','no') NOT NULL DEFAULT 'yes'
-) ENGINE=MyISAM AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `elgg_metadata`
@@ -660,7 +665,9 @@ INSERT INTO `elgg_metadata` (`id`, `entity_guid`, `name_id`, `value_id`, `value_
 (124, 142, 68, 69, 'text', 141, 1, 1449502517, 'yes'),
 (125, 142, 70, 71, 'text', 141, 1, 1449502517, 'yes'),
 (145, 142, 72, 73, 'text', 141, 1, 1449541548, 'yes'),
-(146, 142, 74, 75, 'text', 141, 1, 1449541548, 'yes');
+(146, 142, 74, 75, 'text', 141, 1, 1449541548, 'yes'),
+(155, 141, 5, 4, 'text', 97, 2, 1449626385, 'yes'),
+(156, 141, 6, 7, 'text', 97, 2, 1449626385, 'yes');
 
 -- --------------------------------------------------------
 
@@ -947,7 +954,12 @@ INSERT INTO `elgg_objects_entity` (`guid`, `title`, `description`) VALUES
 (137, 'webodf_elgg', ''),
 (140, 'odt_editor', ''),
 (142, 'Fichier de test 1', 'fichier téléversé pour testing'),
-(144, 'odt_collabeditor', '');
+(144, 'odt_collabeditor', ''),
+(145, '', ''),
+(146, '', ''),
+(147, '', ''),
+(148, '', ''),
+(149, '', '');
 
 -- --------------------------------------------------------
 
@@ -961,7 +973,7 @@ CREATE TABLE IF NOT EXISTS `elgg_private_settings` (
   `entity_guid` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `value` text NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=562 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=583 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `elgg_private_settings`
@@ -1397,7 +1409,28 @@ INSERT INTO `elgg_private_settings` (`id`, `entity_guid`, `name`, `value`) VALUE
 (557, 22, 'show_strings', '0'),
 (556, 22, 'screen_log', '0'),
 (555, 22, 'display_errors', '1'),
-(554, 1, 'te_last_update_en', '1449591718');
+(554, 1, 'te_last_update_en', '1449591718'),
+(562, 141, 'plugin:user_setting:widget_manager:profile_fixed_ts', '1449626349'),
+(563, 145, 'handler', 'control_panel'),
+(564, 145, 'context', 'admin'),
+(565, 145, 'column', '1'),
+(566, 145, 'order', '0'),
+(567, 146, 'handler', 'admin_welcome'),
+(568, 146, 'context', 'admin'),
+(569, 146, 'order', '10'),
+(570, 146, 'column', '1'),
+(571, 147, 'handler', 'online_users'),
+(572, 147, 'context', 'admin'),
+(573, 147, 'column', '2'),
+(574, 147, 'order', '0'),
+(575, 148, 'handler', 'new_users'),
+(576, 148, 'context', 'admin'),
+(577, 148, 'order', '10'),
+(578, 148, 'column', '2'),
+(579, 149, 'handler', 'content_stats'),
+(580, 149, 'context', 'admin'),
+(581, 149, 'order', '20'),
+(582, 149, 'column', '2');
 
 -- --------------------------------------------------------
 
@@ -1501,7 +1534,7 @@ CREATE TABLE IF NOT EXISTS `elgg_system_log` (
   `enabled` enum('yes','no') NOT NULL DEFAULT 'yes',
   `time_created` int(11) NOT NULL,
   `ip_address` varchar(46) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=747 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=755 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `elgg_system_log`
@@ -2254,7 +2287,15 @@ INSERT INTO `elgg_system_log` (`id`, `object_id`, `object_class`, `object_type`,
 (743, 97, 'ElggUser', 'user', '', 'login:after', 97, 0, 2, 'yes', 1449602645, '70.53.197.81'),
 (744, 97, 'ElggUser', 'user', '', 'login:before', 0, 0, 2, 'yes', 1449625247, '127.0.0.1'),
 (745, 97, 'ElggUser', 'user', '', 'login', 97, 0, 2, 'yes', 1449625247, '127.0.0.1'),
-(746, 97, 'ElggUser', 'user', '', 'login:after', 97, 0, 2, 'yes', 1449625247, '127.0.0.1');
+(746, 97, 'ElggUser', 'user', '', 'login:after', 97, 0, 2, 'yes', 1449625247, '127.0.0.1'),
+(747, 145, 'ElggWidget', 'object', 'widget', 'create', 97, 141, 1, 'yes', 1449626385, '127.0.0.1'),
+(748, 146, 'ElggWidget', 'object', 'widget', 'create', 97, 141, 1, 'yes', 1449626385, '127.0.0.1'),
+(749, 147, 'ElggWidget', 'object', 'widget', 'create', 97, 141, 1, 'yes', 1449626385, '127.0.0.1'),
+(750, 148, 'ElggWidget', 'object', 'widget', 'create', 97, 141, 1, 'yes', 1449626385, '127.0.0.1'),
+(751, 149, 'ElggWidget', 'object', 'widget', 'create', 97, 141, 1, 'yes', 1449626385, '127.0.0.1'),
+(752, 155, 'ElggMetadata', 'metadata', 'validated', 'create', 97, 97, 2, 'yes', 1449626385, '127.0.0.1'),
+(753, 156, 'ElggMetadata', 'metadata', 'validated_method', 'create', 97, 97, 2, 'yes', 1449626385, '127.0.0.1'),
+(754, 141, 'ElggUser', 'user', '', 'make_admin', 97, 0, 2, 'yes', 1449626385, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -2300,10 +2341,10 @@ CREATE TABLE IF NOT EXISTS `elgg_users_entity` (
 --
 
 INSERT INTO `elgg_users_entity` (`guid`, `name`, `username`, `password`, `salt`, `password_hash`, `email`, `language`, `banned`, `admin`, `last_action`, `prev_last_action`, `last_login`, `prev_last_login`) VALUES
-(97, 'Sébastien Lemay', 'smellems', '', '', '$2y$10$wRZF5PlhbHKWPctDaPlMA.mxoopDShJdFmxphtnqStNVh/fS7d7HG', 'smellems@gmail.com', 'en', 'no', 'yes', 1449625348, 1449625347, 1449625247, 1449602645),
+(97, 'Sébastien Lemay', 'smellems', '', '', '$2y$10$wRZF5PlhbHKWPctDaPlMA.mxoopDShJdFmxphtnqStNVh/fS7d7HG', 'smellems@gmail.com', 'en', 'no', 'yes', 1449626387, 1449626387, 1449625247, 1449602645),
 (128, 'Louis-Philippe Fillion', 'louis-philippe.fillion', '', '', '$2y$10$sdQmd6PspTA0Ea3PuSErR..DV1qS1H69nNis9W1w6DGW62fa.dhs2', 'louis-philippe.fillion@canada.ca', 'en', 'no', 'yes', 1448398059, 1448395662, 1448390049, 0),
 (122, 'Martin Lortie', 'martin.lortie', '', '', '$2y$10$Xm0Wxal/mSRAhS9Sq7yCGeMWtWB/RrU85OMHRrd2/sAX./yUs.3UG', 'martin.lortie@canada.ca', 'en', 'no', 'yes', 0, 0, 0, 0),
-(141, 'Sahben Souissi', 'sahben.souissi', '', '', '$2y$10$sPOQqMyFpdgv7l7IAuflGetu2PeFcB8rec5DbPHmuW757E4yMUWwa', 'sahben.souissi@canada.ca', 'en', 'no', 'no', 1449516612, 1449516510, 1449516395, 1449501840);
+(141, 'Sahben Souissi', 'sahben.souissi', '', '', '$2y$10$sPOQqMyFpdgv7l7IAuflGetu2PeFcB8rec5DbPHmuW757E4yMUWwa', 'sahben.souissi@canada.ca', 'en', 'no', 'yes', 1449516612, 1449516510, 1449516395, 1449501840);
 
 -- --------------------------------------------------------
 
@@ -2347,7 +2388,7 @@ INSERT INTO `elgg_users_sessions` (`session`, `ts`, `data`) VALUES
 ('59683b9fbc38ec6163f36be216114953', 1449603869, 0x5f7366325f617474726962757465737c613a323a7b733a31343a225f5f656c67675f73657373696f6e223b733a33323a223261323332316137356664653063373931346137323834393664376363356634223b733a383a226c616e6775616765223b733a323a22656e223b7d5f7366325f666c61736865737c613a303a7b7d5f7366325f6d6574617c613a333a7b733a313a2275223b693a313434393630333836343b733a313a2263223b693a313434393630333836343b733a313a226c223b733a313a2230223b7d),
 ('3255c4c023ea297b39315c7d276300a9', 1449603879, 0x5f7366325f617474726962757465737c613a323a7b733a31343a225f5f656c67675f73657373696f6e223b733a33323a223634633665643337346639643630613934386264653635666631666130643630223b733a383a226c616e6775616765223b733a323a22656e223b7d5f7366325f666c61736865737c613a303a7b7d5f7366325f6d6574617c613a333a7b733a313a2275223b693a313434393630333837313b733a313a2263223b693a313434393630333837313b733a313a226c223b733a313a2230223b7d),
 ('3kcj0b1k0sg3ccvi8db1927v31', 1449625230, 0x5f7366325f617474726962757465737c613a323a7b733a31343a225f5f656c67675f73657373696f6e223b733a33323a223031336161313438353739666231643063386433616564316266386165626330223b733a383a226c616e6775616765223b733a323a22656e223b7d5f7366325f666c61736865737c613a303a7b7d5f7366325f6d6574617c613a333a7b733a313a2275223b693a313434393632353233303b733a313a2263223b693a313434393632353033323b733a313a226c223b733a313a2230223b7d),
-('s9k26ce3hbvih6qosfej1rc6o0', 1449625348, 0x5f7366325f617474726962757465737c613a343a7b733a31343a225f5f656c67675f73657373696f6e223b733a33323a223031336161313438353739666231643063386433616564316266386165626330223b733a383a226c616e6775616765223b733a323a22656e223b733a343a2267756964223b693a39373b733a333a226d7367223b613a303a7b7d7d5f7366325f666c61736865737c613a303a7b7d5f7366325f6d6574617c613a333a7b733a313a2275223b693a313434393632353334383b733a313a2263223b693a313434393632353033323b733a313a226c223b733a313a2230223b7d);
+('s9k26ce3hbvih6qosfej1rc6o0', 1449626388, 0x5f7366325f617474726962757465737c613a343a7b733a31343a225f5f656c67675f73657373696f6e223b733a33323a223031336161313438353739666231643063386433616564316266386165626330223b733a383a226c616e6775616765223b733a323a22656e223b733a343a2267756964223b693a39373b733a333a226d7367223b613a303a7b7d7d5f7366325f666c61736865737c613a303a7b7d5f7366325f6d6574617c613a333a7b733a313a2275223b693a313434393632363338373b733a313a2263223b693a313434393632353033323b733a313a226c223b733a313a2230223b7d);
 
 -- --------------------------------------------------------
 
@@ -2616,7 +2657,7 @@ ALTER TABLE `elgg_api_users`
 -- AUTO_INCREMENT for table `elgg_entities`
 --
 ALTER TABLE `elgg_entities`
-  MODIFY `guid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=145;
+  MODIFY `guid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=150;
 --
 -- AUTO_INCREMENT for table `elgg_entity_relationships`
 --
@@ -2636,7 +2677,7 @@ ALTER TABLE `elgg_geocode_cache`
 -- AUTO_INCREMENT for table `elgg_metadata`
 --
 ALTER TABLE `elgg_metadata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=155;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=157;
 --
 -- AUTO_INCREMENT for table `elgg_metastrings`
 --
@@ -2646,7 +2687,7 @@ ALTER TABLE `elgg_metastrings`
 -- AUTO_INCREMENT for table `elgg_private_settings`
 --
 ALTER TABLE `elgg_private_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=562;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=583;
 --
 -- AUTO_INCREMENT for table `elgg_queue`
 --
@@ -2661,7 +2702,7 @@ ALTER TABLE `elgg_river`
 -- AUTO_INCREMENT for table `elgg_system_log`
 --
 ALTER TABLE `elgg_system_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=747;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=755;
 --
 -- AUTO_INCREMENT for table `elgg_users_apisessions`
 --
