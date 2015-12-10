@@ -2,7 +2,8 @@
 
 return array(
 	'activity_tabs' => "Activity",
-    'activity_tabs:mydepartment' => "My Department",
+	'activity_tabs:mydepartment' => "My Department",
+	'activity_tabs:otherdepartments' => "Other Departments",
 	'activity_tabs:description' => "Enable Activity Tabs for groups and collections:",
 	'activity_tabs:collection' => "Collection",
 	'activity_tabs:collections' => "Collections",

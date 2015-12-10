@@ -50,22 +50,40 @@ switch ($page_type) {
 		$page_filter = 'activity_tab';
 		$options['joins'] = array("JOIN {$db_prefix}entities e ON e.guid = rv.object_guid");
 		$options['wheres'] = array("e.container_guid = $id");
+		break;
+	case 'mydept':
+		$title = elgg_echo('activity_tabs:collection');
+		$page_filter = 'activity_tab';
+		$users = elgg_get_entities_from_metadata(array(
+		    'type' => 'user',
+		    'metadata_name_value_pairs' => array('name' => 'department', 'value' => get_loggedin_user()->department)
+		));
+		
+		foreach($users as $user) {
+		    $members[] .= $user->guid;
+		}
+        
+		$options['subject_guid'] = $members;
+		break;
+	case 'otherdept':
+		$title = elgg_echo('activity_tabs:collection');
+		$page_filter = 'activity_tab';
+		$users = elgg_get_entities(array(
+		    'type' => 'user'
+		));
+		
+		foreach($users as $user) {
+			if ($user->department != get_loggedin_user()->department) {
+		    		$members[] .= $user->guid;
+			}
+		}        
+		$options['subject_guid'] = $members;
+		break;
 	case 'collection':
 	default:
 		$title = elgg_echo('activity_tabs:collection');
 		$page_filter = 'activity_tab';
 
-		//$members = get_members_of_access_collection($id, true);
-        
-        $users = elgg_get_entities_from_metadata(array(
-            'type' => 'user',
-            'metadata_name_value_pairs' => array('name' => 'department', 'value' => get_loggedin_user()->department)
-        ));
-        
-        foreach($users as $user) {
-            $members[] .= $user->guid;
-        }
-        
 		$options['subject_guid'] = $members;
 		break;
 }
