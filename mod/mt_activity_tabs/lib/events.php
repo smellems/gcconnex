@@ -21,7 +21,7 @@ function pagesetup() {
 
 	$user = elgg_get_logged_in_user_entity();
 	$filter_context = get_input('filter_context', false);
-
+    
 	$plugin = elgg_get_plugin_from_id(PLUGIN_ID);
 	if (!$plugin) {
 		// dunno how this could be possible
@@ -110,9 +110,10 @@ function pagesetup() {
 		'name' => "dept:$user->department",
 		'text' => $user->department,
 		'href' => "activity_tabs/dept/{$user->department}/" . elgg_get_friendly_title($user->department),
-		'selected' => $filter_context == 'dept_' . $user->department,
+		'selected' => 0 === strpos('dept_' . $user->department, $filter_context),
 		'priority' => $priority + (int) $tabs['dept']["$user->department"]['priority'],
 	);	
+    
 	elgg_register_menu_item('filter', $tab);
 
 	// register menu item for configuring tabs
