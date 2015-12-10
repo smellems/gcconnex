@@ -56,18 +56,16 @@ switch ($page_type) {
 		$page_filter = 'activity_tab';
 
 		//$members = get_members_of_access_collection($id, true);
-
-		$users = elgg_get_entities(array(
-		    'type' => 'user'
-		));
-
-		$members = array();
-		foreach ($users as $user) {
-			if($user->department == get_loggedin_user()->department) {
-		    		$members[] .= $user->guid;
-			}
-		}
-
+        
+        $users = elgg_get_entities_from_metadata(array(
+            'type' => 'user',
+            'metadata_name_value_pairs' => array('name' => 'department', 'value' => get_loggedin_user()->department)
+        ));
+        
+        foreach($users as $user) {
+            $members[] .= $user->guid;
+        }
+        
 		$options['subject_guid'] = $members;
 		break;
 }
