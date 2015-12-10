@@ -103,9 +103,17 @@ function pagesetup() {
 				'selected' => $filter_context == 'group_' . $group->guid,
 				'priority' => $priority + (int) $tabs['group']["$group->guid"]['priority'],
 			);
-			elgg_register_menu_item('filter', $tab);
 		}
 	}
+
+	$tab = array(
+		'name' => "dept:$user->department",
+		'text' => $user->department,
+		'href' => "activity_tabs/dept/{$user->department}/" . elgg_get_friendly_title($user->department),
+		'selected' => $filter_context == 'dept_' . $user->department,
+		'priority' => $priority + (int) $tabs['dept']["$user->department"]['priority'],
+	);	
+	elgg_register_menu_item('filter', $tab);
 
 	// register menu item for configuring tabs
 	$link = array(

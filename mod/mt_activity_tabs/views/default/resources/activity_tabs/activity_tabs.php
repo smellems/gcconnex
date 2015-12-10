@@ -55,9 +55,20 @@ switch ($page_type) {
 		$title = elgg_echo('activity_tabs:collection');
 		$page_filter = 'activity_tab';
 
-		$members = get_members_of_access_collection($id, true);
+		//$members = get_members_of_access_collection($id, true);
 
-		$options['subject_guids'] = $members;
+		$users = elgg_get_entities(array(
+		    'type' => 'user'
+		));
+
+		$members = array();
+		foreach ($users as $user) {
+			if($user->department == get_loggedin_user()->department) {
+		    		$members[] .= $user->guid;
+			}
+		}
+
+		$options['subject_guid'] = $members;
 		break;
 }
 
