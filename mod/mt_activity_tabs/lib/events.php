@@ -108,7 +108,7 @@ function pagesetup() {
 
 	$tab = array(
 		'name' => "dept:$user->department",
-		'text' => $user->department,
+		'text' => 'My Department',
 		'href' => "activity_tabs/dept/{$user->department}/" . elgg_get_friendly_title($user->department),
 		'selected' => $filter_context == 'dept_' . $user->department,
 		'priority' => $priority + (int) $tabs['dept']["$user->department"]['priority'],
