@@ -1,13 +1,20 @@
 <?php
 
 //$entities = new ElggBlog();
-$users = elgg_get_entities(array(
+/*
+$users = elgg_get_entities_from_metadata(array(
     'type' => 'user',
+    'metadata_name_value_pairs' => array('name' => 'department', 'value' => 'Canada Economic Development for Quebec Regions / Développement économique Canada pour les régions du Québec')
     //'owner_guid' => $owner_guid,
     //'wheres' => array('department = "Canada Economic Development for Quebec Regions / Développement économique Canada pour les régions du Québec"')
-    'department' => 'Canada Economic Development for Quebec Regions / Développement économique Canada pour les régions du Québec'
+    //'department' => 'Canada Economic Development for Quebec Regions / Développement économique Canada pour les régions du Québec'
 ));
+*/
 
+$users = elgg_get_entities_from_metadata(array(
+    'type' => 'user',
+    'metadata_name_value_pairs' => array('name' => 'department', 'value' => 'Canada Economic Development for Quebec Regions / Développement économique Canada pour les régions du Québec')
+));
 
 $entities = elgg_get_entities(array(
     'type' => 'user',
@@ -16,6 +23,10 @@ $entities = elgg_get_entities(array(
 ));
 
 //echo count($entities);
+
+//$options = array('type' => 'user', 'full_view' => false);
+//$options = array('type' => 'user');
+//$users = elgg_list_entities_from_relationship($options);
 
 foreach ($users as $user) {
     $text .= "---" . $user->department . "<br/>";
