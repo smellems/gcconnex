@@ -1,18 +1,11 @@
 <?php
 
-namespace AU\ActivityTabs;
-
-/**
- * Pagesetup
- * 
- * @return type
- */
 function pagesetup() {
 	if (!elgg_is_logged_in()) {
 		return;
 	}
 
-	if (!elgg_in_context('activity') && !elgg_in_context('activity_tabs')) {
+	if (!elgg_in_context('activity') && !elgg_in_context('ml')) {
 		return;
 	}
 
@@ -78,7 +71,7 @@ function pagesetup() {
 			$tab = array(
 				'name' => "collection:$collection->id",
 				'text' => $collection->name,
-				'href' => "activity_tabs/collection/{$collection->id}/" . elgg_get_friendly_title($collection->name),
+				'href' => "ml/collection/{$collection->id}/" . elgg_get_friendly_title($collection->name),
 				'selected' => $filter_context == 'collection_' . $collection->id,
 				'priority' => $priority + (int) $tabs['collection']["$collection->id"]['priority'],
 			);
@@ -99,26 +92,18 @@ function pagesetup() {
 			$tab = array(
 				'name' => "group:$group->guid",
 				'text' => $group->name,
-				'href' => "activity_tabs/group/{$group->guid}/" . elgg_get_friendly_title($group->name),
+				'href' => "ml/group/{$group->guid}/" . elgg_get_friendly_title($group->name),
 				'selected' => $filter_context == 'group_' . $group->guid,
 				'priority' => $priority + (int) $tabs['group']["$group->guid"]['priority'],
 			);
+			elgg_register_menu_item('filter', $tab);
 		}
 	}
 
-	$tab = array(
-		'name' => "dept:$user->department",
-		'text' => $user->department,
-		'href' => "activity_tabs/dept/{$user->department}/" . elgg_get_friendly_title($user->department),
-		'selected' => $filter_context == 'dept_' . $user->department,
-		'priority' => $priority + (int) $tabs['dept']["$user->department"]['priority'],
-	);	
-	elgg_register_menu_item('filter', $tab);
-
 	// register menu item for configuring tabs
 	$link = array(
-		'name' => 'configure_activity_tabs',
-		'text' => elgg_echo('activity_tabs:configure'),
+		'name' => 'configure_ml',
+		'text' => elgg_echo('ml:configure'),
 		'href' => 'settings/plugins/' . $user->username,
 	);
 
