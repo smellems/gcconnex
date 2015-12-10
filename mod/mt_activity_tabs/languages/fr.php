@@ -3,7 +3,7 @@
 return array(
 	'activity_tabs' => "Activity",
 	'activity_tabs:mydepartment' => "Mon ministère",
-	'activity_tabs:otherdepartment' => "Autres ministères",
+	'activity_tabs:otherdepartments' => "Autres ministères",
 	'activity_tabs:description' => "Enable Activity Tabs for groups and collections:",
 	'activity_tabs:collection' => "Collection",
 	'activity_tabs:collections' => "Collections",
