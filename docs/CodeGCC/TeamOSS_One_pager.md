@@ -51,6 +51,7 @@ These features are the greatest additions to GCconnex for a number of reasons. F
 * Social media marketing
 * Web application development
 * Programming
+* Open Source Software
 * Project Leadership
 * GC 2.0 Tool Ambassadors
 
