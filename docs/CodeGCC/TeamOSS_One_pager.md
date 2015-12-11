@@ -62,6 +62,8 @@ Over the last two days, the team has made some interesting observations. The Elg
 
 ---
 
+### See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
+
 ### The code on github:
 https://github.com/smellems/gcconnex
 
