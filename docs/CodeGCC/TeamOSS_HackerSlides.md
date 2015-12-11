@@ -1,6 +1,8 @@
 # Code GCConnex (2015-12)
 ## Team Open Source
 
+See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
+
 ![alt text](http://www.gnu.org/graphics/heckert_gnu.small.png "Bold GNU head")
 
 ### Enabling Greater Collaboration Across the Public Service
