@@ -11,7 +11,7 @@
 Get ready for the next big thing in GCconnex! Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools.
 
 ### Embedded videos
-Users can post external videos from Youtube, Vimeo and others just by putting the link in your page, blog or group discussion.
+Users can post external videos from Youtube, Vimeo and others just by putting the link in their page, blog or group discussion.
 
 ### Editing documents collaboratively in real-time (e-Docs)
 Users can create links to https://beta.etherpad.org/. Etherpad allows you to edit documents collaboratively in real-time. Write text documents with your colleagues, all working on the same document at the same time enabling easy documents sharing.  This makes it easy for users to create pads in GCConnex with the e-docs functionnality.  We used an Etherpad to collaborate during Code GCConnex!  Etherpad is OSS and SSC could make it available inside GC Firewall.
