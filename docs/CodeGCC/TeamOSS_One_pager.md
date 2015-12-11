@@ -6,10 +6,18 @@
 ### Enabling Greater Collaboration Across the Public Service
 
 ---
-## Description for a fan favorite voting
-Get ready for the next big thing in GCconnex! Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools : embedded video, editing documents collaboratively in real-time, and ability to to see only your departments activity.
 
-This project allows users to create and edit a single e-Doc, without multiple versions, within GCconnex, while enabling easy documents sharing with colleagues. It also has the added functionality of embedded video, where users can post external videos from popular sites like YouTube within GCconnex, just by posting the link. Lastly, the project also boasts the highly in-demand departmental search. This feature enables users to sort their searches based on what departmental information they provide in their profiles, while also allowing users to search the activities of other departments. Here, users can strategically search for more personalized information.
+## Description for a fan favorite voting
+Get ready for the next big thing in GCconnex! Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools.
+
+### Embedded videos
+Users can post external videos from Youtube, Vimeo and others just by putting the link in your page, blog or group discussion.
+
+### Editing documents collaboratively in real-time (e-Docs)
+Users can create links to https://beta.etherpad.org/. Etherpad allows you to edit documents collaboratively in real-time. Write text documents with your colleagues, all working on the same document at the same time enabling easy documents sharing.  This makes it easy for users to create pads in GCConnex with the e-docs functionnality.  We used an Etherpad to collaborate during Code GCConnex!  Etherpad is OSS and SSC could make it available inside GC Firewall.
+
+### Departmental Activity Tabs
+We know there is alot going on in the GC, but we want to know what's happening in your department.  Departmental search is a highly in-demand feature.  We added tabs to the Activity page that enables users to only there own department'a activity as we all other activity (not your department).  You could then filter to see only blogs written by people in your department.  ToDo: filter by department so that you could also see an other department's (not all others) activity.
 
 These highly requested features are not only within the radar of the 2015-2016 Work Plan, but also present cost-effective, noticeable upgrades to GCconnex, using tools users are already familiar with, while enabling external collaboration with GC tools.
 
@@ -17,10 +25,8 @@ These highly requested features are not only within the radar of the 2015-2016 W
 
 ---
 
-## Description of why you think it is the greatest addition to GCconnex:
-Across government, GCPedia and GCconnex usage have increased and significantly. With this has come demand for increased functionality. With this in mind, our project has focused on providing a range of new features with high demand from GCconnex users. These are: embedded video, E-Docs, and departmental searching.
-
-These features enable users to create and edit a single e-Doc, without multiple versions, within GCconnex. It also has the added functionality of embedded video, where users can post external videos from popular sites like YouTube within GCconnex. In demand departmental search is also a key feature, enabling users to search on GCconnex based on what departmental information they provide in their profiles, while also allowing users to search the activities of other departments.
+## Why is this the greatest addition to GCconnex?
+Across government, GCPedia and GCconnex usage have increased and significantly. With this has come demand for increased functionality. With this in mind, our project has focused on providing a range of new features with high demand from GCconnex users. These are: Embedded videos, Editing documents collaboratively in real-time (e-Docs), and Departmental Activity Tabs.
 
 These features are the greatest additions to GCconnex for a number of reasons. First, they are noted desirable featured identified in the 2015-2016 GC Work Plan. This means that increased demand from users and research have indicated that this is an upgrade that users want and will use. Secondly, these features offer noticeable and cost-effective upgrades to GCconnex, while providing more avenues forexternal collaboration. Lastly, this project has a combination of in demand features that many people already know how to use.
 
