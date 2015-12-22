@@ -49,39 +49,39 @@ else {
                     if (in_array(elgg_get_logged_in_user_guid(), $endorsements) == false || empty($endorsements)) {
                         // user has not yet endorsed this skill for this user.. present the option to endorse
 
-                        echo '<span class="gcconnex-endorsement-add elgg-button" onclick="addEndorsement(this)" data-guid="' . $skill->guid . '" data-skill="' . $skill->title . '">' . elgg_echo('gcconnex_profile:gc_skill:endorse') . '</span>';
+                        echo '<button class="gcconnex-endorsement-add btn-endorse" onclick="addEndorsement(this)" data-guid="' . $skill->guid . '" data-skill="' . $skill->title . '">' . elgg_echo('gcconnex_profile:gc_skill:endorse') . '</button>';
                     } else {
                         // user has endorsed this skill for this user.. present the option to retract endorsement
-                        echo '<span class="gcconnex-endorsement-retract elgg-button" onclick="retractEndorsement(this)" data-guid="' . $skill->guid . '" data-skill="' . $skill->title . '">Retract Endorsement</span>';
+                        echo '<button class="gcconnex-endorsement-retract btn-endorse" onclick="retractEndorsement(this)" data-guid="' . $skill->guid . '" data-skill="' . $skill->title . '">Retract</button>';
 
                     }
                 }
                 echo '<div class="gcconnex-skill-endorsements">';
-                echo list_avatars(array(
-                    'guids' => $skill->endorsements,
-                    'size' => 'tiny',
-                    'limit' => 10,
-                    'id' => "myModal" . $i
-                ));
-                echo '<div class="modal hide" id="myModal' . $i . '">
-                      <div class="modal-header">
-                        <button class="close" data-dismiss="modal">×</button>
-                        <h3>Endorsements</h3>
-                      </div>
-                      <div class="modal-body">
-                        <p>';
-                echo list_avatars(array(
-                    'guids' => $skill->endorsements,
-                    'size' => 'medium',
-                    'limit' => 0
-                ));
-                echo '</p>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#" class="btn" data-dismiss="modal">Close</a>
-                      </div>
-                    </div>';
-                echo '</div>'; // close div class="gcconnex-skill-endorsements"
+                    echo list_avatars(array(
+                        'guids' => $skill->endorsements,
+                        'size' => 'tiny',
+                        'limit' => 10,
+                        'id' => "myModal" . $i
+                    ));
+                    echo '<div class="modal" id="myModal' . $i . '">
+                          <div class="modal-header">
+                            <button class="close" data-dismiss="modal">×</button>
+                            <h3>Endorsements</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>';
+                    echo list_avatars(array(
+                        'guids' => $skill->endorsements,
+                        'size' => 'medium',
+                        'limit' => 0
+                    ));
+                    echo '</p>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="#" class="btn" data-dismiss="modal">Close</a>
+                          </div>
+                        </div>';
+                    echo '</div>'; // close div class="gcconnex-skill-endorsements"
                 echo '</div>'; // close div class=gcconnex-skill-entry
             }
         }

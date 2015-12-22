@@ -1309,9 +1309,18 @@ Please do not reply to this email.",
     
     'blog:title:all_blogs' => 'Blogs', 
     
+    /**
+    *Activity module
+    */
+    'activity:module:weekly_likes' => 'Most liked of last week',
+	'activity:module:weekly_likes:none' => 'No likes',
+    
 /**
 *Contact page / FAQ
 */
+       'contactform:help' => 'Help',
+    'contactform:upload' => 'Uplaod your file',
+      'contactform:required' => 'required',
     'contactform:form:subject' => "Subject",
     'contactform:title' => "GCconnex Help Pages",
     'contactform:list' => "<ul>
@@ -1344,8 +1353,12 @@ Please do not reply to this email.",
     
     'contactform:content:form' => "<p style = 'padding: 8px 0 8px'>
 					Can't find the answer you're looking for in the FAQ or help resources? <br /> <br />
-					<b>Contact the GCconnex <a href='mailto:gcconnex@tbs-sct.gc.ca'>Help Desk</a>!</b> Please be as clear as possible in describing your issue or question, and provide screen shots if and where possible.
+					<b>Contact the GCconnex Help Desk!</b> Please be as clear as possible in describing your issue or question, and provide screen shots if and where possible.
 					</p> <br />",
+        'contactform:useful' => 'GCconnex Groups that may be useful to you:',
+    'contactform:clickandtips' => 'Clicks and Tips',
+    'contactform:gc20' => 'GC2.0 Tools',
+    
 /**
  * Entities
  */
