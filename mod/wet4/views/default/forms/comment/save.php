@@ -43,7 +43,7 @@ if ($comment && $comment->canEdit()) {
 	$comment_text = $comment->description;
 } else {
 	$comment_label  = elgg_echo("generic_comments:add");
-	$submit_input = elgg_view('input/submit', array('value' => elgg_echo('comment'), 'class' => 'mrgn-tp-sm',));
+	$submit_input = elgg_view('input/submit', array('value' => elgg_echo('comment'), 'class' => 'mrgn-tp-sm btn btn-primary',));
 }
 
 $cancel_button = '';

@@ -112,7 +112,7 @@ $r = $db->query('SELECT * FROM contact_list');
 
 foreach ($r as $row) {
     if ($SESSION['language'] == 'fr'){
-       echo "<option value=\"".$row['francais']."$".$row['francais']."\">".$row['english']."</option>\n  ";
+       echo "<option value=\"".$row['francais']."$".$row['english']."\">".$row['francais']."</option>\n  ";
 }else{
    echo "<option value=\"".$row['francais']."$".$row['english']."\">".$row['english']."</option>\n  ";
     }
@@ -147,7 +147,7 @@ echo '</select>';
     </div>
             
 <div class='container pull-right'>
-    <input type='submit' class="btn btn-default pull-right" name='Submit' value='<?php echo elgg_echo('send');?>' />
+    <input type='submit' class="btn btn-primary pull-right" name='Submit' value='<?php echo elgg_echo('send');?>' />
 </div>
                 
         </form>
