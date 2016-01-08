@@ -5,7 +5,6 @@
 
 ### Enabling Greater Collaboration Across the Public Service
 
----
 
 ## Description for a fan favourite voting
 Get ready for the next big thing in GCconnex! Team OSS is happy to introduce three new features that will make collaboration--internal and external--even easier and add to what the GC2.0 Tools can do.
@@ -23,7 +22,6 @@ Not only are these highly requested features already on Treasury Board Secretari
 
 ### VOTE TEAM OSS!
 
----
 
 ## Why is this the greatest addition to GCconnex?
 Public servants are turning to GCconnex and GCpedia in exponentially growing numbers. Naturally, with this increase in use comes a high demand for increased functionality. As a result, our project has focused on providing a range of new features that GCconnex users are askign for. These are: Embedded videos, Editing documents collaboratively in real-time (e-Docs), and Departmental Activity Tabs.
@@ -33,7 +31,6 @@ These features are the greatest additions to GCconnex for three major reasons:
 *They offer noticeable and cost-effective upgrades to GCconnex, while making it possible to collaborate externally. 
 *This project has a combination of in-demand features that many people already know how to use.
 
----
 
 ## List the team members and departments
 * Sébastien Lemay - Canadian Heritage
@@ -46,7 +43,6 @@ These features are the greatest additions to GCconnex for three major reasons:
 * Eric Beauchamp - Canadian Heritage
 * Caroline Cote - Canadian Heritage
 
----
 
 ## Range of skills sets on the team:
 * Writing for the web
@@ -58,21 +54,14 @@ These features are the greatest additions to GCconnex for three major reasons:
 * Project Leadership
 * GC 2.0 Tool Ambassadors
 
----
 
 ## Most interesting insights observed by the team over the two days
 Over the last two days, the team has made some interesting observations. 
 *Coders: Many of use were using Elgg coding for the first time. This presented challenges in making the code do what we wanted it to do. Coding in PHP presented similar challenges to the team. 
 *Communicators: We learned that we could contribute a lot more to the project than we initially thought we could, and we proved that long-distance collaboration (with the Yukon!) is possible--and fun!
 
----
-
-### See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
-
 ### The code on github:
 https://github.com/smellems/gcconnex
 
 ### A URL to run the application:
 http://pchgc.ca/dev/gcconnex/
-
-2015
