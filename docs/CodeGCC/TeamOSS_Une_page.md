@@ -1,71 +1,62 @@
 # Code GCConnex (2015-12)
-## Team Open Source
+## Équipe Logiciels Libres (Team Open Source)
 
 ![alt text](http://www.gnu.org/graphics/heckert_gnu.small.png "Bold GNU head")
 
-### Enabling Greater Collaboration Across the Public Service
+### Favoriser une plus grande collaboration à l'échelle de la fonction publique
 
----
 
-## Description for a fan favorite voting
-Get ready for the next big thing in GCconnex! Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools.
+## Description pour le vote "Prix du public"
+Préparez-vous à vivre la prochaine évolution majeure dans GCconnex! L'équipe OSS est heureuse de vous présenter trois nouvelles fonctions qui rendront la collaboration – interne et externe – encore plus simple et vous permettront d'en faire encore plus avec les outils GC2.0.
 
-### Embedded videos
-Users can post external videos from Youtube, Vimeo and others just by putting the link in their page, blog or group discussion.
+### Vidéos intégrées
+Vous pouvez publier des vidéos externes tirées de Youtube, de Vimeo et d'autres plateformes. Vous n'avez qu'à ajouter un lien sur la page, le blogue ou le groupe de discussion pour y intégrer automatiquement votre vidéo.
 
-### Editing documents collaboratively in real-time (e-Docs)
-Users can create links to https://beta.etherpad.org/. Etherpad allows you to edit documents collaboratively in real-time. Write text documents with your colleagues, all working on the same document at the same time enabling easy documents sharing.  This makes it easy for users to create pads in GCConnex with the e-docs functionnality.  We used an Etherpad to collaborate during Code GCConnex!  Etherpad is OSS and SSC could make it available inside GC Firewall.
+### Édition collaborative de documents en temps réel (e-Docs)
+Etherpad permet à plusieurs personnes de modifier un même document, et ce, simultanément. Fini le temps où plusieurs versions d'un même document circulaient dans Outlook et où vous deviez déchiffrer les différentes modifications apportées au document! Vous pouvez aisément créer votre propre document Etherpad dans GCconnex (en ajoutant un lien vers le site https://beta.etherpad.org/) à l'aide de la fonctionnalité e-Docs. D'ailleurs, les membres de notre équipe ont utilisé Etherpad pour collaborer dans le cadre du FestiCode GCconnex! Etherpad est un logiciel libre (OSS) et Services partagés Canada pourrait commencer par en autoriser l'accès derrière le pare-feu du gouvernement du Canada.
 
-### Departmental Activity Tabs
-We know there is alot going on in the GC, but we want to know what's happening in your department.  Departmental search is a highly in-demand feature.  We added tabs to the Activity page that enables users to only there own department'a activity as we all other activity (not your department).  You could then filter to see only blogs written by people in your department.  ToDo: filter by department so that you could also see an other department's (not all others) activity.
+### Onglets relatifs aux activités ministérielles
+Nous savons qu'il se passe beaucoup de choses au GC et que vous voulez tout savoir sur les activités en cours au sein de votre ministère et d'autres organismes. Vous n'êtes pas les seuls; la fonction ministérielle de recherche est très en demande. Par conséquent, nous avons ajouté deux onglets à la page des « Activités » : l'onglet 1 vous permet d'accéder à la liste des activités en cours dans votre ministère et l'onglet 2 à la liste des activités en cours dans n'importe quel autre ministère de votre choix. Vous pouvez par la suite appliquer un filtre pour n'afficher, par exemple, que les blogues rédigés par vos collègues de votre ministère. À faire : filtrer les résultats par ministère, afin de voir également les activités en cours dans d'autres ministères (pas tous les ministères).
 
-These highly requested features are not only within the radar of the 2015-2016 Work Plan, but also present cost-effective, noticeable upgrades to GCconnex, using tools users are already familiar with, while enabling external collaboration with GC tools.
+Ces fonctions sont très en demande et figurent déjà sur le plan de travail GCconnex 2015-2016 du Secrétariat du Conseil du Trésor. De plus, ces solutions sont économiques et permettront d'améliorer considérablement GCconnex. Nous avons également choisi des outils avec lesquels vous êtes déjà familiers, afin de vous simplifier la tâche et de vous permettre d'utiliser GCconnex pour collaborer avec divers intervenants, tant à l'interne qu'à l'externe.
 
-### VOTE TEAM OSS!
+### VOTEZ POUR L'ÉQUIPE OSS!
 
----
 
-## Why is this the greatest addition to GCconnex?
-Across government, GCPedia and GCconnex usage have increased and significantly. With this has come demand for increased functionality. With this in mind, our project has focused on providing a range of new features with high demand from GCconnex users. These are: Embedded videos, Editing documents collaboratively in real-time (e-Docs), and Departmental Activity Tabs.
+## Pourquoi est-ce le meilleur ajout à GCconnex?
+Le nombre de fonctionnaires qui utilisent GCconnex et GCpedia continue d'augmenter de manière exponentielle. Naturellement, cette hausse de popularité s'accompagne d'une forte demande pour l'ajout de nouvelles fonctions. Par conséquent, dans le cadre de notre projet, nous avons décidé de concentrer nos efforts afin d'offrir aux utilisateurs de GCconnex les nouvelles fonctions qu'ils ne cessent de demander, c'est-à-dire : les vidéos intégrées, l'édition collaborative de documents en temps réel (e Docs) et les onglets relatifs aux activités ministérielles.
 
-These features are the greatest additions to GCconnex for a number of reasons. First, they are noted desirable featured identified in the 2015-2016 GC Work Plan. This means that increased demand from users and research have indicated that this is an upgrade that users want and will use. Secondly, these features offer noticeable and cost-effective upgrades to GCconnex, while providing more avenues forexternal collaboration. Lastly, this project has a combination of in demand features that many people already know how to use.
+Ces fonctions représentent des ajouts majeurs à GCconnex pour trois principales raisons : *parce qu'elles figurent déjà dans le plan de travail 2015-2016, nous savons qu'elles sont en demande et qu'elles correspondent à la vision des outils GC2.0; *elles permettent d'améliorer GCconnex de manière considérable et économique, tout en favorisant la collaboration externe; *le projet porte sur des fonctions en demande et que bon nombre de personnes savent déjà utiliser.
 
----
 
 ## List the team members and departments
-* Sébastien Lemay - Canadian Heritage
-* Martin Lortie - Canadian Heritage
-* Louis-Phillipe Fillion - Canadian Heritage
-* Diane Billingsley - Aboriginal Affairs and Northern Development Canada
-* Robin Kilroy - Canada School of Public Service
-* Sahben Souissi - Canada School of Public Service
+* Sébastien Lemay - Patrimoine canadien
+* Martin Lortie - Patrimoine canadien
+* Louis-Phillipe Fillion - Patrimoine canadien
+* Diane Billingsley - Affaires autochtones et Développement du Nord Canada
+* Robin Kilroy - École de la fonction publique du Canada
+* Sahben Souissi - École de la fonction publique du Canada
 * Alysha Christensen - Treasury Board Secretariat
-* Eric Beauchamp - Canadian Heritage
-* Caroline Cote - Canadian Heritage
+* Eric Beauchamp - Patrimoine canadien
+* Caroline Cote - Patrimoine canadien
 
----
 
 ## Range of skills sets on the team:
-* Writing for the web
-* Plain language
-* Social media marketing
-* Web application development
-* Programming
-* Open Source Software
-* Project Leadership
-* GC 2.0 Tool Ambassadors
+* Rédaction sur le Web
+* Langage simple
+*	Marketing par les médias sociaux
+*	Développement d'applications Web
+*	Programmation
+*	Logiciels libres
+*	Gestion de projets
+*	Ambassadeurs des outils GC 2.0
 
----
 
-## Most interesting insights observed by the team over the two days
-Over the last two days, the team has made some interesting observations. The Elgg frameworks and functionality were some of the most interesting observations within the coding component of the project. With many using Elgg coding for the first time, this presented challenges in determining how to get the coding to do what we wanted it to do. Coding in PHP also presented similar challenges to the team. For the communications and marketing side of the team, finding out that we could contribute more to the team than initially thought was also observed during the two days.
+## Observations les plus intéressantes faites par l'équipe pendant ces deux jours
+Au cours des deux derniers jours, les membres de l'équipe ont fait quelques observations intéressantes. *Codeurs : bon nombre de codeurs utilisaient la plateforme Elgg pour la première fois. Cette situation présentait un défi particulier, car nous avons parfois eu de la difficulté à faire faire au code ce que nous voulions qu'il fasse. Le codage en PHP a présenté des défis semblables. *Communicateurs : nous avons appris que nous pourrions apporter une contribution beaucoup plus grande au projet que ce nous pensions initialement, et nous avons prouvé que la collaboration à distance (avec le Yukon!) est possible et amusante!
 
----
-
-### See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
-
-### The code on github:
+### Le code sur github
 https://github.com/smellems/gcconnex
 
-### A URL to run the application:
+### Adresse URL pour ouvrir l'application
 http://pchgc.ca/dev/gcconnex/
