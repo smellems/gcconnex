@@ -1,0 +1,31 @@
+Changlog
+========
+
+1.9.3
+-----
+
+* Verified that it works on Elgg 1.9 - 1.12 and Elgg 2.0 (therefore should also work on any future Elgg 2.X versions),
+* composer.json added.
+
+1.9.2
+-----
+
+* Updated to Elgg 1.9.
+
+1.8.2
+-----
+
+* French translation added (thank to emanwebdev).
+
+1.8.1
+-----
+
+* Using plugin hook friendly:time (overriding of core views is no longer necessary and all plugin views could be removed). Thanks Matt Beckett for pointing out the existence of this plugin hook in Elgg core.
+(In case you have version 1.8.0 already installed, please remove the plugin's folder in your mod folder first before copying the new version on your server. Otherwise the modified core views that were previously included to be overriden will still get overridden.)
+
+1.8.0 (Initial release for Elgg 1.8 by iionly)
+----------------------------------------------
+
+* Upgraded manifest file for Elgg 1.8,
+* Month names are included in language file to allow for internationalization,
+* The river/elements/body view is only necessary due to little "bug" in the Elgg core view (elgg_get_friendly_time() is used instead of elgg_view_friendly_time() which prevents overriding the time tag). In case the core view gets corrected at some time (maybe Elgg 1.8.5) it should no longer be necessary to override the core view (2012/5/26 edit: this has indeed been fixed in Elgg 1.8.5).
