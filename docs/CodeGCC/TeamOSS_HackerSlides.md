@@ -18,6 +18,10 @@
 
 ---
 
+## The ideas
+
+---
+
 ### Embedded videos
 You can post external videos from Youtube, Vimeo and other platforms. All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
 
@@ -58,8 +62,8 @@ __* No modfications to these plugins!__
 
 ---
 
-### The code on github:
+## The code on github:
 https://github.com/smellems/gcconnex
 
-### A URL to run the application:
+## A URL to run the application:
 http://pchgc.ca/dev/gcconnex/
