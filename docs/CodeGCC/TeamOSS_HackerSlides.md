@@ -1,28 +1,32 @@
 # Code GCConnex (2015-12)
 ## Team Open Source
 
-See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
-
 ![alt text](http://www.gnu.org/graphics/heckert_gnu.small.png "Bold GNU head")
 
 ### Enabling Greater Collaboration Across the Public Service
 
 ---
 
-## Next big thing in GCconnex
-Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools.
+## The team
+* Sébastien Lemay - Canadian Heritage
+* Martin Lortie - Canadian Heritage
+* Louis-Phillipe Fillion - Canadian Heritage
+* Diane Billingsley - Aboriginal Affairs and Northern Development Canada
+* Robin Kilroy - Canada School of Public Service
+* Sahben Souissi - Canada School of Public Service
+* Alysha Christensen - Treasury Board Secretariat
 
 ---
 
 ### Embedded videos
-Users can post external videos from Youtube, Vimeo and others just by putting the link in their page, blog or group discussion.
+You can post external videos from Youtube, Vimeo and other platforms. All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
 
 ---
 
 ### Editing documents collaboratively in real-time (e-Docs)
-Users can easily create links to [Etherpad](https://beta.etherpad.org/). Etherpad allows you to edit documents collaboratively in real-time. It's also Open Source Sotware.
+You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality.
 
-__We used an Etherpad to collaborate during Code GCConnex!__
+__Our team used an Etherpad to collaborate during Code GCconnex!__
 
 ---
 
@@ -31,46 +35,28 @@ Tabs to the Activity page that enables users to only there own department's acti
 
 ---
 
-These highly requested features are not only within the radar of the 2015-2016 Work Plan, but also present cost-effective, noticeable upgrades to GCconnex, using tools users are already familiar with, while enabling external collaboration with GC tools.
-
-### VOTE TEAM OSS!
-
----
-
-## Team members and departments
-* Sébastien Lemay - Canadian Heritage
-* Martin Lortie - Canadian Heritage
-* Louis-Phillipe Fillion - Canadian Heritage
-* Diane Billingsley - Aboriginal Affairs and Northern Development Canada
-* Robin Kilroy - Canada School of Public Service
-* Sahben Souissi - Canada School of Public Service
-* Alysha Christensen - Treasury Board Secretariat
-* Eric Beauchamp - Canadian Heritage
-* Caroline Cote - Canadian Heritage
+### Last minute Bonus - Friendly time
+Show the date and time of posts instead of : "x days ago".
 
 ---
 
-## Range of skills sets:
-* Writing for the web
-* Plain language
-* Social media marketing
-* Web application development
-* Programming
-* Open Source Software
-* Project Leadership
-* GC 2.0 Tool Ambassadors
+## Open Source plugins
+* Embed extender *
+* Etherpad *
+* Activity tabs (Added Departmental Activity Tabs)
+* Friendly Time *
+
+__* No modfications to these plugins!__
 
 ---
 
-## Most interesting insights observed by the team over the two days
-* Understanding the Elgg framework (we had o experience with this)
-* Learning about Apache, MySQL, HP and Git
-* Non coders finding out that tey could contribute more to the team than initially thought.
+## ToDo
+* Embed videos using HTML5
+* Install Etherpad insde the GC fireall
+* Add filter to Other departments Activity tab so that you can select a department
+* Format time using ISO date format
 
 ---
-
-### Detailed one pager
-https://github.com/smellems/gcconnex/blob/gcconnex-upgrade/docs/CodeGCC/TeamOSS_One_pager.md
 
 ### The code on github:
 https://github.com/smellems/gcconnex
