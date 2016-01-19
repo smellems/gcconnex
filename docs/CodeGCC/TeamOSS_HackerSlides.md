@@ -1,4 +1,4 @@
-# Code GCConnex (2015-12)
+# Code GCConnex
 ## Team Open Source
 
 ![alt text](http://www.gnu.org/graphics/heckert_gnu.small.png "Bold GNU head")
@@ -34,6 +34,10 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 
 ---
 
+![alt text](https://camo.githubusercontent.com/9ca4b9b988b8eaf457d1f7f32cbce055140c0948/687474703a2f2f692e696d6775722e636f6d2f7a5972476b67332e676966 "etherpad gif")
+
+---
+
 ### Departmental Activity Tabs
 Tabs to the Activity page that enables users to only there own department's activity as we all other activity (not your department).
 
@@ -56,7 +60,8 @@ __* No modfications to these plugins!__
 
 ## ToDo
 * Embed videos using HTML5
-* Install Etherpad insde the GC fireall
+* Embed Etherpads in GCConnex
+* Install Etherpad inside the GC fireall
 * Add filter to Other departments Activity tab so that you can select a department
 * Format time using ISO date format
 
