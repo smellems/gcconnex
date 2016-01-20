@@ -18,17 +18,15 @@
 
 ---
 
-## The ideas
-
----
-
 ### Embedded videos
-You can post external videos from Youtube, Vimeo and other platforms. All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
+* You can post external videos from Youtube, Vimeo and other platforms. 
+
+* All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
 
 ---
 
 ### Editing documents collaboratively in real-time (e-Docs)
-You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality.
+* You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality.
 
 __Our team used an Etherpad to collaborate during Code GCconnex!__
 
@@ -39,36 +37,39 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 ---
 
 ### Departmental Activity Tabs
-Tabs to the Activity page that enables users to only there own department's activity as we all other activity (not your department).
+* Tabs on the Activity page that allows you to see separate streams of activity.
+
+* For example, a tab for your own department and tabs for other departments of your choice.
 
 ---
 
-### Last minute Bonus - Friendly time
-Show the date and time of posts instead of : "x days ago".
+### Last-minute Bonus - Friendly time
+* Show the date and time of posts instead of "x days ago".
 
 ---
 
 ## Open Source plugins
-* Embed extender *
-* Etherpad *
-* Activity tabs (Added Departmental Activity Tabs)
-* Friendly Time *
+* Embed extender
+* Etherpad 
+* Departmental activity tabs
+* Friendly time 
 
-__* No modfications to these plugins!__
+__No modifications are needed for these plugins!__
 
 ---
 
 ## ToDo
 * Embed videos using HTML5
 * Embed Etherpads in GCConnex
-* Install Etherpad inside the GC fireall
-* Add filter to Other departments Activity tab so that you can select a department
+* Install Etherpad inside the GC firewall
+* Add filter to activity tabs for other departments so that you can select a department
 * Format time using ISO date format
 
 ---
 
-## The code on github:
+### The code on github
 https://github.com/smellems/gcconnex
 
-## A URL to run the application:
+
+### A URL to run the application
 http://pchgc.ca/dev/gcconnex/
