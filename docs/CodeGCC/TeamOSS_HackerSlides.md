@@ -1,7 +1,5 @@
-# Code GCConnex (2015-12)
+# Code GCConnex
 ## Team Open Source
-
-See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-QVQvu3h09vsY5UYJXHuHo)
 
 ![alt text](http://www.gnu.org/graphics/heckert_gnu.small.png "Bold GNU head")
 
@@ -9,35 +7,7 @@ See our [Hacker Slides](https://oasis.sandstorm.io/shared/FzOcbbW399Ko47_X0mJ9T-
 
 ---
 
-## Next big thing in GCconnex
-Team OSS is happy to introduce three new features that will enable further collaboration and deliver increased functionality to GC tools.
-
----
-
-### Embedded videos
-Users can post external videos from Youtube, Vimeo and others just by putting the link in their page, blog or group discussion.
-
----
-
-### Editing documents collaboratively in real-time (e-Docs)
-Users can easily create links to [Etherpad](https://beta.etherpad.org/). Etherpad allows you to edit documents collaboratively in real-time. It's also Open Source Sotware.
-
-__We used an Etherpad to collaborate during Code GCConnex!__
-
----
-
-### Departmental Activity Tabs
-Tabs to the Activity page that enables users to only there own department's activity as we all other activity (not your department).
-
----
-
-These highly requested features are not only within the radar of the 2015-2016 Work Plan, but also present cost-effective, noticeable upgrades to GCconnex, using tools users are already familiar with, while enabling external collaboration with GC tools.
-
-### VOTE TEAM OSS!
-
----
-
-## Team members and departments
+## The team
 * Sébastien Lemay - Canadian Heritage
 * Martin Lortie - Canadian Heritage
 * Louis-Phillipe Fillion - Canadian Heritage
@@ -45,35 +15,61 @@ These highly requested features are not only within the radar of the 2015-2016 W
 * Robin Kilroy - Canada School of Public Service
 * Sahben Souissi - Canada School of Public Service
 * Alysha Christensen - Treasury Board Secretariat
-* Eric Beauchamp - Canadian Heritage
-* Caroline Cote - Canadian Heritage
 
 ---
 
-## Range of skills sets:
-* Writing for the web
-* Plain language
-* Social media marketing
-* Web application development
-* Programming
-* Open Source Software
-* Project Leadership
-* GC 2.0 Tool Ambassadors
+### Embedded videos
+* You can post external videos from Youtube, Vimeo and other platforms. 
+
+* All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
 
 ---
 
-## Most interesting insights observed by the team over the two days
-* Understanding the Elgg framework (we had o experience with this)
-* Learning about Apache, MySQL, HP and Git
-* Non coders finding out that tey could contribute more to the team than initially thought.
+### Editing documents collaboratively in real-time (e-Docs)
+* You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality.
+
+__Our team used an Etherpad to collaborate during Code GCconnex!__
 
 ---
 
-### Detailed one pager
-https://github.com/smellems/gcconnex/blob/gcconnex-upgrade/docs/CodeGCC/TeamOSS_One_pager.md
+![alt text](https://camo.githubusercontent.com/9ca4b9b988b8eaf457d1f7f32cbce055140c0948/687474703a2f2f692e696d6775722e636f6d2f7a5972476b67332e676966 "etherpad gif")
 
-### The code on github:
+---
+
+### Departmental Activity Tabs
+* Tabs on the Activity page that allows you to see separate streams of activity.
+
+* For example, a tab for your own department and tabs for other departments of your choice.
+
+---
+
+### Last-minute Bonus - Friendly time
+* Show the date and time of posts instead of "x days ago".
+
+---
+
+## Open Source plugins
+* Embed extender
+* Etherpad 
+* Departmental activity tabs
+* Friendly time 
+
+__No modifications are needed for these plugins!__
+
+---
+
+## ToDo
+* Embed videos using HTML5
+* Embed Etherpads in GCConnex
+* Install Etherpad inside the GC firewall
+* Add filter to activity tabs for other departments so that you can select a department
+* Format time using ISO date format
+
+---
+
+### The code on github
 https://github.com/smellems/gcconnex
 
-### A URL to run the application:
+
+### A URL to run the application
 http://pchgc.ca/dev/gcconnex/
