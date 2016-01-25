@@ -66,12 +66,12 @@ function enhanced_friendly_time_hook($hook, $type, $return, $params) {
 		} else if($diff == 14){
 			$friendly_time = elgg_echo("friendlytime:weeks", array($diff));
 		} else{
-			$date_day = date('j', $params['time']);
+			$date_day = date('d', $params['time']);
 			$date_month = date('m', $params['time']);
 			$date_year = date('Y', $params['time']);
 			$date_hour = date('H', $params['time']);
 			$date_minute = date('i', $params['time']);
-			$friendly_time = $date_year . '-' . $date_day . '-' . $date_month . ' ' . $date_hour . ':' . $date_minute;
+			$friendly_time = $date_year . '-' . $date_month . '-' . $date_day . ' ' . $date_hour . ':' . $date_minute;
 		}
 	}
 
