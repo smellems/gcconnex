@@ -8,25 +8,33 @@
 ---
 
 ## The team
-* Sébastien Lemay - Canadian Heritage
-* Martin Lortie - Canadian Heritage
-* Louis-Phillipe Fillion - Canadian Heritage
-* Diane Billingsley - Aboriginal Affairs and Northern Development Canada
-* Robin Kilroy - Canada School of Public Service
-* Sahben Souissi - Canada School of Public Service
-* Alysha Christensen - Treasury Board Secretariat
+* Sébastien Lemay - PCH - Developer
+* Martin Lortie - PCH - Developer
+* Louis-Phillipe Fillion - PCH - Developer
+* Diane Billingsley - AANDC
+* Robin Kilroy - CSPS
+* Sahben Souissi - CSPS - Developer
+* Alysha Christensen - TBS
+
+---
+
+## The ideas
+* Brainstorm with PCH employees
+* Install available plugins to add functionnality
 
 ---
 
 ### Embedded videos
-* You can post external videos from Youtube, Vimeo and other platforms. 
+* You can post external videos from Youtube and other platforms
 
-* All you have to do is add a link to your page, blog or group discussion to automatically embed your video.
+* All you have to do is add a link to your page, blog or group discussion to automatically embed your video
 
 ---
 
 ### Editing documents collaboratively in real-time (e-Docs)
-* You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality.
+* You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality
+
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/new_pad.png "New pad")
 
 __Our team used an Etherpad to collaborate during Code GCconnex!__
 
@@ -37,33 +45,45 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 ---
 
 ### Departmental Activity Tabs
-* Tabs on the Activity page that allows you to see separate streams of activity.
+* Tabs on the Activity page that allows you to see separate streams of activity
 
-* For example, a tab for your own department and tabs for other departments of your choice.
+* A tab for your own department and a tab for other departments
+
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/dept_tab.png "My Departent Tab")
 
 ---
 
 ### Last-minute Bonus - Friendly time
-* Show the date and time of posts instead of "x days ago".
+Show the date and time of posts instead of "x days ago"
+
+---
+#### Before
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/time_before.png "Time Before")
+
+---
+#### After
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/time_after.png "Time After")
 
 ---
 
 ## Open Source plugins
-* Embed extender
-* Etherpad 
-* Departmental activity tabs
-* Friendly time 
+* Embed extender*
+* Etherpad*
+* (Departmental) Activity Tabs
+* (ISO) Friendly Time
 
-__No modifications are needed for these plugins!__
+__* No modifications were done to these plugins!__
+
+### Easily implementable
 
 ---
 
 ## ToDo
 * Embed videos using HTML5
 * Embed Etherpads in GCConnex
-* Install Etherpad inside the GC firewall
+* Install Etherpad inside the GC firewall (SSC)
 * Add filter to activity tabs for other departments so that you can select a department
-* Format time using ISO date format
+* Make "My Department" tab the default Activity view
 
 ---
 
