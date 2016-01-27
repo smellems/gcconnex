@@ -20,6 +20,7 @@
 
 ## The ideas
 * Brainstorm with PCH employees
+
 * Install available plugins to add functionnality
 
 ---
