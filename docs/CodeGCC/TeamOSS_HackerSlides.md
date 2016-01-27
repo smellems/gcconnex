@@ -26,18 +26,24 @@
 ---
 
 ### Embedded videos
-* You can post external videos from Youtube and other platforms
+* Post external videos from Youtube and other platforms
 
-* All you have to do is add a link to your page, blog or group discussion to automatically embed your video
+* <u>Functionality</u> : You want to post all of your content in one place—including videos
+
+* <u>Usability</u> : You already know how to add a link
 
 ---
 
-### Editing documents collaboratively in real-time (e-Docs)
-* You can easily create your own pads in GCconnex (by creating links to https://beta.etherpad.org/) with the e-Docs functionality
+### e-Docs
+* Create links to Etherpad in GCConnex
+
+* <u>Functionality</u> : You want many contributors to edit a single document
+
+* <u>Usability</u> : You don’t have to learn another tool—it’s that easy
 
 ![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/new_pad.png "New pad")
 
-__Our team used an Etherpad to collaborate during Code GCconnex!__
+__We used an Etherpad during Code GCconnex!__
 
 ---
 #### Main Menu
@@ -53,9 +59,9 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 ---
 
 ### Departmental Activity Tabs
-* Tabs on the Activity page that allows you to see separate streams of activity
+* <u>Functionality</u> : You need to find the proverbial needle in a haystack—let's make the haystack smaller
 
-* A tab for your own department and a tab for other departments
+* <u>Usability</u> : You already filter according to your own interests on many social media platforms
 
 ![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/dept_tab.png "My Departent Tab")
 
@@ -73,6 +79,9 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 
 ### Last-minute Bonus - Friendly time
 Show the date and time of posts instead of "x days ago"
+
+#### ISO 8601
+![alt text](http://imgs.xkcd.com/comics/iso_8601.png "PCH Activity")
 
 ---
 #### Before
