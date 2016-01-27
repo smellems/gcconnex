@@ -39,6 +39,13 @@
 __Our team used an Etherpad to collaborate during Code GCconnex!__
 
 ---
+#### Main Menu
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/top_menu_edocs.png "Top Menu")
+
+#### Group Widget
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/etherpad_group_activity.png "group activity")
+
+---
 
 ![alt text](https://camo.githubusercontent.com/9ca4b9b988b8eaf457d1f7f32cbce055140c0948/687474703a2f2f692e696d6775722e636f6d2f7a5972476b67332e676966 "etherpad gif")
 
@@ -50,6 +57,16 @@ __Our team used an Etherpad to collaborate during Code GCconnex!__
 * A tab for your own department and a tab for other departments
 
 ![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/dept_tab.png "My Departent Tab")
+
+---
+
+#### All Activity
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/all_activity.png "All Activity")
+
+---
+
+#### My department (PCH) Activity
+![alt text](http://pchgc.ca/dev/gcconnex/_graphics/CodeGCC/pch_activity.png "PCH Activity")
 
 ---
 
