@@ -100,7 +100,7 @@ Show date and time of older posts instead of "x days ago".
 * (Departmental) Activity Tabs
 * (ISO) Friendly Time
 
-__* We did not these plugins!__
+__* We did not modify these plugins!__
 
 ### Easily implementable
 
