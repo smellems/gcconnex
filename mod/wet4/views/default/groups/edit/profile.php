@@ -10,17 +10,66 @@
 
 $name = elgg_extract("name", $vars);
 $group_profile_fields = elgg_get_config("group");
+$group = elgg_extract("entity", $vars);
+
+/*
+$DBprefix=$CONFIG->dbprefix;
+
+//$group = get_data('Select guid, name from '.$DBprefix.'groups_entity');
+try{
+    $connection = mysqli_connect($CONFIG->dbhost, $CONFIG->dbuser, $CONFIG->dbpass, $CONFIG->dbname);
+    $result = mysqli_query($connection, 'Select guid, name from '.$DBprefix.'groups_entity');
+    $site_url = elgg_get_site_url();
+
+    if(intval($result->num_rows)>0){
+        echo '<script> $(document).ready(function () {';
+        echo 'var source = [';
+        while ($arr = $result->fetch_assoc()){
+            // echo "Key: $key; Value: $value<br />\n";
+            echo '{value:"'.$site_url.'/groups/profile/'.$arr['guid'].'/'. str_replace(' ','-',trim(strtolower($arr['name']))).'",';
+            echo 'label:"'.trim($arr['name']).'"},';
+        }
+        echo '];';
+
+        echo "$('#name').autocomplete({source: source,select: function (event, ui) { window.location.href = ui.item.value;}});});</script>";
+    }
+    $connection->close();
+}
+catch (Exception $e)
+{
+        $errMess=$e->getMessage();
+        $errStack=$e->getTraceAsString();
+        $errType=$e->getCode();
+        gc_err_logging($errMess,$errStack,'Suggested Friends',$errType);
+         $connection->close();
+}*/
+
 
 ?>
 
 <div>
-	<label for="name"><?php echo elgg_echo("groups:name"); ?></label><br />
+    <label for="name">
+        <?php echo elgg_echo("groups:name"); ?>
+    </label>
+    <br />
+    <div id="suggestedText"></div>
+    <?php
+        //if creating a group
+    if(empty($group)){
+        echo elgg_view("input/groups_autocomplete", array(
+				'name' => 'name',
+				'value' => elgg_extract('name', $vars),
+		));
+    } else {
+    ?>
+
 	<?php echo elgg_view("input/text", array(
 		"name" => "name",
 		"value" => $name,
         'id' => 'name',
+        'class' => 'ui-autocomplete-input',
 	));
-	?>
+    }?>
 </div>
 <div>
 <label for="icon"><?php echo elgg_echo("groups:icon"); ?></label><br />

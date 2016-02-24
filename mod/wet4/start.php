@@ -11,7 +11,18 @@ function wet4_theme_init() {
     
     //reload groups library to have our sidebar changes
     elgg_register_library('elgg:groups', elgg_get_plugins_path() . 'wet4/lib/groups.php');
-    
+    elgg_register_library('GCconnex_logging', elgg_get_plugins_path() . 'wet4/lib/logging.php');
+    elgg_register_library('GCconnex_display_in_language', elgg_get_plugins_path() . 'wet4/lib/translate_display.php');
+
+    elgg_load_library('GCconnex_logging');
+    elgg_load_library('GCconnex_display_in_language');
+    //get rid of reply icon on river menu
+    elgg_unregister_plugin_hook_handler('register', 'menu:river', 'discussion_add_to_river_menu');
+
+    //change icons for blog entity
+    elgg_unregister_plugin_hook_handler("register", "menu:entity", array("\ColdTrick\BlogTools\EntityMenu", "register"));
+    elgg_register_plugin_hook_handler("register", "menu:entity", 'wet4_blog_entity_menu');
+
 	elgg_register_event_handler('pagesetup', 'system', 'wet4_theme_pagesetup', 1000);
     elgg_register_event_handler('pagesetup', 'system', 'wet4_riverItem_remove');
     elgg_register_event_handler('pagesetup', 'system', 'messages_notifier');
@@ -20,6 +31,7 @@ function wet4_theme_init() {
     elgg_register_plugin_hook_handler('register', 'menu:widget', 'wet4_widget_menu_setup');
     elgg_register_plugin_hook_handler('register', 'menu:page', 'wet4_elgg_page_menu_setup');
     elgg_register_plugin_hook_handler('register', 'menu:river', 'wet4_elgg_river_menu_setup');
+    elgg_register_plugin_hook_handler('register', 'menu:site', 'career_menu_hander');
     
     elgg_register_plugin_hook_handler('register', 'menu:entity', 'wet4_likes_entity_menu_setup', 400);
     //elgg_register_plugin_hook_handler('register', 'menu:entity', 'wet4_delete_entity_menu', 400);
@@ -35,9 +47,10 @@ function wet4_theme_init() {
     elgg_register_page_handler('dashboard', 'wet4_dashboard_page_handler');
     elgg_register_page_handler('friends', '_wet4_friends_page_handler'); //register new page handler for data tables
 	elgg_register_page_handler('friendsof', '_wet4_friends_page_handler');
-    
+
     //datatables css file
 	elgg_extend_view('css/elgg', '//cdn.datatables.net/1.10.10/css/jquery.dataTables.css');
+
 
 	//elgg_unextend_view('page/elements/header', 'search/header');
 	//elgg_extend_view('page/elements/sidebar', 'search/header', 0);
@@ -45,22 +58,32 @@ function wet4_theme_init() {
     //load datatables
     elgg_require_js("wet4/test");
     
-    elgg_register_js('removeMe', elgg_get_plugins_path() . 'wet4/js/removeMe.js');
+    //elgg_register_js('removeMe', elgg_get_plugins_path() . 'wet4/js/removeMe.js');
     
     //the wire reply and thread
     elgg_register_ajax_view("thewire_tools/reply");
 	elgg_register_ajax_view("thewire_tools/thread");
-    
+
+    elgg_register_ajax_view("friend_circle/edit");
+
     //file tools 
 	elgg_register_ajax_view("file_tools/move");
+
 	
 	elgg_register_plugin_hook_handler('head', 'page', 'wet4_theme_setup_head');
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'my_owner_block_handler');
+    elgg_register_plugin_hook_handler('register', 'menu:title', 'my_title_menu_handler');
+    elgg_register_plugin_hook_handler('register', 'menu:filter', 'my_filter_menu_handler');
+    elgg_register_plugin_hook_handler('register', 'menu:site', 'my_site_menu_handler');
 	elgg_register_plugin_hook_handler('register', 'menu:river', 'river_handler');
     
     elgg_register_simplecache_view('wet4/test.js');
+
+    //added since goups didnt have this action but called it
+    elgg_register_action("discussion_reply/delete", elgg_get_plugins_path() . "/wet4/actions/discussion/reply/delete.php");
     
 	elgg_register_action("file/move_folder", elgg_get_plugins_path() . "/wet4/actions/file/move.php");
+    elgg_register_action("friends/collections/add", elgg_get_plugins_path() . "/wet4/actions/friends/collections/add.php");
     
 	// non-members do not get visible links to RSS feeds
 	if (!elgg_is_logged_in()) {
@@ -69,8 +92,21 @@ function wet4_theme_init() {
 
     // new widgets
     //registering wet 4 activity widget
-    elgg_register_widget_type('wet_activity', elgg_echo('wet4:colandgroupactivity'), 'GCconnex Group and Colleague Activity', array('custom_index_widgets'),true);
-    elgg_register_widget_type('profile_completness', 'Profile Strength', 'The "Profile Strength" widget', array('custom_index_widgets'),false);
+
+    if(elgg_is_logged_in()){//for my the my groups widget on the home page
+        $mygroups_title = elgg_echo('wet_mygroups:my_groups');
+        $wet_activity_title = elgg_echo('wet4:colandgroupactivity');
+    }else{
+        $mygroups_title = elgg_echo('wet_mygroups:my_groups_nolog');
+        $wet_activity_title = elgg_echo('wet4:colandgroupactivitynolog');
+    }
+    elgg_register_widget_type('wet_activity', $wet_activity_title, 'GCconnex Group and Colleague Activity', array('custom_index_widgets'),true);
+    elgg_register_widget_type('profile_completness', elgg_echo('ps:profilestrength'), 'The "Profile Strength" widget', array('custom_index_widgets'),false);
+    elgg_register_widget_type('suggested_friends', elgg_echo('sf:suggcolleagues'), elgg_echo('sf:suggcolleagues'), array('custom_index_widgets'),false);
+
+    //WET my groups widget
+    elgg_register_widget_type('wet_mygroups_index', $mygroups_title, 'My Groups Index', array('custom_index_widgets'),true);
+    elgg_register_widget_type('most_liked', elgg_echo('activity:module:weekly_likes'), elgg_echo('activity:module:weekly_likes'), array('custom_index_widgets'),true);
 
     
     //extend views of plugin files to remove unwanted menu items
@@ -85,9 +121,112 @@ function wet4_theme_init() {
 		}
 	}
     elgg_extend_view("core/settings/statistics", "forms/usersettings/menus");
+    elgg_extend_view('forms/account/settings', 'core/settings/account/landing_page');
+
+    //menu item for career dropdown
+    elgg_register_menu_item('site', array(
+    		'name' => 'career',
+    		'href' => '#career_menu',
+    		'text' => elgg_echo('career') . '<span class="expicon glyphicon glyphicon-chevron-down"></span>'
+    ));
+
+    //set up metadata for user's landing page preference
+    if(elgg_is_logged_in()){
+        $user = elgg_get_logged_in_user_entity();
+        if(!isset($user->landingpage)){
+            $user->landingpage = 'news';
+        }
+    }
+
+    //save new user settings on landing page
+    elgg_register_plugin_hook_handler('usersettings:save', 'user', '_elgg_set_landing_page');
+
+    // Replace the default index page with redirect
+    elgg_register_plugin_hook_handler('index', 'system', 'new_index');
+    elgg_register_page_handler('newsfeed', 'newsfeed_page_handler');
+
+    elgg_register_page_handler('groups_autocomplete', 'groups_autocomplete');
+
+}
+
+/*
+ *  load lib for suggested group text input
+ */
+
+function groups_autocomplete() {
+    require_once elgg_get_plugins_path() . 'wet4/lib/groups_autocomplete.php';
+    return true;
 }
 
 
+/*
+ *  Create news feed page
+ */
+
+function newsfeed_page_handler(){
+    @include (dirname ( __FILE__ ) . "/pages/newsfeed.php");
+    return true;
+}
+
+/*
+ *  Set new index page to sort user's landing page preference
+ */
+
+function new_index() {
+    return !include_once(dirname(__FILE__) . "/pages/index.php");
+}
+
+/*
+ * Set landing page in user settings
+ */
+
+function _elgg_set_landing_page() {
+	$page = strip_tags(get_input('landingpage'));
+	$user_guid = get_input('guid');
+
+	if ($user_guid) {
+		$user = get_user($user_guid);
+	} else {
+		$user = elgg_get_logged_in_user_entity();
+	}
+
+	if ($user && $user->canEdit() && $page) {
+		if ($page != $user->name) {
+			$user->landingpage = $page;
+			if ($user->save()) {
+				
+				return true;
+			} else {
+				
+			}
+		} else {
+			// no change
+			return null;
+		}
+	} else {
+		
+	}
+	return false;
+}
+
+
+// function that handles moving jobs marketplace and micro missions into drop down menu
+function career_menu_hander($hook, $type, $menu, $params){
+    foreach ($menu as $key => $item){
+
+        switch ($item->getName()) {
+            case 'career':
+                if(elgg_is_active_plugin('gcforums')){
+                    $item->addChild(elgg_get_menu_item('site', 'Forum'));
+                }
+                if(elgg_is_active_plugin('missions')){
+                    $item->addChild(elgg_get_menu_item('site', 'mission_main'));
+                }
+                $item->setLinkClass('item');
+                break;
+        }
+    }
+}
 
 /**
  * Rearrange menu items
@@ -485,6 +624,67 @@ function wet4_elgg_page_menu_setup($hook, $type, $return, $params) {
 
 }
 
+
+function wet4_blog_entity_menu($hook, $entity_type, $returnvalue, $params) {
+    if (empty($params) || !is_array($params)) {
+        return $returnvalue;
+    }
+
+    $entity = elgg_extract("entity", $params);
+    if (empty($entity) || !elgg_instanceof($entity, "object", "blog")) {
+        return $returnvalue;
+    }
+
+    // only published blogs
+    if ($entity->status == "draft") {
+        return $returnvalue;
+    }
+
+    if (!elgg_in_context("widgets") && elgg_is_admin_logged_in()) {
+        $returnvalue[] = \ElggMenuItem::factory(array(
+            "name" => "blog-feature",
+            "text" => elgg_echo("blog_tools:toggle:feature"),
+            "href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
+            "item_class" => empty($entity->featured) ? "" : "hidden",
+            "is_action" => true,
+            "priority" => 175
+        ));
+        $returnvalue[] = \ElggMenuItem::factory(array(
+            "name" => "blog-unfeature",
+            "text" => elgg_echo("blog_tools:toggle:unfeature"),
+            "href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
+            "item_class" => empty($entity->featured) ? "hidden" : "",
+            "is_action" => true,
+            "priority" => 176
+        ));
+    }
+
+    if ($entity->canComment()) {
+        $returnvalue[] = \ElggMenuItem::factory(array(
+            "name" => "comments",
+            "text" => '<i class="fa fa-lg fa-comment icon-unsel"><span class="wb-inv">' . elgg_echo("comment:this") . '</span></i>',
+            "title" => elgg_echo("comment:this"),
+            "href" => $entity->getURL() . "#comments"
+        ));
+
+        /*
+        $comment_count = $entity->countComments();
+        if ($comment_count) {
+            $returnvalue[] = \ElggMenuItem::factory(array(
+                "name" => "comments_count",
+                "text" => $comment_count,
+                "title" => elgg_echo("comments"),
+                "href" => false
+            ));
+        }
+        */
+    }
+
+    return $returnvalue;
+}
+
+
+
 function wet4_elgg_entity_menu_setup($hook, $type, $return, $params) {
 	//Have widgets show the same entity menu
     if (elgg_in_context('widgets')) {
@@ -600,15 +800,18 @@ function wet4_elgg_entity_menu_setup($hook, $type, $return, $params) {
 	if ($entity->canEdit() && $handler) {
 		// edit link
     
-		$options = array(
-			'name' => 'edit',
-			'text' => '<i class="fa fa-edit fa-lg icon-unsel"><span class="wb-inv">Edit This</span></i>',
-			'title' => elgg_echo('edit:this'),
-			'href' => "$handler/edit/{$entity->getGUID()}",
-			'priority' => 299,
-		);
-		$return[] = \ElggMenuItem::factory($options);
-   
+        //checks so the edit icon is not placed on incorrect entities
+        if($handler != 'group_operators'){
+            if($entity->getSubtype() != 'thewire'){
+                $options = array(
+                    'name' => 'edit',
+                    'text' => '<i class="fa fa-edit fa-lg icon-unsel"><span class="wb-inv">Edit This</span></i>',
+                    'title' => elgg_echo('edit:this'),
+                    'href' => "$handler/edit/{$entity->getGUID()}",
+                    'priority' => 299,
+                );
+                $return[] = \ElggMenuItem::factory($options);
+            }
 		// delete link
 		$options = array(
 			'name' => 'delete',
@@ -619,8 +822,8 @@ function wet4_elgg_entity_menu_setup($hook, $type, $return, $params) {
 			'priority' => 300,
 		);
 		$return[] = \ElggMenuItem::factory($options);
-        
 
+        }
 
 
         
@@ -789,6 +992,73 @@ function wet4_elgg_river_menu_setup($hook, $type, $return, $params){
 	return $return;
 }
 
+//arrange filter menu menu
+function my_filter_menu_handler($hook, $type, $menu, $params){
+    foreach ($menu as $key => $item){
+        if(elgg_in_context('thewire')){
+        switch ($item->getName()) {
+           
+                case 'all':
+                    $item->setPriority('1');
+
+                    break;
+                case 'friend':
+                    $item->setPriority('2');
+
+                    break;
+                case 'mention':
+                    $item->setText(elgg_echo('search'));
+                    $item->setPriority('4');
+
+                    break;
+                case 'mine':
+                    $item->setPriority('3');
+
+                    break;
+            }
+        }
+    }
+}
+
+//fix site menu
+function my_site_menu_handler($hook, $type, $menu, $params){
+    foreach ($menu as $key => $item){
+
+            switch ($item->getName()) {
+
+                case 'groups':
+                    if(elgg_is_logged_in()){
+                        $item->setHref('groups/all?filter=yours');
+                    } else {
+                        $item->setHref('groups/all?filter=popular');
+                    }
+
+                    break;
+                
+            }
+        }
+    
+}
+
+//arrange title menu on photo album
+function my_title_menu_handler($hook, $type, $menu, $params){
+    foreach ($menu as $key => $item){
+        switch ($item->getName()) {
+
+            case 'slideshow':
+                $item->setText(elgg_echo('album:slideshow'));
+
+
+                break;
+            case 'addphotos':
+                $item->setItemClass('mrgn-rght-sm');
+
+
+                break;
+        }
+    }
+}
+
 
 //arrange owner block menu
 function my_owner_block_handler($hook, $type, $menu, $params){
@@ -814,6 +1084,15 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                     $item->setText(elgg_echo('gprofile:discussion'));
                     $item->setHref('#' . strtolower(elgg_echo('gprofile:discussion')));
                     $item->setPriority('1');
+                    break;
+                case 'gcforums':
+                    $item->setPriority('1');
+                    $item->setLinkClass('forums');
+                    break;
+                case 'related_groups':
+                    $item->setHref('#related');
+
+                    $item->setPriority('20');
                     break;
                 case 'file':
                     $item->setText(elgg_echo('gprofile:files'));
@@ -895,6 +1174,15 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                     $item->setText(elgg_echo('gprofile:discussion'));
 
                     $item->setPriority('1');
+                    break;
+                case 'gcforums':
+                    $item->setPriority('1');
+                    $item->setLinkClass('forums');
+                    break;
+                case 'related_groups':
+
+
+                    $item->setPriority('20');
                     break;
                 case 'file':
                     $item->setText(elgg_echo('gprofile:files'));
@@ -1022,6 +1310,10 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                     $item->addItemClass('removeMe');
                     $item->setPriority('12');
                     break;
+
+                case 'orgs':
+                    $item->setPriority('13');
+                    break;
                 case 'thewire':
                     //$item->setText(elgg_echo('The Wire'));
                     $item->setHref('#thewire');
@@ -1091,8 +1383,16 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 	/* @var \ElggWidget $widget */
 	$show_edit = elgg_extract('show_edit', $params, true);
 
+    $options = array(
+		'name' => 'collapse',
+		'text' => '<i class="fa fa-lg icon-unsel"><span class="wb-inv">Delete This</span></i> ',
+		'href' => "#elgg-widget-content-$widget->guid",
+		'link_class' => 'elgg-widget-collapse-button ',
+		'rel' => 'toggle',
+		'priority' => 1,
+	);
 
-
+    $return[] = \ElggMenuItem::factory($options);
 	if ($widget->canEdit()) {
 		$options = array(
 			'name' => 'delete',
@@ -1106,7 +1406,22 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 			'priority' => 900,
 		);
 		$return[] = \ElggMenuItem::factory($options);
-
+        // This is to maybe have a move button on widgets to move them with the keyboard.
+        /*
+        $options = array(
+            'name' => 'collapse',
+            'text' => '<i class="fa fa-chevron-down fa-lg icon-unsel"><span class="wb-inv">Delete This</span></i>',
+            'title' => elgg_echo('widget:delete', array($widget->getTitle())),
+            'href' => "#elgg-widget-content-$widget->guid",
+            //'is_action' => true,
+            'link_class' => 'elgg-menu-content elgg-widget-collapse-button',
+            //'id' => "elgg-widget-move-button-$widget->guid",
+         'rel' => 'toggle',
+            
+            'priority' => 700,
+        );
+		$return[] = \ElggMenuItem::factory($options);
+       */
 		if ($show_edit) {
 			$options = array(
 				'name' => 'settings',

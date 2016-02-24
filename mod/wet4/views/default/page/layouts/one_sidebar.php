@@ -14,14 +14,14 @@
  * @uses $vars['class']   Additional class to apply to layout
  */
 
-$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
-if (isset($vars['class'])) {
-	$class = "$class {$vars['class']}";
-}
+//$class = 'elgg-layout elgg-layout-one-sidebar clearfix';
+//if (isset($vars['class'])) {
+//    $class = "$class {$vars['class']}";
+//}
 
 ?>
 
-<div class="<?php echo $class; ?>">
+<div class="<?php //echo $class; ?> row">
 	<?php
         /*
         echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
@@ -30,7 +30,7 @@ if (isset($vars['class'])) {
     //main section
     ?>
     <section class="col-md-8 mrgn-bttm-md" id="wb-cont">
-        <div class=" clearfix">
+        <!--<div class=" clearfix">-->
 		<?php
 			
 			//echo elgg_get_context();
@@ -71,12 +71,12 @@ if (isset($vars['class'])) {
 			}
 			
 			echo elgg_view('page/layouts/elements/footer', $vars);
-		?>
-        </div>
+        ?>
+       <!-- </div>-->
 	</section>
     
     <?php //sidebar ?>
-	<section class="col-md-4">
+	<section class="col-md-4 pull-right">
 		<?php
 			
 			// by moving sidebar below main content.

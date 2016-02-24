@@ -13,18 +13,24 @@
  * @uses $vars['footer']  Optional footer
  */
 
-$class = 'elgg-layout elgg-layout-one-column clearfix';
-if (isset($vars['class'])) {
-	$class = "$class {$vars['class']}";
-}
+//$class = 'elgg-layout elgg-layout-one-column clearfix';
+//if (isset($vars['class'])) {
+//    $class = "$class {$vars['class']}";
+//}
 
 ?>
-<div class="<?php echo $class; ?>">
-	<div class="elgg-main">
+<!--<div class="<?php //echo $class; ?> row">
+	<div class="elgg-main">-->
+<section>
 	<?php
+	if($params['event_page'] == true){
 		echo elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
-
 		echo elgg_view('page/layouts/elements/header', $vars);
+}else{
+
+	echo $vars['title'];
+}
+		
 
 		echo $vars['content'];
 		
@@ -34,6 +40,7 @@ if (isset($vars['class'])) {
 		}
 
 		echo elgg_view('page/layouts/elements/footer', $vars);
-	?>
-	</div>
-</div>
+    ?>
+</section>
+	<!--</div>
+</div>-->

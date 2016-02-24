@@ -34,11 +34,12 @@ if (isset($vars['item_class']) && $vars['item_class']) {
 }
 
 echo "<li class=\"$item_class\">";
+//echo "<li>";
 echo elgg_view_menu_item($item);
 if ($children) {
 	echo elgg_view('navigation/menu/elements/section', array(
 		'items' => $children,
-		'class' => 'elgg-menu elgg-child-menu',
+		'class' => ' elgg-child-menu sm list-unstyled',
 	));
 }
 echo '</li>';

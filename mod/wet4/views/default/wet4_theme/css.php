@@ -1037,7 +1037,7 @@ h1, .h1,
 h2, .h2,
 h3, .h3 {
 
-  margin-bottom: 11.5px; }
+  margin-bottom: 6.5px; }
   h1 small,
   h1 .small, .h1 small,
   .h1 .small,
@@ -1134,7 +1134,7 @@ mark,
     color:#fcc306;
     text-shadow:#333 1px 1px;
     }
-.text-primary {
+.text-primary,details summary, details summary:focus, details summary:hover {
  /* color: #2572b4; */
  color:#055959 !important;
 }
@@ -1919,7 +1919,7 @@ th {
     padding: 10px 3px 3px 0;
     line-height: 1.4375;
     vertical-align: top;
-    border-top: 1px solid #d6eae6; }
+    border-top: 1px solid #ddd; }
   .table > thead > tr > th {
     vertical-align: bottom;
     }
@@ -2627,6 +2627,7 @@ Profile Completness
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
   .btn:hover,
+ 
   .btn:focus,
   .btn.focus {
     color: #335075;
@@ -2652,6 +2653,7 @@ Profile Completness
   background-color: #eaebed;
   border-color: #dcdee1; }
   .btn-default:hover,
+
   .btn-default:focus,
   .btn-default.focus,
   .btn-default:active,
@@ -2695,6 +2697,8 @@ Profile Completness
 .btn-default>a:visited {
         color: #335075;
     }
+
+
 
 .btn-primary {
   color: #fff;
@@ -4312,13 +4316,13 @@ a.thumbnail.active {
   .alert-warning .alert-link {
     color: #66512c; }
 
-.alert-error {
+.alert-error,.alert-danger {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442; }
-  .alert-error hr {
+  .alert-error hr,.alert-danger hr {
     border-top-color: #e4b9c0; }
-  .alert-error .alert-link {
+  .alert-error .alert-link,.alert-danger .alert-link {
     color: #843534; }
 
 @-webkit-keyframes progress-bar-stripes {
@@ -4583,7 +4587,7 @@ a.list-group-item-danger {
   line-height: 1.3; }
 
 .panel {
-  margin-bottom: 23px;
+  margin-bottom: 10px;
   background-color: #fff;
   border: 1px solid transparent;
   /*border-radius: 4px;*/
@@ -4592,6 +4596,7 @@ a.list-group-item-danger {
 
   .panel-river{
     padding:15px;
+    border: 1px solid #f7f7f7;
 }
  .river-font{
     font-size: 1.2em;
@@ -4617,10 +4622,10 @@ a.list-group-item-danger {
     clear: both; }
 
 .panel-heading {
-  padding: 10px 15px;
+  padding: 5px 15px;
   border-bottom: 1px solid transparent;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px; }
+  margin-bottom: 3px;
+   }
   .panel-heading > .dropdown .dropdown-toggle {
     color: inherit; }
 
@@ -4894,6 +4899,54 @@ a.list-group-item-danger {
   .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #ebccd1; }
 
+  .panel-custom{
+      border: 1px solid #ddd;
+
+  }
+
+  .panel-custom .panel-heading{
+      background-color:#f5f5f5;
+     
+
+  }
+    .panel-custom .panel-heading h1 {
+      border:none;
+
+  }
+  .panel-custom .panel-heading h2 {
+      border:none;
+
+  }
+.panel-custom .panel-heading h3{
+    border:none;
+}
+
+.panel-custom .panel-footer{
+    background-color: #fff;
+    border:none;
+
+}
+
+.panel-custom .group-block-head{
+    background-color:none;
+    border: none;
+    padding: 7px 0px;
+}
+
+.panel-custom .group-block-head h2{
+    border:none;
+
+}
+
+.gallery-padding li{
+    padding:4px;
+
+}
+
+.elgg-list{
+    list-style:none;
+
+}
 .embed-responsive {
   position: relative;
   display: block;
@@ -5783,7 +5836,7 @@ a {
 .label-warning[href]:focus,
 .label-warning[href]:active, .alert-warning, .label-danger, .label-danger[href]:hover,
 .label-danger[href]:focus,
-.label-danger[href]:active, .alert-error {
+.label-danger[href]:active, .alert-error,.alert-danger {
   color: #000; }
 
 .label-default[href]:hover,
@@ -5845,11 +5898,11 @@ a {
 
 .label-danger, .label-danger[href]:hover,
 .label-danger[href]:focus,
-.label-danger[href]:active, .alert-error, details.alert-error {
+.label-danger[href]:active, .alert-error, details.alert-error,.alert-danger, details.alert-danger {
   background: #f3e9e8;
   border-color: #d3080c; }
 
-.alert-error > :first-child:before {
+.alert-error > :first-child:before,.alert-danger > :first-child:before {
   color: #d3080c;
   content: "\e101"; }
 
@@ -5868,7 +5921,7 @@ h1,
 h1,
 .h1, h2,
 .h2 {
-  margin-top: 3px; }
+  margin-top: 5px; }
 
 h3,
 .h3 {
@@ -5991,7 +6044,7 @@ blockquote {
  */
 .form-control {
   max-width: 100%;
-  width: auto; }
+  /*width: auto;*/ }
 
 /*
  *	Fieldset/legend border position
@@ -6979,7 +7032,7 @@ details[open] {
   margin-left: 0;
   margin-right: 1.1em; }
 
-  details > summary.bg-primary:hover,details > summary.bg-primary:focus
+  details > summary.bg-primary:hover,details > summary.bg-primary:focus,details > summary.bg-primary
 {
     color:#fff !important;
 }
@@ -7227,7 +7280,7 @@ details.alert-warning:before {
   color: #f90;
   content: "\e107"; }
 
-details.alert-error:before {
+details.alert-error:before,details.alert-danger:before {
   color: #d3080c;
   content: "\e101"; }
 
@@ -9805,7 +9858,7 @@ details {
 	Global Default Body styling
 */
 body {
-  background: #f8f8f8;
+  background: #fcfcfc !important;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 300; }
@@ -9833,7 +9886,7 @@ h1, .h1, h2,
   font-family: Helvetica, Arial, sans-serif; }
 
 h1 {
-  border-bottom: 1px solid #af3c43;
+  border-bottom: 1px solid #055959;
   font-size: 34px;
   margin-bottom: 0.2em;
   margin-top: 0.25em;
@@ -9841,7 +9894,7 @@ h1 {
 
 h2,
 .h2 {
-border-bottom: 1px solid #af3c43;    
+border-bottom: 1px solid #055959;    
   font-size: 26px; }
 
 h3,
@@ -9860,11 +9913,11 @@ h6,
 .h6 {
   font-size: 14px; }
 
-.h3,
+.h2,.h3,
 .h4,
 .h5,
 .h6 {
-  border: 0; }
+  border: none; }
 
 aside.site-related h2 {
   font-size: 28px;
@@ -10325,6 +10378,10 @@ header .brand {
  * Main content area
  */
 main {
+    /*background: #fff;*/
+    padding-bottom: 2em;
+}
+main {
   position: relative; }
   main .pagetag,
   main .subtitle {
@@ -10562,16 +10619,32 @@ a.shr-opn, a.shr-opn:hover {
 }
     
 .list-break{
-    border-bottom: 1px solid #d6eae6;   
+    margin-top: 5px !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid #ddd !important;  
 }
 
 .list-break:last-child{
-    border-bottom:none;   
+    border-bottom:none !important;   
 }
+
+/*Place Holder color in user profile fields*/
+   #editProfile .form-control::-moz-placeholder {
+    color: #bbb !important;
+    opacity: 1; }
+   #editProfile .form-control:-ms-input-placeholder {
+    color: #bbb !important; }
+ #editProfile .form-control::-webkit-input-placeholder {
+    color: #bbb !important; }
 
     /****************************************/
     
     /******************** user menu ********************/
+
+    .dropdown .elgg-menu {
+        padding: 0;
+    }
+
 
     .subMenu .dropdownToggle {
         display: none;
@@ -10665,15 +10738,19 @@ a.shr-opn, a.shr-opn:hover {
     /*position: relative;*/
 }
 
+.user-z-index{
+    z-index: 10;
+
+}
+
 /** Sizing the Images to make medium images slightly smaller. They scale with the responsive class so it's all good **/
  .elgg-avatar-medium-wet4{
-     max-width:80px;  
-     padding-left:5px;
+     max-width:75%;  
+     
  }
 
  .au_subgroups_group_icon-medium-wet4{
-        max-width:80px;
-        padding-left:5px;
+        max-width:75%;  
 
  }
 
@@ -10744,7 +10821,7 @@ a.shr-opn, a.shr-opn:hover {
 
 .profile-info-head {
     margin: 5px 0;
-    border-bottom: 1px solid #af3c43;
+    
 }
 
     /****************************************/
@@ -10849,6 +10926,10 @@ a.shr-opn, a.shr-opn:hover {
         border-radius: 0;
         margin-bottom: 0;
     }
+
+    .ui-autocomplete {
+        padding-left: 0;
+    }
     
     /****************************************/
     
@@ -10941,10 +11022,16 @@ a.shr-opn, a.shr-opn:hover {
     box-shadow:none;
 
 }
+.col-md-8 .custom-index-panel:first-of-type .panel-heading{
+    background:transparent;
+    border:none;
+    box-shadow:none;
+
+}
 
 .elgg-widget-title{
     cursor:move;
-
+    border:none;
 }
 
 .elgg-button-action{
@@ -10952,8 +11039,14 @@ a.shr-opn, a.shr-opn:hover {
 
 }
 
-.elgg-module-widget .elgg-menu-widget .elgg-menu-item-settings, .elgg-module-widget .elgg-menu-widget .elgg-menu-item-delete{
+.elgg-module-widget .elgg-menu-widget .elgg-menu-item-settings, .elgg-module-widget .elgg-menu-widget .elgg-menu-item-delete, .elgg-module-widget .elgg-menu-widget .elgg-menu-item-collapse{
     display:inline-block;
+
+}
+
+.elgg-state-unavailable .btn{
+    background-color: #F2DEDE;
+    border: 1px solid #843534;
 
 }
 
@@ -10964,6 +11057,22 @@ a.shr-opn, a.shr-opn:hover {
 
 .elgg-widget-placeholder{
     border: dashed 2px #DDDDDD;
+
+}
+
+.elgg-widget-content ul li .panel-river{
+    border:none;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.col-md-4 .panel ul li .panel-river{
+border:none;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+.elgg-foot{
+    margin-bottom: 5px;
 
 }
 
@@ -11112,7 +11221,7 @@ a.shr-opn, a.shr-opn:hover {
     border: 1px solid black;
      content: " ";
   display: table; 
-
+  list-style: none;
 
   clear: both;
 }
@@ -11121,6 +11230,10 @@ a.shr-opn, a.shr-opn:hover {
     cursor: pointer;   
 }
 
+.ui-autocomplete .ui-menu-item a:hover{
+    color: #047177 !important;
+
+}
 .elgg-menu-hover{
     background-color:white;
     padding: 10px;
@@ -11223,7 +11336,7 @@ details.elgg-state-success:before {
     color: #843534; }
 
 
-.label-danger[href]:active, .elgg-state-error, details.alert-error {
+.label-danger[href]:active, .elgg-state-error, details.alert-error,details.alert-danger {
   background: #f3e9e8;
   border-color: #d3080c; }
 
@@ -11291,6 +11404,18 @@ details.elgg-state-success:before {
     clear: both;     
 }
 
+    #friends_collections_accordian li h2 {
+        background: white;
+        border: none;
+        margin: 10px 0 0;
+
+        webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.09);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.09);
+    }
+
+    .selected-circle {
+        background: #f0f0f0;
+    }
 
 .bold-gc{
     font-weight: 800;   
@@ -11360,9 +11485,9 @@ figcaption{
 
 
 .wb-graph figure:first-child{
-    width: 250px;
+    width:100%;
     margin: 0 auto;
-    text-align: center;
+ 
 }
 
 /****** Polls Custom stuff ******/
@@ -11381,7 +11506,7 @@ figcaption{
 
 }
 
-
+/* removing arrow on like and share bubble
 .entity-menu-bubble:before{
        content: '';
     display: block;
@@ -11396,11 +11521,11 @@ figcaption{
 	border-right:10px solid #efefef; 
     clear: both;    
 }
-
+*/
 
 .data-table-list-item{
     padding:10px;  
-    border-bottom: 1px solid #d6eae6;
+    border-bottom: 1px solid #ddd;
 }
 
 .data-table-head{
@@ -11411,10 +11536,18 @@ figcaption{
 /** Widget Stuff **/
 
 .elgg-widget-title{
-        border-bottom: 1px solid #af3c43;
+       
         margin:5px 0;   
 }
 
+.widget-enter-selected{
+    background-color: #eaebed;
+}
+
+.wet-hidden{
+    display:none;
+
+}
 /*
  * Mobile panel
  */
@@ -11766,6 +11899,7 @@ Carousel
 .elgg-menu-filter>.elgg-state-selected{
     color:#295376;
     float: left;
+    font-weight:bold;
     border-bottom-color: transparent;
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -11799,7 +11933,7 @@ Carousel
 .elgg-menu-filter > li{
     color:#295376;
     float: left;
-    border: 1px solid #fcfcfc;
+    border: 1px solid transparent;
     border-bottom-color: transparent;
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
@@ -11807,7 +11941,9 @@ Carousel
     position: relative;
     display: block;
     padding-left:0px;
-    padding-right:0px;}
+    padding-right:0px;
+    margin-bottom: -3px;
+}
 
 .elgg-menu-filter > li:hover{
     color:#295376;
@@ -11837,7 +11973,9 @@ Carousel
 .elgg-menu-filter {
   margin-bottom: 0;
   padding-left: 0;
-  list-style: none; }
+  list-style: none;
+  border-bottom: solid 1px #ddd;
+}
       
  .elgg-menu-filter:before,
  .elgg-menu-filter:after {
@@ -11866,7 +12004,7 @@ Carousel
   @title: All screen views
  */
   body {
-    background: #f7f7f7; }
+    background: #fcfcfc; }
   .overlay-def .modal-header {
     background: #2e5274; }
   .wb-sl {

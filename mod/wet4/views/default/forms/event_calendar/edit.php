@@ -109,31 +109,57 @@ $body .= elgg_view("input/text", array('name' => 'venue', 'id' => 'calendar-venu
 $body .= '</p>';
 $body .= '<p class="wb-inv">'.$prefix['venue'].elgg_echo('event_calendar:venue_description').'</p>';
 
-$body .= '<p><label for="calendar-description">'.elgg_echo("event_calendar:brief_description_label").'</label>';
+$briefmaxlength = 350;					// Maximum length for brief description character count
+$shortname = 'briefdescription';
+
+	$line_break = ($valtype == "longtext") ? "" : "<br />";
+	$label = elgg_echo("groups:{$shortname}");
+
+					// Brief description with character limit, count
+
+					// Brief description with character limit, count
+		$label .= elgg_echo('groups:brief:charcount') . "0/" . $briefmaxlength;	// additional text for max length
+		$input = elgg_view("input/text", array(
+			'name' => 'description',
+            'id' => 'calendar-description',
+			'value' => $brief_description,
+			'maxlength' => $briefmaxlength,
+			'onkeyup' => "document.getElementById('briefdescr-lbl').innerHTML = '" . elgg_echo("groups:{$shortname}") . elgg_echo('groups:brief:charcount') . " ' + this.value.length + '/" . $briefmaxlength . "';"
+		));
+	
+	
+			// Brief description with character limit, count
+        $body .= "<div><label id='briefdescr-lbl' for='calendar-description'>{$label}</label>{$line_break}{$input}</div>";
+	
+
+/*$body .= '<p><label for="calendar-description">'.elgg_echo("event_calendar:brief_description_label").'</label>';
 $body .= elgg_view("input/text", array('name' => 'description', 'id' => 'calendar-description', 'value' => $brief_description));
 $body .= '</p>';
-$body .= '<p class="wb-inv">'.$prefix['brief_description'].elgg_echo('event_calendar:brief_description_description').'</p>';
+$body .= '<p class="wb-inv">'.$prefix['brief_description'].elgg_echo('event_calendar:brief_description_description').'</p>';*/
 
 $body .= '<p><label for="calendar-tags">'.elgg_echo("event_calendar:event_tags_label").'</label>';
 $body .= elgg_view("input/tags", array('name' => 'tags', 'id' => 'calendar-tags', 'value' => $event_tags));
 $body .= '</p>';
 $body .= '<p class="wb-inv">'.$prefix['event_tags'].elgg_echo('event_calendar:event_tags_description').'</p>';
 
-$body .= '<p><label for="calendar-language">'.elgg_echo("Language").'</label>';
+$body .= '<p><label for="calendar-language">'.elgg_echo("event_calendar:language").'</label>';
 $body .= elgg_view("input/access", array('name' => 'language', 'id'=> 'calendar-language', 'options_values' => $language_options));
 
 
-$body .= '<p><label for="calendar-teleconference">'.elgg_echo("Teleconference").'</label><br/>';
+$body .= '<p><label for="calendar-teleconference">'.elgg_echo("Online meeting and teleconference").'</label><br/>';
 $body .= 'No <input type="radio" name="teleconference" id="teleconference_no" value="no" checked="checked"  />';
 $body .= 'Yes<input type="radio" name="teleconference" id="teleconference_yes" value="yes"  />';
 $body .= '</p>';
 $body .= '<p class="wb-inv">'.$prefix['brief_description'].elgg_echo('event_calendar:brief_description_description').'</p>';
 
 
- $body .= '<ul id="date" style="display:none">
-    <li><input name="teleconference_text" type="text" class="small form-control" /></li>
+ $body .= '<p id="date" class="list-unstyled" style="display:none">
+ <label for="calendar-teleconference">URL</label><br/>
+    <input name="teleconference_text" type="text" class="small form-control" />
+    <label for="calendar-teleconference">Additional information</label><br/>
+    <textarea class="form-control" rows="3"></textarea>
     
-</ul>';
+</p>';
 
 if ($event || !$vars['group_guid']) {
 	$body .= '<p><label for="calendar-group">'.elgg_echo("event_calendar:calendar_label").'</label>';
@@ -159,7 +185,7 @@ $body .= '</div>';
 
 $body .= '<div class="event-calendar-edit-form-block">';
 $body .= '<h2>'.elgg_echo('event_calendar:schedule:header').'</h2>';
-$body .= '<ul class="elgg-input-radios elgg-vertical event-calendar-edit-schedule-type">';
+$body .= '<ul class="elgg-input-radios elgg-vertical event-calendar-edit-schedule-type list-unstyled">';
 foreach($schedule_options as $label => $key) {
   if ($key == $schedule_type) {
     $checked = "checked \"checked\"";

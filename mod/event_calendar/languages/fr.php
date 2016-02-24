@@ -31,13 +31,15 @@ return array (
   'event_calendar:dow:full:sunday' => "Sunday",
 
 
-
+  'event_calendar:day_label' => "Jour",
+  'event_calendar:week_label' => "Semaine",
+  'event_calendar:month_label' => "Mois",
   'event_calendar:to_label' => "à:",
   'event_calendar:from_label' => "de:",
   'event_calendar:optional' => "Optionnel.",
   'event_calendar:required' => "Obligatoire.",
   'event_calendar:add' => "Ajouter événement",
-  'event_calendar:listing_title:all' => "Tous les événement",
+  'event_calendar:listing_title:all' => "Tous les événements",
   'event_calendar:listing_title:mine' => "My calendar",   // translate
   'event_calendar:listing_title:friends' => "Friends' calendars",   // translate
   'event_calendar:all' => "Tous",

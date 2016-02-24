@@ -1,6 +1,23 @@
 <?php
+    $site_url = elgg_get_site_url();
 return array(
-    
+
+/**
+  * WET specific
+  */
+  'wet:skiptomain'=>"Passer au contenu principal",
+  'wet:aboutsite'=>"Passer à « À propos de ce site »",
+  'wet:LangSel'=>"Sélection de la langue",
+  'wet:gc'=>"Gouvernement du Canada",
+  'wet:search'=>"Recherche et menus",
+  'wet:searchHead'=>"Recherche",
+  'wet:searchweb'=>"Recherchez le site Web",
+   'wet:searchgctools'=>"Rechercher GCconnex",
+   'wet:more'=>"Autres",
+   'wet:topicmenu'=>"Menu des sujets",
+   'wet:youarehere'=>"Vous êtes ici :",
+   'wet:errmess' => "<h3 class='h3'>Le formulaire n'a pu être soumis car une ou des erreurs ont été trouvées.</h3>",
+   'wet:feedbackText'=>"Rétroaction<span class='wb-inv'> sur ce site Web</span>",
 /**
  * Profile Strength
  */
@@ -9,8 +26,23 @@ return array(
     'ps:details' => "Voir en détail",
     'ps:education' => "Éducation",
     'ps:work' => "Expérience de travail",
+    'ps:profilestrength' => "Profil",
+     'ps:all-star' =>"Félicitations! Vous êtes une étoile.",
+     'ps:beginner' =>"Débutant",
+     'ps:advanced' =>"Avancé",
+     'ps:expert' =>"Expert",
+     'ps:optingin' =>"Avez-vous penser à adhérer aux Micro-mission?",
+     'ps:optin' =>"Adhérer",
+     'ps:psErr'=>"Une erreur est survenue durant l'obtentions de vos informations de profil . Nous travaillons pour résoudre le problème .",
 
+/*
+       * Suggested Friends
+       */
 
+      'sf:title' => "Voyez-vous quelqu'un que vous connaissez ? Connectez-vous avec eux.",
+      'sf:connect' => "Connecter",
+      'sf:alttext' => "L'avatar de",
+      'sf:suggcolleagues'=> "Suggestion de collègue",
 /**
  * The Wire
  */
@@ -58,13 +90,29 @@ return array(
     'gprofile:albumsCatch' => "Albums",
     'gprofile:ideas' => "Idées",
     'gprofile:more' => "Plus",
-    
-    'gprofile:create' => "Create Group",
-    
-/**
- * Sites
- */
 
+    'gprofile:create' => "Create Group",
+
+    'gprofile:edit:content' => "Options pour le contenu",
+    'gprofile:edit:admin' => "Option pour l'administrateur",
+
+    'groups:suggestedGroups' => '(translate me) Engagement team desc on what is happening',
+
+        /**
+   * Group invite
+   */
+
+  'group:invite:clicktoadd' => "Cliquez pour ajouter",
+  'group:invite:email' => "(translate me) Enter a valid email and press enter to submit it to the list",
+
+  'groups:eng'=>"Anglais",
+  'groups:fra'=>"Français",
+/**
+  * Sites
+ */
+    'landingPage' => '(translate me) Set Landing Page',
+    'career' => '(translate me) Career',
+    'newsfeed' => '(translate me) News Feed',
 	'item:site' => 'Sites',
 
 /**
@@ -146,8 +194,8 @@ return array(
 	'ElggPlugin:Dependencies:ActiveDependent' => 'Il existe d\'autres plugins répertoriant %s en tant que dépendance. Vous devez désactiver les plugins suivants avant de désactiver celui-ci: %s',
 
 
-	'RegistrationException:EmptyPassword' => 'Les champs du mot de passe ne peut pas être vide',
-	'RegistrationException:PasswordMismatch' => 'Les mots de passe doivent correspondre',
+	'RegistrationException:EmptyPassword' => '<a href="#password">Les champs du mot de passe ne peut pas être vide</a>',
+	'RegistrationException:PasswordMismatch' => '<a href="#password">Les mots de passe doivent correspondre</a>',
 	'LoginException:BannedUser' => 'Vous avez été banni de ce site et ne pouvez plus vous connecter',
 	'LoginException:UsernameFailure' => 'Nous n\'avons pas pu vous connecter ! Vérifiez votre nom d\'utilisateur et mot de passe.',
 	'LoginException:PasswordFailure' => 'Nous n\'avons pas pu vous connecter ! Vérifiez votre nom d\'utilisateur et mot de passe.',
@@ -225,6 +273,7 @@ return array(
 	'widget:numbertodisplay' => 'Nombre d\'éléments à afficher ',
 
 	'widget:delete' => 'Supprimer %s',
+    'widget:remove' => 'Supprimer widget',
 	'widget:edit' => 'Personnaliser ce widget',
 
 	'widgets' => "Widgets",
@@ -236,7 +285,10 @@ return array(
 	'widgets:add:failure' => "Nous n'avons pas pu ajouter votre widget.",
 	'widgets:move:failure' => "Nous n'avons pas pu enregistrer la position du nouveau widget.",
 	'widgets:remove:failure' => "Impossible de supprimer ce widget",
-    'wet4:colandgroupactivity'=>'Activités de vos Groupes et Collègues',
+    'wet4:colandgroupactivity'=>'Your Newsfeed (translate me)',
+    'wet4:colandgroupactivitynolog'=>'Bienvenue à GCconnex',
+    'wet4:noticetitle' => 'Avis',
+    'wet4:homenotice' => 'Bienvenue à GCconnex, la plateforme de réseautage social professionnelle du gouvernement du Canada. GCconnex a pour objet de permettre aux fonctionnaires de tisser des liens et de collaborer selon leurs connaissances, leurs expériences et leurs intérêts communs. GCconnex devrait servir à mener des activités relatives au milieu de travail, et il ne devrait pas remplacer les réseaux sociaux personnels (comme Facebook).',
 
 /**
  * Groups
@@ -447,6 +499,7 @@ return array(
 	'tools' => "Outils",
 	'settings:edit' => 'Editer les paramètres',
 
+    'gcconnex:registerText' => '(translate me)New to GCconnex? Get started connecting and collaborating with other public servants all accross Canada.',
 	'register' => "S'enregistrer",
 	'registerok' => "Vous vous êtes enregistré avec succès sur %s.",
 	'registerbad' => "Votre création de compte n'a pas fonctionné pour une raison inconnue.",
@@ -454,7 +507,7 @@ return array(
 	'register:fields' => 'Tous les champs sont requis',
 
 	'registration:notemail' => 'L\'adresse e-mail que vous avez renseigné n\'apparaît pas comme valide.',
-	'registration:userexists' => 'Ce nom d\'utilisateur existe déjà',
+	'registration:userexists' => 'That username already exists. <a href="'.$site_url.'forgotpassword">Retrieve your password</a>',
 	'registration:usernametooshort' => 'Le nom d\'utilisateur doit faire %u caractères au minimum.',
 	'registration:usernametoolong' => 'Votre nom d\'utilisateur est trop long. Il peut comporter au maximum %u caractères.',
 	'registration:passwordtooshort' => 'Le mot de passe doit comporter un minimum de %u caractères.',
@@ -1347,48 +1400,63 @@ Ne répondez pas à cet e-mail.",
     'contactform:form:subject' => "Sujet",
     'contactform:title' => "Pages d'aide de GCconnex",
     'contactform:help' => 'Aide',
-	'contactform:list' => "<ul>	
-						<li> <a href='http://gcpedia.gc.ca/wiki/Tutorials_on_GC2.0_Tools_/_Tutoriels_sur_les_outils_GC2.0'>Conseils pratiques/Vidéos/Tutoriels</a> </li>
-						<li> <a href='http://gcconnex.gc.ca/file/view/6352643/intro-a-gcconnex-savoir-le-%C2%ABcomment%C2%BB-en-6-etapes-faciles-et-commencer-a-utiliser-gcconnex-aujourdhui'>6 étapes pour utiliser GCconnex</a> </li>
-						<li> <a href='http://gcconnex.gc.ca/file/view/390515/en-managing-your-email-notifications-on-gcconnexpdf'>Gestion des avis par courriel</a> </li>
-						</ul><br />",
+	'contactform:list' => '<ul class="list-unstyled">	
+						<li> <a href="http://www.gcpedia.gc.ca/gcwiki/index.php?title=Centre d\'aide pour les outils GC2.0/GCconnex&setlang=fr&uselang=fr">Pages d\'aide</a> </li>
+						</ul><br />',
     'contactform:faq' => "FAQ",
-    'contactform:title:lostpwd' => "Mot de passe perdu:",
-    
-    'contactform:content:lostpwd' => "Mot de passe perdu:</h4>
-						Pour récupérer votre <u>Mot de passe pour GCconnex</u>, allez sur la <a href='http://gcconnex.gc.ca/'>page d'accueil de GCconnex</a> ou cliquez dans la fenêtre contextuelle <u>Ouverture de session</u> qui se trouve dans le coin gauche supérieur de chaque page de GCconnex. Cliquez sur le lien <u>Mot de passe perdu</u> et saisissez votre nom d'utilisateur ou vous adresse de courriel, puis cliquez sur <u>Demande</u>. Un lien vous permettant de réinitialiser votre mot de passe sera envoyé à l'adresse de courriel associée à votre compte GCconnex. Suivez ce lien, puis cliquez sur <u>Réinitialiser mon mot de passe</u> pour qu'un nouveau mot de passe généré aléatoirement soit envoyé à votre adresse de courriel.
-						<br /><br />
-						Une fois que vous aurez ouvert une session avec le nouveau mot de passe, cliquez sur le lien <u>Paramètres</u> qui se trouve dans le coin droit supérieur de chaque page de GCconnex. Dans la section <u>Mot de passe du compte</u>, saisissez votre <u>Mot de passe actuel</u> (le mot de passe généré aléatoirement qui vous a été envoyé par courriel) et <u>Votre nouveau mot de passe</u> (le mot de passe que vous souhaitez utiliser désormais) deux fois, puis cliquez sur <u>Enregistrer</u>.",
-    
-    'contactform:title:lostuser' => "Nom d'utilisateur perdu :",
-    
-    'contactform:content:lostuser' => "Si vous avez oublié votre <u>Nom d'utilisateur pour GCconnex</u>, ne vous en faites pas; il n'est pas nécessaire de le récupérer. Vous pouvez utiliser l'adresse de courriel associée à votre compte GCconnex pour ouvrir une session, soit sur la <a href='http://gcconnex.gc.ca/'>Page d'accueil de GCconnex</a> ou en allant dans la fenêtre contextuelle d'<u>Ouverture de session</u> dans le coin gauche supérieur de chaque page de GCconnex. 
-						<br /><br />
-						Toutefois, si vous avez changé d'adresse de courriel depuis que vous avez créé votre compte GCconnex, vous ne pouvez pas utiliser votre nouvelle adresse pour ouvrir une session à moins que vous ayez <a href='http://gcconnex.gc.ca/settings/'>mis à jour votre adresse de courriel dans vos paramètres</a>. Veuillez envoyer un courriel à <a href='mailto:gcconnex@tbs-sct.gc.ca'>gcconnex@tbs-sct.gc.ca</a> et indiquer que vous n'avez plus accès à l'adresse de courriel qui est associée à votre compte GCconnex. Nous vous répondrons dans les deux jours ouvrables qui suivent. ",
-    
-    'contactform:title:create' => "Créer un compte :",
-    
-    'contactform:content:create' => "Rendez-vous sur <a href='http://gcconnex.gc.ca/'>GCconnex.gc.ca</a> et cliquez sur « Inscription » (sous « Ouvrir une session »). Vous pourrez alors saisir votre adresse de courriel du travail et choisir un mot de passe. Ensuite, lisez et acceptez les Conditions générales et cliquez sur « Inscription ». ",
-    
-    'contactform:title:picture' => "Télécharger une photo de profil :",
-    
-    'contactform:content:picture' => "Cliquez sur l'icône de Profil dans le coin supérieur gauche (vous verrez soit votre photo de profil actuel ou une silhouette générique). Vous serez dirigé vers une autre page où vous pourrez « Modifier votre avatar ». Cliquez sur « Parcourir » et sélectionnez la photo que vous souhaitez utiliser, puis cliquez sur « Télécharger ». Vous pourrez ensuite cadrer votre photo (s'il y a lieu) en utilisant la section de prévisionnement.",
-    
+    'contactform:title:lostpwd' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_-_Aide_%C3%A0_l%27utilisater/Comment_retrouver_votre_mot_de_passe'>Mot de passe perdu</a>",
+    'contactform:title:lostuser' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_-_Aide_%C3%A0_l%27utilisateur/Comment_retrouver_votre_nom_d%27utilisateur'>Nom d'utilisateur perdu</a> ",
+    'contactform:title:create' => "Créer un compte ",
+    'contactform:title:picture' => "<a href=' http://www.gcpedia.gc.ca/wiki/GCconnex_-_Aide_%C3%A0_l%27utilisateur/Comment_modifier_votre_profil_personnel#R.C3.A9viser_votre_profil_personnel
+'>Télécharger une photo de profil</a>",
+    'contactform:title:sign-on' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_-_Aide_%C3%A0_l%27utilisateur/_Comment_utiliser_la_Connexion_simplifi%C3%A9e'>Connexion simplifiée</a>",
     'contactform:title:form' => "Contactez-nous",
     
-    'contactform:content:form' => "<p style = 'padding: 8px 0 8px'>
-					Vous ne trouvez pas la réponse à votre question dans les Questions fréquemment posées ou les ressources d'aide? <br /> <br />
-					<b>Communiquez avec le Soutien technique de GCconnex!</b> Veuillez fournir le plus de détails possible lorsque vous décrirez votre problème ou question, et fournissez également des captures d'écran si possible.
-					</p> <br />",
+    'contactform:content:form' => "<p>
+					Veuillez voir la FAQ et le Centre d’aide pour obtenir rapidement des réponses aux questions les plus fréquentes et apprenez à utiliser GCconnex comme un pro! </p>
+					<p>Vous ne trouvez pas la réponse que vous cherchez? Communiquez avec le Soutien technique de GCconnex en remplissant le formulaire ci-dessous. SVP fournissez le plus de détails possible lorsque vous décrirez votre problème ou question, et fournissez également une capture d’écran si possible.</p>",
       'contactform:useful' => 'Groupes GCconnex qui pourraient vous être utiles :',
     'contactform:clickandtips' => 'Clics et conseils',
     'contactform:gc20' => 'Outils GC2.0',
     'contactform:fullname' => "Votre nom complet",
 	'contactform:email' => "Votre courriel",
 	'contactform:message' => "Votre message",
-    'contactform:select' => 'Veuillez selectionner une raison',
+    'contactform:select' => 'Veuillez selectionner une catégorie',
     'contactform:upload' => 'Téléverser un fichier',
-    'contactform:required' => 'requis',
+    'contactform:required' => 'obligatoire',
+    'contactform:department' => 'Ministère',
+    'contactform:reason' => 'Choisir...',
+    'contactform:helpful' => 'Communautés utiles',
+    'contactform:learn' => 'Apprenez advantage sur les médias sociaux ',
+    'contactform:ambassadors' => 'Groupe GCconnex du Réseau des ambassadeurs des Outils GC 2.0',
+    'contactform:clicks' => 'Groupe GCconnex des Clic et conseils',
+    'contactform:groupgcconnex' => 'Groupe GCconnex des Outils GC 2.0',
+    'contactform:teamgcpedia' => 'Équipe des Outils GC 2.0 dans GCpédia',
+    'contactform:collaborating' => 'Collaboration au moyen de GCpédia de l’EFPC (B171)',
+    'contactform:collaborating:link' => '"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/CourseDetail-fra.aspx?courseno=b171%7C"', 
+    'contactform:socialmedia' => 'Les médias sociaux au gouvernement du Canada (B334) de l’EFPC',
+    'contactform:socialmedia:link' => '"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/CourseDetail-fra.aspx?courseno=B334"',
+    'contactform:guidance' => '<a href="http://www.gcpedia.gc.ca/gcwiki/images/e/ee/Les_medias_sociaux_au_sein_du_GC.jpg">Orientation à l’intention des employés : Les médias sociaux au sein du GC
+</a>',
+
+
+    /*
+  * Contact Form Validation
+   *Message - Ce champ est obligatoire.
+  * */
+
+ 
+/**
+ * Event calendar
+ */
+
+'event_calendar:comming' => "Événements à venir",
+'event_calendar:language' => 'Langue de l\'événement',
+'event_calendar:mine' => 'Mes événements',
+'event_calendar:listing_title:user' => "Les événements de %s",
+'event_calendar:submit' => 'Sauvegarder',
+'event_calendar:personal_event_calendars_link' => 'Sur (%s) calendrier',
+
 /**
  * Languages according to ISO 639-1 (with a couple of exceptions)
  */

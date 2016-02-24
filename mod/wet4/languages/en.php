@@ -1,6 +1,23 @@
 <?php
-return array(
+$site_url = elgg_get_site_url();
 
+return array(
+/**
+   * WET specific
+   */
+  'wet:skiptomain'=>"Skip to main content",
+  'wet:aboutsite'=>"Skip to \"About this site\"",
+  'wet:LangSel'=>"Language selection",
+  'wet:gc'=>"Government of Canada",
+  'wet:search'=>"Search and menus",
+  'wet:searchHead'=>"Search",
+  'wet:searchweb'=>"Search website",
+  'wet:searchgctools'=>"Search GCconnex",
+  'wet:more'=>"More",
+  'wet:topicmenu'=>"Topic menu",
+  'wet:youarehere'=>"You are here:",
+  'wet:errmess' => "<h3 class='h3'>The form could not be submitted because errors were found.</h3>",
+  'wet:feedbackText'=>"Feedback<span class='wb-inv'> about this web site</span>",
 /**
   * Profile Strength
   */
@@ -9,6 +26,21 @@ return array(
      'ps:details' => "See details",
      'ps:education' => "Education",
      'ps:work' => "Work experience",
+     'ps:profilestrength' => "Profile Strength",
+     'ps:all-star' =>"Congrats! You are an All-star.",
+     'ps:beginner' =>"Beginner",
+     'ps:advanced' =>"Advanced",
+     'ps:expert' =>"Expert",
+     'ps:optingin' =>"Have you looked into opting-in to a Micro-mission?",
+     'ps:optin' =>"Opt-In",
+     'ps:psErr'=>"An error occured getting your profile information.  We are working to resolve the issue.",
+     /*
+      * Suggested Friends*/
+
+      'sf:title' => "See anyone you know? Connect with them.",
+      'sf:connect' => "Connect",
+      'sf:alttext' => "Avatar image of",
+      'sf:suggcolleagues'=> "Colleague suggestion",
 /**
  * The Wire
  */
@@ -58,11 +90,27 @@ return array(
     'gprofile:more' => "More",
     
     'gprofile:create' => "Create Group",
-    
+
+    'gprofile:edit:content' => "Content options",
+    'gprofile:edit:admin' => "Admin options",
+
+    'groups:suggestedGroups' => 'Engagement team desc on what is happening',
+
+    /**
+  * Group invite
+  */
+
+  'group:invite:clicktoadd' => "Click to add",
+  'group:invite:email' => "Enter a valid email and press enter to submit it to the list",
+  
+  'groups:eng'=>"Anglais",
+  'groups:fra'=>"Français",
 /**
  * Sites
  */
-
+    'landingPage' => 'Set Landing Page',
+    'career' => 'Career',
+    'newsfeed' => 'News Feed',
 	'item:site' => 'Sites',
 
 /**
@@ -150,8 +198,8 @@ return array(
 	'ElggMenuBuilder:Trees:OrphanedChild' => 'Menu item [%s] found with a missing parent[%s]',
 	'ElggMenuBuilder:Trees:DuplicateChild' => 'Duplicate registration found for menu item [%s]',
 
-	'RegistrationException:EmptyPassword' => 'The password fields cannot be empty',
-	'RegistrationException:PasswordMismatch' => 'Passwords must match',
+	'RegistrationException:EmptyPassword' => '<a href="#password">The password fields cannot be empty</a>',
+	'RegistrationException:PasswordMismatch' => '<a href="#password">Passwords must match</a>',
 	'LoginException:BannedUser' => 'You have been banned from this site and cannot log in',
 	'LoginException:UsernameFailure' => 'We could not log you in. Please check your username/email and password.',
 	'LoginException:PasswordFailure' => 'We could not log you in. Please check your username/email and password.',
@@ -236,7 +284,7 @@ return array(
 
 	'widget:delete' => 'Remove %s',
 	'widget:edit' => 'Customize this widget',
-
+    'widget:remove' => 'Remove widget',
 	'widgets' => "Widgets",
 	'widget' => "Widget",
 	'item:object:widget' => "Widgets",
@@ -247,7 +295,11 @@ return array(
 	'widgets:move:failure' => "We could not store the new widget position.",
 	'widgets:remove:failure' => "Unable to remove this widget",
 
-    'wet4:colandgroupactivity'=>'Colleague and Group Activity',
+    'wet4:colandgroupactivity'=>'Your Newsfeed',
+    'wet4:colandgroupactivitynolog'=>'Welcome to GCconnex',
+    'wet4:noticetitle' => 'Notice',
+    'wet4:homenotice' => 'Welcome to GCconnex, the Government of Canada&#39;s professional social networking platform. The purpose of GCconnex is to enable public servants to connect and collaborate based on shared interests, knowledge, and experience. GCconnex is to be used for activities related to the workplace and should not be used as a replacement for personal social networks (such as Facebook).',
+
 
 /**
  * Groups
@@ -458,6 +510,7 @@ return array(
 	'tools' => "Tools",
 	'settings:edit' => 'Edit settings',
 
+    'gcconnex:registerText' => '<b>Someone please write something better :3</b><br>New to GCconnex? Get started connecting and collaborating with other public servants all accross Canada.',
 	'register' => "Register",
 	'registerok' => "You have successfully registered for %s.",
 	'registerbad' => "Your registration was unsuccessful because of an unknown error.",
@@ -465,7 +518,7 @@ return array(
 	'register:fields' => 'All fields are required',
 
 	'registration:notemail' => 'The email address you provided does not appear to be a valid email address.',
-	'registration:userexists' => 'That username already exists',
+	
 	'registration:usernametooshort' => 'Your username must be a minimum of %u characters long.',
 	'registration:usernametoolong' => 'Your username is too long. It can have a maximum of %u characters.',
 	'registration:passwordtooshort' => 'The password must be a minimum of %u characters long.',
@@ -474,7 +527,7 @@ return array(
 	'registration:emailnotvalid' => 'Sorry, the email address you entered is invalid on this system',
 	'registration:passwordnotvalid' => 'Sorry, the password you entered is invalid on this system',
 	'registration:usernamenotvalid' => 'Sorry, the username you entered is invalid on this system',
-
+    'registration:userexists' => 'That username already exists. <a href="'.$site_url.'forgotpassword">Retrieve your password</a> (translate me)',
 	'adduser' => "Add User",
 	'adduser:ok' => "You have successfully added a new user.",
 	'adduser:bad' => "The new user could not be created.",
@@ -841,8 +894,8 @@ These changes will only affect new users on the site.',
 	'friends:tiny' => "tiny",
 	'friends:small' => "small",
     
-    'custom_index_widgets:latest_groups_index' => "My Groups",
-
+    'wet_mygroups:my_groups' => "My Groups",
+    'wet_mygroups:my_groups_nolog' => "New Groups",
 /**
  * Icons
  */
@@ -1340,42 +1393,46 @@ Please do not reply to this email.",
       'contactform:required' => 'required',
     'contactform:form:subject' => "Subject",
     'contactform:title' => "GCconnex Help Pages",
-    'contactform:list' => "<ul>
-						<li> <a href='http://gcpedia.gc.ca/wiki/Tutorials_on_GC2.0_Tools_/_Tutoriels_sur_les_outils_GC2.0'>How-Tos/Videos/Tutorials</a> </li>
-						<li> <a href='http://gcconnex.gc.ca/file/view/6133688/intro-to-gcconnex-learn-the-how-to-in-6-easy-steps-and-start-using-gcconnex-today'>6 Steps to Using GCconnex</a> </li>
-						<li> <a href='http://gcconnex.gc.ca/file/view/390515/en-managing-your-email-notifications-on-gcconnexpdf'>Managing Email Notifications</a> </li>
-						</ul><br />",
+    'contactform:list' => "<ul class='list-unstyled'>
+						<li> <a href='http://www.gcpedia.gc.ca/wiki/GC2.0_Tools_Help_Centre/GCconnex'>Help pages</a> </li>
+					
+						</ul>",
     'contactform:faq' => "FAQ",
-    'contactform:title:lostpwd' => "Lost Password:",
-    
-    'contactform:content:lostpwd' => "To recover your <b>GCconnex Password</b>, go to the <a href='http://gcconnex.gc.ca/'>GCconnex main page</a> or access the <b>Log in</b> pop-up found in the upper left corner of every GCconnex page. Follow the <b>Lost password</b> link and enter your username or email address, then click <b>Request</b>. A link to reset your password will be sent to email address you associated with your GCconnex account. Follow this link, and then click <b>Reset password</b> to have a new, randomly generated password emailed to your email address. 
-						<br /><br />
-						Once you have logged in with the new password, follow the <b>Settings</b> link found in the upper right corner of every GCconnex page. Under the <b>Account password</b> heading, enter your <b>Current password</b> (the randomly generated password which has been emailed to you) and <b>Your new password</b> (the password you would like to use going forward) twice, then click <b>Save</b>.",
-    
-    'contactform:title:lostuser' => "Lost Username:",
-    
-    'contactform:content:lostuser' => "If you have forgotten your <b>GCconnex Username</b>, don't worry; it is not necessary to recover it. You can use your GCconnex-associated email address to login to GCconnex, either on the <a href='http://gcconnex.gc.ca/'>GCconnex main page</a> or the Log in pop-up found in the upper left hand corner of every GCconnex page. 
-						<br /><br />
-						However, if your email has changed since you signed up for GCconnex, you cannot use the new one to login unless you have <a href='http://gcconnex.gc.ca/settings/'>updated your email in your settings</a>. Please email <a href='mailto:gcconnex@tbs-sct.gc.ca'>gcconnex@tbs-sct.gc.ca</a> and note that you no longer have access to your GCconnex- associated email address. We will get back to you within two business days. ",
-    
-    'contactform:title:create' => "Create Account:",
-    
-    'contactform:content:create' => "Go to <a href='http://gcconnex.gc.ca/'>GCconnex.gc.ca</a> and click \"Register\" (below \"Log in\"). You can then enter your work email address and choose a password. Then read and accept the Terms and Conditions and click \"Register\". ",
-    
-    'contactform:title:picture' => "Upload Profile Picture:",
-    
-    'contactform:content:picture' => "Click on the Profile icon in the top left corner (it will either look like your current profile picture or the default silhouette). You will be directed to a new page that you can then click \"Edit Avatar\". Then click \"Browse\" and select the picture you would like to use and press \"Upload\". You can then crop your picture (if necessary) using the preview section.",
-    
+    'contactform:title:lostpwd' => "<a href=' http://www.gcpedia.gc.ca/wiki/GCconnex_User_Help/How_to_retrieve_my_password'>Lost password</a>",
+    'contactform:title:lostuser' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_User_Help/How_to_retrieve_your_username'>Lost username</a>",
+    'contactform:title:create' => "Create account",
+    'contactform:title:picture' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_User_Help/How_to_edit_your_personal_profile#Editing_your_personal_profile
+'>Upload profile picture</a>",
+    'contactform:title:sign-on' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_User_Help_/_How_to_use_Simplified_Sign-on'>Simplified Sign-on</a>",
     'contactform:title:form' => "Contact Us",
     
-    'contactform:content:form' => "<p style = 'padding: 8px 0 8px'>
-					Can't find the answer you're looking for in the FAQ or help resources? <br /> <br />
-					<b>Contact the GCconnex Help Desk!</b> Please be as clear as possible in describing your issue or question, and provide screen shots if and where possible.
-					</p> <br />",
-        'contactform:useful' => 'GCconnex Groups that may be useful to you:',
-    'contactform:clickandtips' => 'Clicks and Tips',
-    'contactform:gc20' => 'GC2.0 Tools',
+    'contactform:content:form' => "<p>
+					Please see the FAQ and the Help Centre to get instant answers for the most common questions and learn how to use GCconnex like a pro!</p>
+					<p>Can't find the answer you are looking for? Contact the GCconnex Help Desk by filling out the form below. Please be clear as possible in describing your question or issue, and provide a screenshot where possible.
+					</p>",
+	'contactform:useful' => 'GCconnex Groups that may be useful to you:',
+    'contactform:helpful' => 'Helpful communities',
+    'contactform:learn' => 'Learn more about social media',
+    'contactform:ambassadors' => 'Ambassadors Network for the GC 2.0 Tools GCconnex Group',
+    'contactform:clicks' => 'Clicks and Tips GCconnex Group',
+    'contactform:groupgcconnex' => 'GC 2.0 Tools GCconnex Group',
+    'contactform:teamgcpedia' => 'GC 2.0 Tools Team on GCpedia',
+    'contactform:collaborating' => ' CSPS’s Collaborating Using GCpedia (B171) ',
+    'contactform:collaborating:link' => '"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/CourseDetail-eng.aspx?courseno=b171%7C"', 
+    'contactform:socialmedia' => 'CSPS’s Social Media in the Government of Canada (B334)',
+    'contactform:socialmedia:link' => '"http://www.csps-efpc.gc.ca/forlearners/coursesandprograms/CourseDetail-eng.aspx?courseno=B334"',
+    'contactform:guidance' => '<a href="http://www.gcpedia.gc.ca/gcwiki/images/b/b5/Social_Media_in_the_GC.jpg">Guidance for employees : Social Media in the GC context</a>',
+    'contactform:department' => 'Department',
+    'contactform:select' => 'Please select a category',
+    'contactform:reason' => 'Select...',
+    'contactform:help_menu_item' => "Help / Contact Us",
     
+/*
+ * Contact Form Validation
+  *Message - Ce champ est obligatoire.
+ * */
+
+ 
 /**
  * Entities
  */
@@ -1424,6 +1481,15 @@ Please do not reply to this email.",
  * Miscellaneous
  */
 	'elgg:powered' => "Powered by Elgg",
+
+/**
+ * Event Calendar
+ */
+	'event_calendar:comming' => "Upcoming events",
+	'event_calendar:language' => "Event language",
+	'event_calendar:mine' => 'My events',
+
+
 
 /**
  * Languages according to ISO 639-1 (with a couple of exceptions)
@@ -1575,3 +1641,4 @@ Please do not reply to this email.",
 	"zh" => "Chinese",
 	"zu" => "Zulu",
 );
+

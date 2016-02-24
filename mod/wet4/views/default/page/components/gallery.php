@@ -47,7 +47,7 @@ if ((elgg_get_context() != 'event_calendar')){
 }
 
 echo $items->getType;
-$list_classes = ['clearfix'];
+$list_classes = ['list-unstyled clearfix'];
 if (isset($vars['gallery_class'])) {
 	$list_classes[] = $vars['gallery_class'];
 }
@@ -91,7 +91,7 @@ if ($position == 'before' || $position == 'both') {
 	echo $nav;
 }
 
-echo elgg_format_element('ul', ['class' => $list_classes], $list_items);
+echo elgg_format_element('ul', ['class' => $list_classes .' list-unstyled gallery-padding'], $list_items);
 
 if ($position == 'after' || $position == 'both') {
 	echo $nav;
