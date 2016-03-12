@@ -1,5 +1,8 @@
 <?php
     $site_url = elgg_get_site_url();
+    if(elgg_is_logged_in()){
+        $displayName = get_loggedin_user()->name;
+    }
 return array(
 
 /**
@@ -18,6 +21,14 @@ return array(
    'wet:youarehere'=>"Vous êtes ici :",
    'wet:errmess' => "<h3 class='h3'>Le formulaire n'a pu être soumis car une ou des erreurs ont été trouvées.</h3>",
    'wet:feedbackText'=>"Rétroaction<span class='wb-inv'> sur ce site Web</span>",
+   'wet:footAbout' => 'About GCconnex (translate me)',
+  'wet:footTerms' => 'Terms and Conditions (translate me)',
+  'wet:footPrivacy' => 'Privacy Policy (translate me)',
+  'wet:footTutorials' => 'GCconnex Tutorials (translate me)',
+  'wet:footTitleAbout' => 'About (translate me)',
+  'wet:footTitleNews' => 'News (translate me)',
+  'wet:footTitleSocial' => 'Stay Connected (translate me)',
+  'wet:collapseWidget' => '(translate me) Collapse / Open %s',
 /**
  * Profile Strength
  */
@@ -35,6 +46,12 @@ return array(
      'ps:optin' =>"Adhérer",
      'ps:psErr'=>"Une erreur est survenue durant l'obtentions de vos informations de profil . Nous travaillons pour résoudre le problème .",
 
+     /*
+       * Content Creation
+       */
+
+      'page:create' => '(translate me) Create Page',
+
 /*
        * Suggested Friends
        */
@@ -43,16 +60,34 @@ return array(
       'sf:connect' => "Connecter",
       'sf:alttext' => "L'avatar de",
       'sf:suggcolleagues'=> "Suggestion de collègue",
+
+      /*Friendly Time*/
+      	'friendlytime:weeks' => "il y a environ 2 semaines",
+	'friendlytime:weeks:singular' => "la semaine dernière",
+	'friendlytime:date' => "j F Y",
+
+	'friendlytime:month:01' => 'Janvier',
+	'friendlytime:month:02' => 'Février',
+	'friendlytime:month:03' => 'Mars',
+	'friendlytime:month:04' => 'Avril',
+	'friendlytime:month:05' => 'Mai',
+	'friendlytime:month:06' => 'Juin',
+	'friendlytime:month:07' => 'Juillet',
+	'friendlytime:month:08' => 'Août',
+	'friendlytime:month:09' => 'Septembre',
+	'friendlytime:month:10' => 'Octobre',
+	'friendlytime:month:11' => 'Novembre',
+	'friendlytime:month:12' => 'Décembre',
 /**
  * The Wire
  */
-    
-    'thewire:post' => "Create a Wire Post",
-    'thewire:share' => ' Share',
-    'thewire:shares' => ' Shares',
-    'thewire:contentwarning' => 'This content may not be viewable to all users due to access permissions.',
-    'thewire:groupwarning' => 'This content is only viewable to members of: ',
-    'thewire:userwarning' => 'This content is only viewable to: ',
+
+    'thewire:post' => "(translate me) Create a Wire Post",
+    'thewire:share' => '(translate me)  Share',
+    'thewire:shares' => '(translate me)  Shares',
+    'thewire:contentwarning' => '(translate me) This content may not be viewable to all users due to access permissions.',
+    'thewire:groupwarning' => '(translate me) This content is only viewable to members of: ',
+    'thewire:userwarning' => '(translate me) This content is only viewable to: ',
     
 /**
  * User Menu
@@ -62,14 +97,15 @@ return array(
     'userMenu:account' => "Paramètres",
     'userMenu:messages' => "Mes messages",
     'userMenu:colleagues' => "Mes collègues",
+    'userMenu:usermenuTitle' =>'User Card - Click here for links to your profile, account settings and logout(translate me)', /*NEW*/
 
         /**
       * Custom Activity Widget
       */
      'wetActivity:nocollorgroup'=>"(translate me) Welcome to GCconnex. To get started you can browse or search for groups related to your work and interests.",
-     'wetActivity:welcome'=>"(translate me) Welcome to GCconnex",
+     'wetActivity:welcome'=>"Bienvenu sur GCconnex",
      'wetActivity:browsegroups'=>"(translate me) Start Browsing Groups",
-    
+     
   /**
  * Group Profile
  */     
@@ -90,13 +126,20 @@ return array(
     'gprofile:albumsCatch' => "Albums",
     'gprofile:ideas' => "Idées",
     'gprofile:more' => "Plus",
+    'gprofile:settings' => 'Paramètres',
 
-    'gprofile:create' => "Create Group",
+    'gprofile:create' => "(translate me) Create Group",
 
     'gprofile:edit:content' => "Options pour le contenu",
     'gprofile:edit:admin' => "Option pour l'administrateur",
 
-    'groups:suggestedGroups' => '(translate me) Engagement team desc on what is happening',
+    'groups:suggestedGroups' => '(translate me) The group you are creating may already exist, check out these suggestions to find what you are looking for.',
+
+    'groups:creatediscussion' => '(translate me) Create Discussion',
+
+    'profile:actions' => '(translate me) Actions',
+    'profile:viewall:coll' => '(translate me) View All Colleagues',
+    'profile:viewall:groups' => '(translate me) View All Groups',
 
         /**
    * Group invite
@@ -110,9 +153,9 @@ return array(
 /**
   * Sites
  */
-    'landingPage' => '(translate me) Set Landing Page',
-    'career' => '(translate me) Career',
-    'newsfeed' => '(translate me) News Feed',
+    'landingPage' => 'Fixer votre page d’atterrissage',
+    'career' => 'Carrière',
+    'newsfeed' => 'Fils de nouvelle',
 	'item:site' => 'Sites',
 
 /**
@@ -121,6 +164,7 @@ return array(
 
 	'login' => "Connexion",
 	'loginok' => "Vous êtes connecté(e).",
+    'wet:loginok' => "Welcome ".$displayName." to GCconnex.", /*NEW*/
 	'loginerror' => "Nous n'avons pas pu vous identifier. Assurez-vous que les informations que vous avez entrées sont correctes et réessayez.",
 	'login:empty' => "Nom d'utilisateur et mot de passe sont requis.",
 	'login:baduser' => "Impossible de charger votre compte d'utilisateur.",
@@ -274,7 +318,7 @@ return array(
 
 	'widget:delete' => 'Supprimer %s',
     'widget:remove' => 'Supprimer widget',
-	'widget:edit' => 'Personnaliser ce widget',
+	'widget:edit' => 'Personnaliser ce widget: %s',
 
 	'widgets' => "Widgets",
 	'widget' => "Widget",
@@ -285,7 +329,7 @@ return array(
 	'widgets:add:failure' => "Nous n'avons pas pu ajouter votre widget.",
 	'widgets:move:failure' => "Nous n'avons pas pu enregistrer la position du nouveau widget.",
 	'widgets:remove:failure' => "Impossible de supprimer ce widget",
-    'wet4:colandgroupactivity'=>'Your Newsfeed (translate me)',
+    'wet4:colandgroupactivity'=>'Votre fils de nouvelle',
     'wet4:colandgroupactivitynolog'=>'Bienvenue à GCconnex',
     'wet4:noticetitle' => 'Avis',
     'wet4:homenotice' => 'Bienvenue à GCconnex, la plateforme de réseautage social professionnelle du gouvernement du Canada. GCconnex a pour objet de permettre aux fonctionnaires de tisser des liens et de collaborer selon leurs connaissances, leurs expériences et leurs intérêts communs. GCconnex devrait servir à mener des activités relatives au milieu de travail, et il ne devrait pas remplacer les réseaux sociaux personnels (comme Facebook).',
@@ -499,7 +543,7 @@ return array(
 	'tools' => "Outils",
 	'settings:edit' => 'Editer les paramètres',
 
-    'gcconnex:registerText' => '(translate me)New to GCconnex? Get started connecting and collaborating with other public servants all accross Canada.',
+    'gcconnex:registerText' => 'Élargissez votre réseau, mobilisez vos collègues.',
 	'register' => "S'enregistrer",
 	'registerok' => "Vous vous êtes enregistré avec succès sur %s.",
 	'registerbad' => "Votre création de compte n'a pas fonctionné pour une raison inconnue.",
@@ -552,6 +596,7 @@ return array(
 	'user:password:text' => 'Pour générer un nouveau mot de passe, entrez votre nom d\'utilisateur ci-dessous. Puis cliquez sur le bouton de demande.',
 
 	'user:persistent' => 'Se souvenir de moi',
+	'user:forgot' => 'Mot de passe perdu?',
 
 	'walled_garden:welcome' => 'Bienvenue à',
 
@@ -1401,7 +1446,7 @@ Ne répondez pas à cet e-mail.",
     'contactform:title' => "Pages d'aide de GCconnex",
     'contactform:help' => 'Aide',
 	'contactform:list' => '<ul class="list-unstyled">	
-						<li> <a href="http://www.gcpedia.gc.ca/gcwiki/index.php?title=Centre d\'aide pour les outils GC2.0/GCconnex&setlang=fr&uselang=fr">Pages d\'aide</a> </li>
+						<li> <a href="http://www.gcpedia.gc.ca/gcwiki/index.php?title=Centre d\'aide pour les outils GC2.0/GCconnex&setlang=fr&uselang=fr">Centre d\'aide</a> </li>
 						</ul><br />',
     'contactform:faq' => "FAQ",
     'contactform:title:lostpwd' => "<a href='http://www.gcpedia.gc.ca/wiki/GCconnex_-_Aide_%C3%A0_l%27utilisater/Comment_retrouver_votre_mot_de_passe'>Mot de passe perdu</a>",
@@ -1427,7 +1472,7 @@ Ne répondez pas à cet e-mail.",
     'contactform:department' => 'Ministère',
     'contactform:reason' => 'Choisir...',
     'contactform:helpful' => 'Communautés utiles',
-    'contactform:learn' => 'Apprenez advantage sur les médias sociaux ',
+    'contactform:learn' => 'Apprenez dadvantage sur les médias sociaux ',
     'contactform:ambassadors' => 'Groupe GCconnex du Réseau des ambassadeurs des Outils GC 2.0',
     'contactform:clicks' => 'Groupe GCconnex des Clic et conseils',
     'contactform:groupgcconnex' => 'Groupe GCconnex des Outils GC 2.0',
@@ -1456,7 +1501,9 @@ Ne répondez pas à cet e-mail.",
 'event_calendar:listing_title:user' => "Les événements de %s",
 'event_calendar:submit' => 'Sauvegarder',
 'event_calendar:personal_event_calendars_link' => 'Sur (%s) calendrier',
-
+'event_calendar:meeting' => 'Réunion en ligne et téléconférence',
+'event_calendar:info' => 'Information(s) supplémentaire(s)',
+'river:create:object:event_calendar' => "%s a ajouté l'événement' %s",
 /**
  * Languages according to ISO 639-1 (with a couple of exceptions)
  */

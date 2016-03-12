@@ -25,6 +25,9 @@ if (!array_key_exists($size, $icon_sizes)) {
 if(elgg_get_context() == 'friends'){
     $size = 'medium';
 }
+if(elgg_get_context() == 'profile'){
+    $size = 'large';
+}
 
 if (!($user instanceof ElggUser)) {
 	return;
@@ -57,7 +60,7 @@ if ($js) {
 }
 //trying out circle images, because medium is too big and small is too small. Life is hard sometimes.
 //the circles are almost too modern and out of place. There arn't as many circular elements in the interface for it to make sense.
-$img_class = 'img-responsive';
+$img_class = 'img-responsive img-circle';
 if (isset($vars['img_class'])) {
 	$img_class = $vars['img_class'];
 }

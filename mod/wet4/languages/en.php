@@ -1,6 +1,8 @@
 <?php
 $site_url = elgg_get_site_url();
-
+if(elgg_is_logged_in()){
+    $displayName = get_loggedin_user()->name;
+}
 return array(
 /**
    * WET specific
@@ -18,6 +20,15 @@ return array(
   'wet:youarehere'=>"You are here:",
   'wet:errmess' => "<h3 class='h3'>The form could not be submitted because errors were found.</h3>",
   'wet:feedbackText'=>"Feedback<span class='wb-inv'> about this web site</span>",
+  'wet:footAbout' => 'About GCconnex',
+  'wet:footTerms' => 'Terms and Conditions',
+  'wet:footPrivacy' => 'Privacy Policy',
+  'wet:footTutorials' => 'GCconnex Tutorials',
+  'wet:footTitleAbout' => 'About',
+  'wet:footTitleNews' => 'News',
+  'wet:footTitleSocial' => 'Stay Connected',
+  'wet:collapseWidget' => 'Collapse / Open %s',
+
 /**
   * Profile Strength
   */
@@ -34,6 +45,13 @@ return array(
      'ps:optingin' =>"Have you looked into opting-in to a Micro-mission?",
      'ps:optin' =>"Opt-In",
      'ps:psErr'=>"An error occured getting your profile information.  We are working to resolve the issue.",
+     
+     /*
+      * Content Creation
+      */
+
+      'page:create' => 'Create Page',
+
      /*
       * Suggested Friends*/
 
@@ -41,6 +59,25 @@ return array(
       'sf:connect' => "Connect",
       'sf:alttext' => "Avatar image of",
       'sf:suggcolleagues'=> "Colleague suggestion",
+
+      /*Friendly Time*/
+
+      'friendlytime:weeks' => "about 2 weeks ago",
+	'friendlytime:weeks:singular' => "last week",
+	'friendlytime:date' => "j F Y",
+
+	'friendlytime:month:01' => 'January',
+	'friendlytime:month:02' => 'February',
+	'friendlytime:month:03' => 'March',
+	'friendlytime:month:04' => 'April',
+	'friendlytime:month:05' => 'May',
+	'friendlytime:month:06' => 'June',
+	'friendlytime:month:07' => 'July',
+	'friendlytime:month:08' => 'August',
+	'friendlytime:month:09' => 'September',
+	'friendlytime:month:10' => 'October',
+	'friendlytime:month:11' => 'November',
+	'friendlytime:month:12' => 'December',
 /**
  * The Wire
  */
@@ -60,6 +97,7 @@ return array(
     'userMenu:account' => "Account Settings",
     'userMenu:messages' => "My Messages",
     'userMenu:colleagues' => "My Colleagues",
+    'userMenu:usermenuTitle' =>'User Card - Click here for links to your profile, account settings and logout', /*NEW*/
     
     /**
      * Custom Activity Widget
@@ -88,13 +126,20 @@ return array(
     'gprofile:albumsCatch' => "Photo Albums",
     'gprofile:ideas' => "Ideas",
     'gprofile:more' => "More",
+    'gprofile:settings' => 'Settings',
     
     'gprofile:create' => "Create Group",
 
     'gprofile:edit:content' => "Content options",
     'gprofile:edit:admin' => "Admin options",
 
-    'groups:suggestedGroups' => 'Engagement team desc on what is happening',
+    'groups:suggestedGroups' => 'The group you are creating may already exist, check out these suggestions to find what you are looking for.',
+
+    'groups:creatediscussion' => 'Create Discussion',
+
+    'profile:actions' => 'Actions',
+    'profile:viewall:coll' => 'View All Colleagues',
+    'profile:viewall:groups' => 'View All Groups',
 
     /**
   * Group invite
@@ -118,7 +163,8 @@ return array(
  */
 
 	'login' => "Log in",
-	'loginok' => "You have been logged in.",
+	'loginok' => "Welcome ".$displayName." to GCconnex.", /*NEW but doesn't work :3*/
+    'wet:loginok' => "Welcome ".$displayName." to GCconnex.", /*NEW*/
 	'loginerror' => "We couldn't log you in. Please check your credentials and try again.",
 	'login:empty' => "Username/email and password are required.",
 	'login:baduser' => "Unable to load your user account.",
@@ -283,7 +329,7 @@ return array(
 	'widget:numbertodisplay' => 'Number of items to display',
 
 	'widget:delete' => 'Remove %s',
-	'widget:edit' => 'Customize this widget',
+	'widget:edit' => 'Customize this widget: %s',
     'widget:remove' => 'Remove widget',
 	'widgets' => "Widgets",
 	'widget' => "Widget",
@@ -510,7 +556,7 @@ return array(
 	'tools' => "Tools",
 	'settings:edit' => 'Edit settings',
 
-    'gcconnex:registerText' => '<b>Someone please write something better :3</b><br>New to GCconnex? Get started connecting and collaborating with other public servants all accross Canada.',
+    'gcconnex:registerText' => 'Grow your network, engage your colleagues.',
 	'register' => "Register",
 	'registerok' => "You have successfully registered for %s.",
 	'registerbad' => "Your registration was unsuccessful because of an unknown error.",
@@ -563,6 +609,7 @@ return array(
 	'user:password:text' => 'To request a new password, enter your username or email address below and click the Request button.',
 
 	'user:persistent' => 'Remember me',
+	'user:forgot' => 'Forgot your password?',
 
 	'walled_garden:welcome' => 'Welcome to',
 
@@ -1394,7 +1441,7 @@ Please do not reply to this email.",
     'contactform:form:subject' => "Subject",
     'contactform:title' => "GCconnex Help Pages",
     'contactform:list' => "<ul class='list-unstyled'>
-						<li> <a href='http://www.gcpedia.gc.ca/wiki/GC2.0_Tools_Help_Centre/GCconnex'>Help pages</a> </li>
+						<li> <a href='http://www.gcpedia.gc.ca/wiki/GC2.0_Tools_Help_Centre/GCconnex'>Help centre</a> </li>
 					
 						</ul>",
     'contactform:faq' => "FAQ",
@@ -1488,6 +1535,8 @@ Please do not reply to this email.",
 	'event_calendar:comming' => "Upcoming events",
 	'event_calendar:language' => "Event language",
 	'event_calendar:mine' => 'My events',
+	'event_calendar:meeting' => 'Online meeting and teleconference',
+	'event_calendar:info' => 'Additional information',
 
 
 

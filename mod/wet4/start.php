@@ -22,7 +22,8 @@ function wet4_theme_init() {
     //change icons for blog entity
     elgg_unregister_plugin_hook_handler("register", "menu:entity", array("\ColdTrick\BlogTools\EntityMenu", "register"));
     elgg_register_plugin_hook_handler("register", "menu:entity", 'wet4_blog_entity_menu');
-
+    //Friendly Time - Nick
+    elgg_register_plugin_hook_handler('format', 'friendly:time', 'enhanced_friendly_time_hook');
 	elgg_register_event_handler('pagesetup', 'system', 'wet4_theme_pagesetup', 1000);
     elgg_register_event_handler('pagesetup', 'system', 'wet4_riverItem_remove');
     elgg_register_event_handler('pagesetup', 'system', 'messages_notifier');
@@ -48,6 +49,9 @@ function wet4_theme_init() {
     elgg_register_page_handler('friends', '_wet4_friends_page_handler'); //register new page handler for data tables
 	elgg_register_page_handler('friendsof', '_wet4_friends_page_handler');
 
+    elgg_unregister_page_handler('messages', 'messages_page_handler');
+    elgg_register_page_handler('messages', 'wet4_messages_page_handler');
+
     //datatables css file
 	elgg_extend_view('css/elgg', '//cdn.datatables.net/1.10.10/css/jquery.dataTables.css');
 
@@ -57,6 +61,7 @@ function wet4_theme_init() {
     
     //load datatables
     elgg_require_js("wet4/test");
+    //elgg_require_js("wet4/elgg_dataTables");
     
     //elgg_register_js('removeMe', elgg_get_plugins_path() . 'wet4/js/removeMe.js');
     
@@ -84,7 +89,8 @@ function wet4_theme_init() {
     
 	elgg_register_action("file/move_folder", elgg_get_plugins_path() . "/wet4/actions/file/move.php");
     elgg_register_action("friends/collections/add", elgg_get_plugins_path() . "/wet4/actions/friends/collections/add.php");
-    
+    elgg_register_action("login", elgg_get_plugins_path() . "/wet4/actions/login.php", "public");
+    elgg_register_action("user/requestnewpassword", elgg_get_plugins_path() . "/wet4/actions/user/requestnewpassword.php", "public");
 	// non-members do not get visible links to RSS feeds
 	if (!elgg_is_logged_in()) {
 		elgg_unregister_plugin_hook_handler('output:before', 'layout', 'elgg_views_add_rss_link');
@@ -103,6 +109,7 @@ function wet4_theme_init() {
     elgg_register_widget_type('wet_activity', $wet_activity_title, 'GCconnex Group and Colleague Activity', array('custom_index_widgets'),true);
     elgg_register_widget_type('profile_completness', elgg_echo('ps:profilestrength'), 'The "Profile Strength" widget', array('custom_index_widgets'),false);
     elgg_register_widget_type('suggested_friends', elgg_echo('sf:suggcolleagues'), elgg_echo('sf:suggcolleagues'), array('custom_index_widgets'),false);
+    elgg_register_widget_type('user_summary_panel', 'user_summary_panel', 'user_summary_panel', array('custom_index_widgets'),false);
 
     //WET my groups widget
     elgg_register_widget_type('wet_mygroups_index', $mygroups_title, 'My Groups Index', array('custom_index_widgets'),true);
@@ -122,6 +129,10 @@ function wet4_theme_init() {
 	}
     elgg_extend_view("core/settings/statistics", "forms/usersettings/menus");
     elgg_extend_view('forms/account/settings', 'core/settings/account/landing_page');
+
+
+    //add profile strength to sidebar
+    elgg_extend_view('profile/sidebar', 'profile/sidebar/profile_strength', 449);
 
     //menu item for career dropdown
     elgg_register_menu_item('site', array(
@@ -144,8 +155,28 @@ function wet4_theme_init() {
     // Replace the default index page with redirect
     elgg_register_plugin_hook_handler('index', 'system', 'new_index');
     elgg_register_page_handler('newsfeed', 'newsfeed_page_handler');
+    elgg_register_page_handler('splash', 'splash_page_handler');
 
     elgg_register_page_handler('groups_autocomplete', 'groups_autocomplete');
+
+
+    //jobs.gc.ca menu link
+    $lang = get_language();
+    if($lang == 'en'){
+        elgg_register_menu_item('subSite', array(
+            'name' => 'jobs',
+            'text' => 'jobs.gc.ca <i class="fa fa-external-link mrgn-lft-sm"></i>',
+            'href' => 'http://jobs-emplois.gc.ca/index-eng.htm',
+            'target' => '_blank',
+            ));
+    } else {
+        elgg_register_menu_item('subSite', array(
+            'name' => 'jobs',
+            'text' => 'emplois.gc.ca',
+            'href' => 'http://jobs-emplois.gc.ca/index-fra.htm',
+            'target' => '_blank',
+            ));
+    }
 
 }
 
@@ -165,6 +196,11 @@ function groups_autocomplete() {
 
 function newsfeed_page_handler(){
     @include (dirname ( __FILE__ ) . "/pages/newsfeed.php");
+    return true;
+}
+//Create splash page
+function splash_page_handler(){
+    @include (dirname ( __FILE__ ) . "/pages/splash.php");
     return true;
 }
 
@@ -217,11 +253,12 @@ function career_menu_hander($hook, $type, $menu, $params){
         switch ($item->getName()) {
             case 'career':
                 if(elgg_is_active_plugin('gcforums')){
-                    $item->addChild(elgg_get_menu_item('site', 'Forum'));
+                    $item->addChild(elgg_get_menu_item('subSite', 'Forum'));
                 }
                 if(elgg_is_active_plugin('missions')){
                     $item->addChild(elgg_get_menu_item('site', 'mission_main'));
                 }
+                $item->addChild(elgg_get_menu_item('subSite', 'jobs'));
                 $item->setLinkClass('item');
                 break;
         }
@@ -1325,7 +1362,9 @@ function my_owner_block_handler($hook, $type, $menu, $params){
                     $item->setPriority('13');
                     $item->addItemClass('removeMe');
                     break;
-                
+                case 'user_invite_from_profile':
+                    $item->setPriority('13');
+                    break;
             }
             
         }
@@ -1385,7 +1424,8 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 
     $options = array(
 		'name' => 'collapse',
-		'text' => '<i class="fa fa-lg icon-unsel"><span class="wb-inv">Delete This</span></i> ',
+		'text' => '<i class="fa fa-lg icon-unsel"><span class="wb-inv">'. elgg_echo('wet:collapseWidget', array($widget->getTitle())).'</span></i> ',
+        'title' => elgg_echo('wet:collapseWidget', array($widget->getTitle())),
 		'href' => "#elgg-widget-content-$widget->guid",
 		'link_class' => 'elgg-widget-collapse-button ',
 		'rel' => 'toggle',
@@ -1396,7 +1436,7 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 	if ($widget->canEdit()) {
 		$options = array(
 			'name' => 'delete',
-			'text' => '<i class="fa fa-trash-o fa-lg icon-unsel"><span class="wb-inv">Delete This</span></i>',
+			'text' => '<i class="fa fa-trash-o fa-lg icon-unsel"><span class="wb-inv">'.elgg_echo('widget:delete', array($widget->getTitle())).'</span></i>',
 			'title' => elgg_echo('widget:delete', array($widget->getTitle())),
 			'href' => "action/widgets/delete?widget_guid=$widget->guid",
 			'is_action' => true,
@@ -1407,26 +1447,12 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 		);
 		$return[] = \ElggMenuItem::factory($options);
         // This is to maybe have a move button on widgets to move them with the keyboard.
-        /*
-        $options = array(
-            'name' => 'collapse',
-            'text' => '<i class="fa fa-chevron-down fa-lg icon-unsel"><span class="wb-inv">Delete This</span></i>',
-            'title' => elgg_echo('widget:delete', array($widget->getTitle())),
-            'href' => "#elgg-widget-content-$widget->guid",
-            //'is_action' => true,
-            'link_class' => 'elgg-menu-content elgg-widget-collapse-button',
-            //'id' => "elgg-widget-move-button-$widget->guid",
-         'rel' => 'toggle',
-            
-            'priority' => 700,
-        );
-		$return[] = \ElggMenuItem::factory($options);
-       */
+
 		if ($show_edit) {
 			$options = array(
 				'name' => 'settings',
-				'text' => '<i class="fa fa-cog fa-lg icon-unsel"><span class="wb-inv">Edit This</span></i>',
-				'title' => elgg_echo('widget:edit'),
+				'text' => '<i class="fa fa-cog fa-lg icon-unsel"><span class="wb-inv">'.elgg_echo('widget:edit', array($widget->getTitle())).'</span></i>',
+				'title' => elgg_echo('widget:edit', array($widget->getTitle())),
 				'href' => "#widget-edit-$widget->guid",
 				'link_class' => "elgg-widget-edit-button",
 				'rel' => 'toggle',
@@ -1440,3 +1466,119 @@ function wet4_widget_menu_setup($hook, $type, $return, $params) {
 }
 
 
+function wet4_messages_page_handler($page) {
+
+	$current_user = elgg_get_logged_in_user_entity();
+	if (!$current_user) {
+		register_error(elgg_echo('noaccess'));
+		elgg_get_session()->set('last_forward_from', current_page_url());
+		forward('');
+	}
+
+	elgg_load_library('elgg:messages');
+
+	elgg_push_breadcrumb(elgg_echo('messages'), 'messages/inbox/' . $current_user->username);
+
+	if (!isset($page[0])) {
+		$page[0] = 'inbox';
+	}
+
+	// Support the old inbox url /messages/<username>, but only if it matches the logged in user.
+	// Otherwise having a username like "read" on the system could confuse this function.
+	if ($current_user->username === $page[0]) {
+		$page[1] = $page[0];
+		$page[0] = 'inbox';
+	}
+
+	if (!isset($page[1])) {
+		$page[1] = $current_user->username;
+	}
+
+	$base_dir = elgg_get_plugins_path() . 'wet4/pages/messages';
+
+	switch ($page[0]) {
+		case 'inbox':
+			set_input('username', $page[1]);
+			include("$base_dir/inbox.php");
+			break;
+		case 'sent':
+			set_input('username', $page[1]);
+			include("$base_dir/sent.php");
+			break;
+		case 'read':
+			set_input('guid', $page[1]);
+			include("$base_dir/read.php");
+			break;
+		case 'compose':
+		case 'add':
+			include("$base_dir/send.php");
+			break;
+		default:
+			return false;
+	}
+	return true;
+}
+//Friendly Time from GCconnex Codefest 2015 - 2016 - Nick
+function enhanced_friendly_time_hook($hook, $type, $return, $params) {
+
+	$diff = time() - ((int) $params['time']);
+
+	$minute = 60;
+	$hour = $minute * 60;
+	$day = $hour * 24;
+
+	if ($diff < $minute) {
+		$friendly_time = elgg_echo("friendlytime:justnow");
+	} else if ($diff < $hour) {
+		$diff = round($diff / $minute);
+		if ($diff == 0) {
+			$diff = 1;
+		}
+
+		if ($diff > 1) {
+			$friendly_time = elgg_echo("friendlytime:minutes", array($diff));
+		} else {
+			$friendly_time = elgg_echo("friendlytime:minutes:singular", array($diff));
+		}
+	} else if ($diff < $day) {
+		$diff = round($diff / $hour);
+		if ($diff == 0) {
+			$diff = 1;
+		}
+
+		if ($diff > 1) {
+			$friendly_time = elgg_echo("friendlytime:hours", array($diff));
+		} else {
+			$friendly_time = elgg_echo("friendlytime:hours:singular", array($diff));
+		}
+	} else {
+		$diff = round($diff / $day);
+		if ($diff == 0) {
+			$diff = 1;
+		}
+		//PHPlord let check for day, days, weeks and finally output date if too far away...
+		if ($diff == 1) {
+			$friendly_time = elgg_echo("friendlytime:days:singular", array($diff));
+		} else if(6 >= $diff){
+			$friendly_time = elgg_echo("friendlytime:days", array($diff));
+		} else if(13 >= $diff){
+			$friendly_time = elgg_echo("friendlytime:weeks:singular", array($diff));
+		} else if($diff == 14){
+			$friendly_time = elgg_echo("friendlytime:weeks", array($diff));
+		} else{
+			$date_day = date('d', $params['time']);
+			$date_month = date('m', $params['time']);
+			$date_year = date('Y', $params['time']);
+			$date_hour = date('H', $params['time']);
+			$date_minute = date('i', $params['time']);
+			$friendly_time = $date_year . '-' . $date_month . '-' . $date_day . ' ' . $date_hour . ':' . $date_minute;
+		}
+	}
+
+	$attributes = array();
+	$attributes['title'] = date(elgg_echo('friendlytime:date_format'), $params['time']);
+	$attributes['datetime'] = date('c', $params['time']);
+	$attrs = elgg_format_attributes($attributes);
+
+	return "<time $attrs>$friendly_time</time>";
+}

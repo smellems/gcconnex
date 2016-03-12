@@ -27,13 +27,20 @@ $friendCount = '(' . count($count) . ')';
 
 $all_link = elgg_view('output/url', array(
 	'href' => 'friends/' . $owner->username,
-	'text' => elgg_echo('View All Colleagues') . $friendCount,
+	'text' => elgg_echo('profile:viewall:coll') . $friendCount,
 	'is_trusted' => true,
     'class' => 'text-center btn btn-default center-block',
 ));
 
 $footer = "<div class='text-right'>$all_link</div>";
 
+
+if(!($friends)) {
+
+    $friends = elgg_echo('gcprofile:nocoll', array($owner->getDisplayName()));
+    $footer='';
+
+}
 echo elgg_view_module('aside', elgg_echo('friends'), $friends, array('footer' => $footer));
 
 ?>

@@ -48,9 +48,15 @@
 }
 
 .gcforums-th-category {
-    border: 1px solid #dddddd;
+   
     padding: 5px 5px 5px 5px;
     vertical-align: middle;
+    
+}
+
+.gcforums-th-category h1{
+
+    
 }
 
 .gcforums-th-category-options, .gcforums-th-topic-options {
@@ -72,9 +78,9 @@
 }
 
 .gcforums-menu {
-    right: 25px;
-    position: absolute;
-    padding-bottom: 50px;
+    float:right;
+    display:block;
+    padding:5px;
 }
 
 .gcforums-display-topics {
@@ -100,4 +106,14 @@
 .gcforums-comments-menu {
     word-spacing:10px;
     text-align: right;
+}
+
+.forum-clear{
+    clear:both;
+
+}
+
+.forum-clear h1{
+    font-size:1.4em;
+
 }

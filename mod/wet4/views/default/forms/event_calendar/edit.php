@@ -2,17 +2,21 @@
 <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
 
 <script>
-  $('#teleconference_yes').live('change', function(){
-      if ( $(this).is(':checked') ) {
-         $('#date').show();
-     }
- });
 
-     $('#teleconference_no').live('change', function(){
-      if ( $(this).is(':checked') ) {
-         $('#date').hide();
-     }
- });
+$(document).ready(function(){
+  $("input[name$='teleconference_radio']").live('change',function(){
+  var radio_value = $(this).val();
+  if(radio_value=='yes') {
+    $("#date").show("slow");
+  }
+  else{
+    
+    $("#date").hide("slow");
+  }
+  
+  });
+});
+
 </script>
 <?php
 $event = $vars['event'];
@@ -22,6 +26,7 @@ $schedule_options = array(
 	elgg_echo('event_calendar:all_day_label') => 'all_day',
 	elgg_echo('event_calendar:schedule_type:fixed') => 'fixed',
 );
+
 
 $language_options = array(
 	elgg_echo('Français'),
@@ -52,7 +57,7 @@ if ($event_calendar_more_required == 'yes') {
 }
 $all_fields = array('title', 'venue', 'start_time', 'start_date', 'end_time', 'end_date',
 	'brief_description', 'region', 'event_type', 'fees', 'contact', 'organiser', 'event_tags',
-	'long_description', 'spots', 'personal_manage');
+	'long_description', 'spots', 'personal_manage', 'teleconference_text', 'calendar_additional');
 
 $prefix = array();
 foreach ($all_fields as $fn) {
@@ -71,10 +76,15 @@ if ($event) {
 	$event_guid = 0;
 }
 
+
+
 $title = $fd['title'];
+$language = $fd['language'];
 $brief_description = $fd['description'];
 $venue = $fd['venue'];
-
+$teleconference_text = $fd['teleconference'];
+$teleconference_radio = $fd['teleconference_radio'];
+$calendar_additional = $fd['calendar_additional'];
 $fees = $fd['fees'];
 if ($event_calendar_spots_display) {
 	$spots = $fd['spots'];
@@ -91,6 +101,25 @@ $event_tags = $fd['tags'];
 $all_day = $fd['all_day'];
 $schedule_type = $fd['schedule_type'];
 $long_description = $fd['long_description'];
+
+if ($teleconference_radio == 'yes'){
+
+echo '<style type="text/css">
+        #date {
+            display: block;
+        }
+        </style>';
+
+	echo $teleconference_radio;
+}else{
+
+	echo '<style type="text/css">
+        #date {
+            display: none;
+        }
+        </style>';
+
+}
 
 $body = '<div class="event-calendar-edit-form">';
 
@@ -143,27 +172,32 @@ $body .= '</p>';
 $body .= '<p class="wb-inv">'.$prefix['event_tags'].elgg_echo('event_calendar:event_tags_description').'</p>';
 
 $body .= '<p><label for="calendar-language">'.elgg_echo("event_calendar:language").'</label>';
-$body .= elgg_view("input/access", array('name' => 'language', 'id'=> 'calendar-language', 'options_values' => $language_options));
+$body .= elgg_view("input/select", array('name' => 'language', 'value' => $language, 'options' => $language_options));
+$body .= '<p><label for="calendar-teleconference">'.elgg_echo("event_calendar:meeting").'<br/>';
 
+$teleconference_options = array(
+	elgg_echo("option:no") => 'no',
+	elgg_echo("option:yes") => 'yes',
+);
+	$body .= '<div class="event-calendar-edit-form-block event-calendar-edit-form-membership-block">';
+	$body .= elgg_view("input/radio", array('name' => 'teleconference_radio',  'value' => $teleconference_radio, 'options' => $teleconference_options));
+	$body .= '</div>';
 
-$body .= '<p><label for="calendar-teleconference">'.elgg_echo("Online meeting and teleconference").'</label><br/>';
-$body .= 'No <input type="radio" name="teleconference" id="teleconference_no" value="no" checked="checked"  />';
-$body .= 'Yes<input type="radio" name="teleconference" id="teleconference_yes" value="yes"  />';
 $body .= '</p>';
 $body .= '<p class="wb-inv">'.$prefix['brief_description'].elgg_echo('event_calendar:brief_description_description').'</p>';
 
 
- $body .= '<p id="date" class="list-unstyled" style="display:none">
- <label for="calendar-teleconference">URL</label><br/>
-    <input name="teleconference_text" type="text" class="small form-control" />
-    <label for="calendar-teleconference">Additional information</label><br/>
-    <textarea class="form-control" rows="3"></textarea>
+ $body .= '<p id="date" class="list-unstyled" >';
+ $body .= '<label for="teleconference_text">URL</label><br/>';
+ $body .= elgg_view("input/text", array('name' => 'teleconference_text', 'value' => $teleconference_text, 'id' => 'teleconference_text', 'class' => 'form-control'));
+ $body .= '<label for="calendar-additional">'.elgg_echo('event_calendar:info').'</label><br/>';
+ $body .= elgg_view("input/plaintext", array('name' => 'calendar_additional', 'value' => $calendar_additional, 'id' => 'calendar_additional', 'class' => 'form-control'));
     
-</p>';
-
+$body .='</p>';
+//print_r($vars['group_guid']);
 if ($event || !$vars['group_guid']) {
 	$body .= '<p><label for="calendar-group">'.elgg_echo("event_calendar:calendar_label").'</label>';
-	$body .= elgg_view('event_calendar/container', array('id' => 'calendar-group', 'container_guid' => $vars['group_guid']));
+	$body .= elgg_view('event_calendar/container', array('id' => 'calendar-group', 'container_guid' => $vars['group_guid'], 'value' => $fd['group_guid']));
 	$body .= '</p>';
 	$body .= '<p class="wb-inv">'.$prefix['calendar'].elgg_echo('event_calendar:calendar_description').'</p>';
 } else {

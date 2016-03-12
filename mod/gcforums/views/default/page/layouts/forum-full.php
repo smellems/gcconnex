@@ -11,15 +11,20 @@
  * Creates a layout which contains the body of the page, its title and a bar at the top with multiple tabs.
  * These tabs are created with the file under missions/views/default/page/elements/tab.
  */
-$class = 'elgg-layout elgg-layout-one-tabbar clearfix';
+$class = 'elgg-layout elgg-layout-one-tabbar clearfix forum-clear';
 if (isset($vars['class'])) {
     $class = "$class {$vars['class']}";
+}
+
+if (isset($vars['title'])){
+    $theTitle ='<h1>'.$vars['title'].'</h1>';
 }
 ?>
 
 <div class="<?php echo $class; ?>">
+
 	<div>
-		<h1> <?php echo $vars['title']; ?> </h1>
+		 <?php echo $theTitle; ?>
 	</div>
 
 	<div class="elgg-main elgg-body">

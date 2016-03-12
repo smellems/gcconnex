@@ -7,7 +7,7 @@ $site_url = elgg_get_site_url();
 $user = get_loggedin_user()->username;
 $currentPage=$_SERVER[ "REQUEST_URI" ];
 $OptedIn=FALSE;
-
+ 
 //echo $user_guid;
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -28,34 +28,39 @@ $OptedIn=FALSE;
 }
 $getResult = mysqli_fetch_assoc($res);
 
+//data-fgcolor="#61a9dc"
 
-echo "<script>$(document).ready(function() {
-    var progressbar = $('#progressbar'),
-        max = progressbar.attr('value'),
-        //max=80,
-        time = (150/max)*5,    
-        value = 1;
-        //value=0;
- 
-    var loading = function() {
-        value += 1;
-        addValue = progressbar.val(value);
-         
-        $('.progress-value').html(value + '%');
- 
-        if (value == max) {
-            clearInterval(animate);                    
-        }
-    };
- 
-    var animate = setInterval(function() {
-        loading();
-    }, time);
-});</script>";
 
-echo '<p class="center progress-value pc-large-text">'.$getResult['@total'].'</p>';
+echo '<script src="'.elgg_get_site_url().'mod/wet4/views/default/widgets/profile_completness/js/circliful.min.js"></script>';
+//echo '<link rel="stylesheet" href="'.elgg_get_site_url().'mod/wet4/views/default/widgets/profile_completness/css/material-design-iconic-font.min.css">';
+echo '<link rel="stylesheet" href="'.elgg_get_site_url().'mod/wet4/views/default/widgets/profile_completness/css/circliful.css">';
+?>
+<script>$(document).ready(function () {
+    $('#demo').circliful({
+        animation: 1,
+        animationStep: 5,
+        iconPosition: 'top',
+        foregroundBorderWidth: 15,
+        backgroundBorderWidth: 15,
+        //iconSize: '10px',
+        percent: <?php echo $getResult['@total']?>,
+        fontColor: '#055959',
+        textSize: 28,
+        percentageTextSize: 40,
+        foregroundColor: "#055959",
+        iconColor: '#055959',
+        targetColor: '#055959',
+        //text: 'New Users',
+        //textStyle: 'font-size: 12px;'
+        //textColor: '#666'
+    });
+});</script>
 
-echo '<meter id="progressbar" class="progress-bar-striped col-xs-12 col-sm-12 col-md-12 col-lg-12 mrgn-bttm-sm" low="45" high="75" optimum="85" value="'.$getResult['@total'].'" max="100"></meter>';
+<?php
+echo '<div class="col-md-push-3 col-md-6"><div id="demo"></div></div>';
+//echo '<p class="center progress-value pc-large-text">'.$getResult['@total'].'%</p>';
+
+//echo '<meter id="progressbar" class="progress-bar-striped col-xs-12 col-sm-12 col-md-12 col-lg-12 mrgn-bttm-sm" low="45" high="75" optimum="85" value="'.$getResult['@total'].'" max="100"></meter>';
 echo '<div class="clearfix"></div>';
 if(intval($getResult['@total'])<100){
     echo '<details><summary class="bg-primary">'.elgg_echo('ps:details').'</summary>';
