@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/smellems/gcconnex.svg?gcconnex)](https://travis-ci.org/smellems/gcconnex)
+
 <h1>GCconnex & How to Install</h1>
 This project is forked from Elgg<sup>[1](#fn1)</sup> by the Federal Government of Canada. This branch contains the main version of Elgg for 1.12 which is currently in development for future launch of the new GCconnex.
 
