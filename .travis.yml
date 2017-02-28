@@ -48,6 +48,7 @@ matrix:
     - php: 5.6
       env: E2E=true
       install:
+       - npm install -g pa11y-crawl
        - composer self-update
        - composer install
        - mysql -e 'create database elgg;'
@@ -63,6 +64,8 @@ matrix:
        # Report unit test coverage metrics to scrutinizer
        - wget https://scrutinizer-ci.com/ocular.phar
        - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+       - pa11y-crawl --ci http://localhost:8888
+       
 
 services: 
  - mysql
@@ -78,6 +81,10 @@ install:
 script:
  - phpunit
  - php -f ./engine/tests/suite.php
+ 
+after_script:
+ - npm install -g pa11y-crawl
+ - pa11y-crawl --ci http://localhost:8888
 
 # mod testing
  - cd ./mod/
