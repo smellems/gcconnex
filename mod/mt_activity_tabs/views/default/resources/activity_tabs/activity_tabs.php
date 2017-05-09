@@ -50,31 +50,14 @@ switch ($page_type) {
 		$page_filter = 'activity_tab';
 		$options['joins'] = array("JOIN {$db_prefix}entities e ON e.guid = rv.object_guid");
 		$options['wheres'] = array("e.container_guid = $id");
-		break;
-	case 'mydept':
-		$title = elgg_echo('activity_tabs:collection');
-		$page_filter = 'activity_tab';
-        
-		$db_prefix = elgg_get_config('dbprefix');
-		$dept = elgg_get_logged_in_user_entity()->department;
-		$options['joins'] = array("INNER JOIN {$db_prefix}metadata md ON md.entity_guid = rv.subject_guid LEFT JOIN {$db_prefix}metastrings msn ON md.name_id = msn.id LEFT JOIN {$db_prefix}metastrings msv ON md.value_id = msv.id");	// we need this to filter by metadata
-		$options['wheres'] = array("msn.string = \"department\" AND msv.string LIKE \"{$dept}\"");
-		break;
-	case 'otherdept':
-		$title = elgg_echo('activity_tabs:collection');
-		$page_filter = 'activity_tab';
-		
-		$db_prefix = elgg_get_config('dbprefix');
-		$dept = elgg_get_logged_in_user_entity()->department;
-		$options['joins'] = array("INNER JOIN {$db_prefix}metadata md ON md.entity_guid = rv.subject_guid LEFT JOIN {$db_prefix}metastrings msn ON md.name_id = msn.id LEFT JOIN {$db_prefix}metastrings msv ON md.value_id = msv.id");	// we need this to filter by metadata
-		$options['wheres'] = array("msn.string = \"department\" AND msv.string NOT LIKE \"{$dept}\"");
-		break;
 	case 'collection':
 	default:
 		$title = elgg_echo('activity_tabs:collection');
 		$page_filter = 'activity_tab';
 
-		$options['subject_guid'] = $members;
+		$members = get_members_of_access_collection($id, true);
+
+		$options['subject_guids'] = $members;
 		break;
 }
 

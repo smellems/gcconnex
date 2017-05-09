@@ -1,6 +1,6 @@
 <?php
 
-return array(
+$english = array(
 	'thewire_tools' => "The Wire Tools",
 	'thewire_tools:no_result' => "No wire posts were found",
 	'thewire_tools:login_required' => "You need to be logged in to use this feature",
@@ -64,7 +64,7 @@ To view your mentions on the wire click here:
 	'widgets:thewire_post:description' => "Update your status on the wire from this widget",
 
 	// the wire (default widget)
-	'widgets:thewire:owner' => "Whose wire post to show",
+	'widgets:thewire:owner' => "Whos wire post to show",
 	'widgets:thewire:filter' => "Filter wire posts (optional)",
 		
 );

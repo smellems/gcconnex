@@ -161,7 +161,6 @@ function file_tools_get_folders($container_guid = 0) {
  */
 function file_tools_build_select_options($folders, $depth = 0) {
 	$result = array();
-	$lang = get_current_language();
 	
 	if (!empty($folders)) {
 		foreach ($folders as $index => $level) {
@@ -172,13 +171,7 @@ function file_tools_build_select_options($folders, $depth = 0) {
 			 *
 			 */
 			if ($folder = elgg_extract("folder", $level)) {
-
-				if($folder->title3){
-					$folder_title = gc_explode_translation($folder->title3,$lang);
-				}else{
-					$folder_title = $folder->title;
-				}
-				$result[$folder->getGUID()] = str_repeat("-", $depth) . $folder_title;
+				$result[$folder->getGUID()] = str_repeat("-", $depth) . $folder->title;
 			}
 			
 			if ($childen = elgg_extract("children", $level)) {
@@ -189,53 +182,6 @@ function file_tools_build_select_options($folders, $depth = 0) {
 	
 	return $result;
 }
-
-
-/**
- * Make sure you can't move folders into itself or it's children
- *
- * @param array $folders folders to make the options for
- * @param int   $depth   current depth
- * @param int   $folder_guid current folder being indexed
- * @param int   $removed guid of folder just removed
- *
- *
- * @return string
- */
-function file_tools_get_child($folders, $depth = 0, $folder_guid, $removed) {
-	$result = array();
-    
-    $bool = $removed;
-    $targetFolder = $folder_guid;
-	
-	if (!empty($folders)) {
-		foreach ($folders as $index => $level) {
-			if ($folder = elgg_extract("folder", $level)) {
-                
-                //check to see if current folder being indexed or if parent folder
-                    if($folder->getGUID() == $targetFolder || $folder->parent_guid == $bool || $folder->parent_guid == $targetFolder){
-                        
-                    //update removed guid
-                    $bool = $folder->getGUID();
-                        
-                    } else {
-                        
-                        //add guid/name to list
-                        $result[$folder->getGUID()] = str_repeat("-", $depth) . $folder->title;
-                        
-                    }
-                
-			}
-			
-			if ($childen = elgg_extract("children", $level)) {
-				$result += file_tools_get_child($childen, $depth + 1, $folder_guid, $bool);
-			}
-		}
-	}
-	
-	return $result;
-}
-
 
 /**
  * Get folder selection options for widgets
@@ -365,19 +311,13 @@ function file_tools_get_sub_folders($folder = false, $list = false) {
  */
 function file_tools_make_menu_items($folders) {
 	$result = false;
-	$lang = get_current_language();
-
+	
 	if (!empty($folders) && is_array($folders)) {
 		$result = array();
 		
 		foreach ($folders as $index => $level) {
 			if ($folder = elgg_extract("folder", $level)) {
-				if($folder->title3){
-					$folder_title = gc_explode_translation($folder->title3,$lang);
-				}else{
-					$folder_title = $folder->title;
-				}
-
+				$folder_title = $folder->title;
 				if (empty($folder_title)) {
 					$folder_title = elgg_echo("untitled");
 				}

@@ -9,33 +9,11 @@ if (empty($count)) {
 
 $content_type = $widget->content_type;
 
-$content_options_values = array();
-if (elgg_is_active_plugin("blog")) {
-	$content_options_values["blog"] = elgg_echo("item:object:blog");
-}
-if (elgg_is_active_plugin("file")) {
-	$content_options_values["file"] = elgg_echo("item:object:file");
-}
-if (elgg_is_active_plugin("pages")) {
-	$content_options_values["page"] = elgg_echo("item:object:page");
-}
-if (elgg_is_active_plugin("bookmarks")) {
-	$content_options_values["bookmarks"] = elgg_echo("item:object:bookmarks");
-}
-if (elgg_is_active_plugin("thewire")) {
-	$content_options_values["thewire"] = elgg_echo("item:object:thewire");
-}
-if (elgg_is_active_plugin("videolist")) {
-	$content_options_values["videolist_item"] = elgg_echo("item:object:videolist_item");
-}
-if (elgg_is_active_plugin("event_manager")) {
-	$content_options_values["event"] = elgg_echo("item:object:event");
-}
-if (elgg_is_active_plugin("tasks")) {
-	$content_options_values["task_top"] = elgg_echo("item:object:task_top");
-}
-if (elgg_is_active_plugin("groups")) {
-	$content_options_values["groupforumtopic"] = elgg_echo("item:object:groupforumtopic");
+$content_options_values = [];
+foreach (widget_manager_widgets_content_by_tag_get_supported_content() as $plugin => $subtype) {
+	if (elgg_is_active_plugin($plugin)) {
+		$content_options_values[$subtype] = elgg_echo("item:object:{$subtype}");
+	}
 }
 
 if (empty($content_type) && !empty($content_options_values)) {
@@ -123,6 +101,20 @@ if ($widget->context == "groups") {
 <div>
 	<?php echo elgg_echo("widgets:content_by_tag:display_option"); ?><br />
 	<?php echo elgg_view("input/dropdown", array("name" => "params[display_option]", "options_values" => $display_option_options_values, "value" => $widget->display_option)); ?>
+</div>
+
+<div>
+	<?php
+	echo elgg_echo("widgets:content_by_tag:order_by") . "<br />";
+	echo elgg_view("input/dropdown", array(
+		"name" => "params[order_by]",
+		"options_values" => array (
+			'time_created' => elgg_echo("widgets:content_by_tag:order_by:time_created"),
+			'alpha' => elgg_echo("widgets:content_by_tag:order_by:alpha"),
+		),
+		"value" => $widget->order_by
+	));
+	?>
 </div>
 
 <div class="widgets-content-by-tag-display-options">

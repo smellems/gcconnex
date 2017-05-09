@@ -138,7 +138,7 @@ elgg_load_js("jquery.hashchange");
 
 <?php
 
-$body = "<div id='file-tools-folder-tree' class='clearfix hidden wb-invisible'>";
+$body = "<div id='file-tools-folder-tree' class='clearfix hidden'>";
 $body .= elgg_view_menu("file_tools_folder_sidebar_tree", array(
 	"container" => $page_owner,
 	"sort_by" => "priority"
@@ -155,4 +155,4 @@ if ($page_owner->canEdit() || ($page_owner instanceof ElggGroup && $page_owner->
 }
 
 // output file tree
-echo elgg_view_module("aside", "tree", $body, array("id" => "file_tools_list_tree_container"));
+echo elgg_view_module("aside", "", $body, array("id" => "file_tools_list_tree_container"));

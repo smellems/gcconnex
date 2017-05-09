@@ -7,10 +7,9 @@
  */
 
 // get the album entity
-$lang = get_current_language();
 $album_guid = (int) get_input('guid');
 $album = get_entity($album_guid);
-if (!$album) {
+if (!$album || !elgg_instanceof($album, 'object', 'album')) {
 	register_error(elgg_echo('noaccess'));
 	$_SESSION['last_forward_from'] = current_page_url();
 	forward('');
@@ -31,45 +30,32 @@ $title = elgg_echo($album->getTitle());
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
 elgg_push_breadcrumb(elgg_echo('tidypics:albums'), 'photos/all');
-
-if($owner->title3){
-	$group_title = gc_explode_translation($owner->title3,$lang);
-}else{
-	$group_title = $owner->name;
-}
-
 if (elgg_instanceof($owner, 'group')) {
-	elgg_push_breadcrumb($group_title, "photos/group/$owner->guid/all");
+	elgg_push_breadcrumb($owner->name, "photos/group/$owner->guid/all");
 } else {
-	elgg_push_breadcrumb($group_title, "photos/owner/$owner->username");
+	elgg_push_breadcrumb($owner->name, "photos/owner/$owner->username");
 }
-
-if ($album->title3){
-	elgg_push_breadcrumb(gc_explode_translation($album->title3, $lang));
-}else{
-	elgg_push_breadcrumb($album->getTitle());
-}
-
+elgg_push_breadcrumb($album->getTitle());
 
 $content = elgg_view_entity($album, array('full_view' => true));
 
 if (elgg_is_logged_in()) {
 	if ($owner instanceof ElggGroup) {
 		if ($owner->isMember(elgg_get_logged_in_user_entity())) {
-			/*elgg_register_menu_item('title2', array(
+			elgg_register_menu_item('title', array(
 				'name' => 'addphotos',
 				'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $owner->getGUID(),
 				'text' => elgg_echo("photos:addphotos"),
 				'link_class' => 'elgg-button elgg-button-action elgg-lightbox'
-			));*/
+			));
 		}
 	} else {
-		/*elgg_register_menu_item('title2', array(
+		elgg_register_menu_item('title', array(
 			'name' => 'addphotos',
 			'href' => "ajax/view/photos/selectalbum/?owner_guid=" . elgg_get_logged_in_user_guid(),
 			'text' => elgg_echo("photos:addphotos"),
 			'link_class' => 'elgg-button elgg-button-action elgg-lightbox'
-		));*/
+		));
 	}
 }
 
@@ -79,18 +65,16 @@ if ($album->getContainerEntity()->canWriteToContainer()) {
 			'href' => 'photos/upload/' . $album->getGUID(),
 			'text' => elgg_echo('images:upload'),
 			'link_class' => 'elgg-button elgg-button-action',
-            'item_class' => 'mrgn-rght-sm',
 	));
 }
 
 // only show sort button if there are images
 if ($album->canEdit() && $album->getSize() > 0) {
-	elgg_register_menu_item('title2', array(
+	elgg_register_menu_item('title', array(
 		'name' => 'sort',
 		'href' => "photos/sort/" . $album->getGUID(),
 		'text' => elgg_echo('album:sort'),
 		'link_class' => 'elgg-button elgg-button-action',
-        'item_class' => 'mrgn-rght-0',
 		'priority' => 200,
 	));
 }
@@ -106,22 +90,17 @@ if (elgg_get_plugin_setting('slideshow', 'tidypics') && $album->getSize() > 0) {
 		'id' => 'slideshow',
 		'data-slideshowurl' => $url,
 		'href' => '#',
-		'text' => elgg_echo('album:slideshow'),//"<img src=\"".elgg_get_site_url() ."mod/tidypics/graphics/slideshow.png\" alt=\"".elgg_echo('album:slideshow')."\">",
+		'text' => "<img src=\"".elgg_get_site_url() ."mod/tidypics/graphics/slideshow.png\" alt=\"".elgg_echo('album:slideshow')."\">",
 		'title' => elgg_echo('album:slideshow'),
 		'link_class' => 'elgg-button elgg-button-action',
 		'priority' => 300
 	));
 }
-if ($album->title3){
-	$title = gc_explode_translation($album->title3, $lang);
-}else{
-	$title = $album->getTitle();
-}
 
 $body = elgg_view_layout('content', array(
 	'filter' => false,
 	'content' => $content,
-	'title' => $title,
+	'title' => $album->getTitle(),
 	'sidebar' => elgg_view('photos/sidebar_al', array('page' => 'album')),
 ));
 

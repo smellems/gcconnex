@@ -485,7 +485,7 @@ var PicLensLite = {
 	},
 	getElementsFromXMLFeed : function () {
 		var xmlDoc;
-		if (window.ActiveXObject || window.ActiveXObject !== undefined) { // IE
+		if (window.ActiveXObject) { // IE
 		  	xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
 		  	xmlDoc.async=false;
 		  	xmlDoc.loadXML(PicLensLite.THE_FEED);

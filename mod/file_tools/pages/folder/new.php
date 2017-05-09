@@ -23,7 +23,7 @@ $body_vars = array(
 
 // draw page
 if (elgg_is_xhr()) {
-	echo "<div style='width: 550px; height:625px;'>";	// GCchange - Ilia: increasing size of div container to remove need for scroll bars.
+	echo "<div style='width: 550px; height:550px;'>";
 	echo elgg_view_title($title_text);
 	echo elgg_view_form("file_tools/folder/edit", $form_vars, $body_vars);
 	echo "</div>";

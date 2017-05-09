@@ -8,15 +8,13 @@
 
 // Get input data
 $title = get_input('title');
-$title2 = get_input('title2');
 $description = get_input('description');
-$description2 = get_input('description2');
 $tags = get_input('tags');
 $guid = get_input('guid');
 
 elgg_make_sticky_form('tidypics');
 
-if ((empty($title)) && (empty($title2))) {
+if (empty($title)) {
 	register_error(elgg_echo("image:blank"));
 	forward(REFERER);
 }
@@ -24,11 +22,7 @@ if ((empty($title)) && (empty($title2))) {
 $image = get_entity($guid);
 
 $image->title = $title;
-$image->title2 = $title2;
-$image->title3 = gc_implode_translation($title,$title2);
 $image->description = $description;
-$image->description2 = $description2;
-$image->description3 = gc_implode_translation($description,$description2);
 if($tags) {
         $image->tags = string_to_tag_array($tags);
 } else {

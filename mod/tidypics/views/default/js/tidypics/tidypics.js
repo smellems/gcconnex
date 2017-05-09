@@ -3,11 +3,7 @@ define(function(require) {
 	var $ = require("jquery");
 
 	function init() {
-	    /*
-        Production would toss up error 
-        Removed - Now lightbox is done through Elgg's lightbox
-        */
-        if ($(".tidypics-lightbox").length) {
+		if ($(".tidypics-lightbox").length) {
 			$(".tidypics-lightbox").colorbox({photo:true, maxWidth:'95%', maxHeight:'95%'});
 		}
 

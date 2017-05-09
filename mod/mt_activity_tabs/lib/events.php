@@ -21,7 +21,7 @@ function pagesetup() {
 
 	$user = elgg_get_logged_in_user_entity();
 	$filter_context = get_input('filter_context', false);
-    
+
 	$plugin = elgg_get_plugin_from_id(PLUGIN_ID);
 	if (!$plugin) {
 		// dunno how this could be possible
@@ -103,27 +103,9 @@ function pagesetup() {
 				'selected' => $filter_context == 'group_' . $group->guid,
 				'priority' => $priority + (int) $tabs['group']["$group->guid"]['priority'],
 			);
+			elgg_register_menu_item('filter', $tab);
 		}
-		elgg_register_menu_item('filter', $tab);
 	}
-
-	$tab = array(
-		'name' => "mydept:$user->department",
-		'text' => elgg_echo('activity_tabs:mydepartment'),
-		'href' => "activity_tabs/mydept/",
-		'selected' => $filter_context == 'mydept_',
-		'priority' => $priority + (int) $tabs['dept']["$user->department"]['priority'],
-	);
-	elgg_register_menu_item('filter', $tab);
-
-	$tab = array(
-		'name' => "otherdept:$user->department",
-		'text' => elgg_echo('activity_tabs:otherdepartments'),
-		'href' => "activity_tabs/otherdept/",
-		'selected' => $filter_context == 'otherdept_',
-		'priority' => $priority + (int) $tabs['otherdept']["$user->department"]['priority'],
-	);
-	elgg_register_menu_item('filter', $tab);
 
 	// register menu item for configuring tabs
 	$link = array(

@@ -9,9 +9,9 @@ elgg_make_sticky_form('groups');
 
 /**
  * wrapper for recursive array walk decoding
- * 
+ *
  * @param string &$v value
- * 
+ *
  * @return string
  */
 function profile_array_decoder(&$v) {
@@ -36,10 +36,6 @@ foreach (elgg_get_config('group') as $shortname => $valuetype) {
 }
 
 $input['name'] = htmlspecialchars(get_input('name', '', false), ENT_QUOTES, 'UTF-8');
-$input['name2'] = htmlspecialchars(get_input('name2', '', false), ENT_QUOTES, 'UTF-8');
-$input['title3'] = gc_implode_translation($input['name'], $input['name2']);
-$input['description3'] = gc_implode_translation($input['description'], $input['description2']);
-$input['briefdescription3'] = gc_implode_translation($input['briefdescription'], $input['briefdescription2']);
 
 $user = elgg_get_logged_in_user_entity();
 
@@ -70,7 +66,7 @@ if (sizeof($input) > 0) {
 			if ($acl) {
 				// @todo Elgg api does not support updating access collection name
 				$db_prefix = elgg_get_config('dbprefix');
-				$query = "UPDATE {$db_prefix}access_collections SET name = '$ac_name' 
+				$query = "UPDATE {$db_prefix}access_collections SET name = '$ac_name'
 					WHERE id = $group->group_acl";
 				update_data($query);
 			}
@@ -78,13 +74,10 @@ if (sizeof($input) > 0) {
 
 		$group->$shortname = $value;
 	}
-	if(!$group->name){
-		$group->name = $group->name2;
-	}
 }
 
 // Validate create
-if ((!$group->name)&& (!$group->name2)){
+if (!$group->name) {
 	register_error(elgg_echo("groups:notitle"));
 	forward(REFERER);
 }
@@ -104,17 +97,12 @@ if ($tool_options) {
 $is_public_membership = (get_input('membership') == ACCESS_PUBLIC);
 $group->membership = $is_public_membership ? ACCESS_PUBLIC : ACCESS_PRIVATE;
 
-$group->setContentAccessMode(get_input('content_access_mode'));
+$content_access_mode = get_input('content_access_mode');
+$group->setContentAccessMode($content_access_mode);
 
 if ($is_new_group) {
 	$group->access_id = ACCESS_PUBLIC;
-}
 
-// default access
-$default_access = (int) get_input('group_default_access');
-$group->setPrivateSetting("elgg_default_access", $default_access);
-
-if ($is_new_group) {
 	// if new group, we need to save so group acl gets set in event handler
 	$group->save();
 }
@@ -140,6 +128,15 @@ if (elgg_get_plugin_setting('hidden_groups', 'groups') == 'yes') {
 }
 
 $group->save();
+
+// default access
+$default_access = (int) get_input('group_default_access');
+if (($group->getContentAccessMode() === ElggGroup::CONTENT_ACCESS_MODE_MEMBERS_ONLY) && (($default_access === ACCESS_PUBLIC) || ($default_access === ACCESS_LOGGED_IN))) {
+	system_message(elgg_echo('group_tools:action:group:edit:error:default_access'));
+	$default_access = (int) $group->group_acl;
+}
+$group->setPrivateSetting("elgg_default_access", $default_access);
+
 
 // group saved so clear sticky form
 elgg_clear_sticky_form('groups');
@@ -203,46 +200,6 @@ if ($has_uploaded_icon) {
 	}
 }
 
-/**
-* Group Tools
-*
-* Added action for user to upload a coverphoto to their group profile
-* 
-* @author Nick - https://github.com/piet0024
-*/	
-
-$c_photo = $_FILES['c_photo'];
-
-foreach($c_photo as $c){
-    $printing_files .= $c .' , ';
-}
-if(reset($c_photo) ){
-    $prefix = "groups_c_photo/" . $group->guid;
-
-    $filehandler2 = new ElggFile();
-	$filehandler2->owner_guid = $group->owner_guid;
-    $filehandler2->container_guid = $group->guid;
-    $filehandler2->subtype = 'c_photo';
-	$filehandler2->setFilename($prefix . ".jpg");
-	$filehandler2->open("write");
-	$filehandler2->write(get_uploaded_file('c_photo'));
-	$filehandler2->close();
-    $filehandler2->save();
-    
-    $c_photo_guid = $filehandler2->getGUID();
-    $subtype_testing = $filehandler2->getSubtype();
-   $group->cover_photo =$c_photo_guid; //Nick - Set Cover photo metadata
-}else if(isset($group->cover_photo) && $group->cover_photo !='nope'){
-
-}else{ 
-$group->cover_photo = 'nope';
-}
-
-$remove_c_photo = get_input('remove_photo'); //Nick - Checkbox will set cover photo metadata to 'nope'
-if($remove_c_photo){
-    $group->cover_photo = 'nope';
-}
-
 // owner transfer
 $old_owner_guid = $is_new_group ? 0 : $group->owner_guid;
 $new_owner_guid = (int) get_input('owner_guid');
@@ -265,13 +222,6 @@ if (!$is_new_group && $new_owner_guid && ($new_owner_guid != $old_owner_guid)) {
 		// transfer the group to the new owner
 		group_tools_transfer_group_ownership($group, $new_owner);
 	}
-}
-
-// cyu - 05/12/2016: modified to comform to the business requirements documentation
-if (elgg_is_active_plugin('cp_notifications')) {
-	$user = elgg_get_logged_in_user_entity();
-	add_entity_relationship($user->getGUID(), 'cp_subscribed_to_email', $group->getGUID());
-	add_entity_relationship($user->getGUID(), 'cp_subscribed_to_site_mail', $group->getGUID());
 }
 
 system_message(elgg_echo("groups:saved"));
