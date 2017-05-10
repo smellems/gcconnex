@@ -1,6 +1,7 @@
 <?php
 
 elgg_load_library('elgg:event_calendar');
+
 $event_guid = get_input('guid', false);
 
 if (!$event_guid) {
@@ -19,8 +20,11 @@ $owner_link = elgg_view('output/url', array(
 ));
 $author_text = elgg_echo('byline', array($owner_link));
 $date = elgg_view_friendly_time($event->time_created);
+
 $owner_icon = elgg_view_entity_icon($event->getOwnerEntity(), 'tiny');
+
 $subtitle = "$author_text $date";
+
 $info = '';
 $event_items = event_calendar_get_formatted_full_items($event);
 
@@ -44,8 +48,13 @@ $params = array(
 	'tags' => $tags,
 );
 $list_body = elgg_view('object/elements/summary', $params);
+
 $summary = elgg_view_image_block($owner_icon, $list_body, $params);
-$title = elgg_view_title($event->title);
+
+$title = elgg_view('output/url', array(
+	'href' => $event->getURL(),
+	'text' => elgg_view_title($event->title),
+));
 
 echo '<div style="max-width:320px;">' . $title . $summary . $info . '</div>';
 echo '<div align="center" class="mtm mbs">' . elgg_view('output/url', array(

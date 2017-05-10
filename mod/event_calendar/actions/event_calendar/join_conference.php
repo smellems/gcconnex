@@ -2,6 +2,7 @@
 // extended logic for BBB
 
 elgg_load_library('elgg:event_calendar');
+
 $event_guid = get_input('event_guid');
 $event = get_entity($event_guid);
 
