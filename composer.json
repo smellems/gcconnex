@@ -22,7 +22,8 @@
         "coldtrick/file_tools": "v2.0",
         "coldtrick/friend_request": "v4.1",
         "coldtrick/group_tools": "v6.0.3",
-        "coldtrick/thewire_tools": "v4.0.1"
+        "coldtrick/thewire_tools": "v4.0.1",
+        "coldtrick/translation_editor": "v4.0.1"
     },
     "scripts": {
         "test": "phpunit",
