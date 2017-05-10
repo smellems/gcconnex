@@ -27,7 +27,8 @@
         "coldtrick/widget_manager": "v5.2",
         "iionly/tidypics": "1.10.11",
         "iionly/event_calendar": "1.10.3",
-        "iionly/poll": "1.10.8"
+        "iionly/poll": "1.10.8",
+        "iionly/unvalidatedemailchange": "1.10.3"
     },
     "scripts": {
         "test": "phpunit",
