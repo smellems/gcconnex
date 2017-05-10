@@ -24,7 +24,8 @@
         "coldtrick/group_tools": "v6.0.3",
         "coldtrick/thewire_tools": "v4.0.1",
         "coldtrick/translation_editor": "v4.0.1",
-        "coldtrick/widget_manager": "v5.2"
+        "coldtrick/widget_manager": "v5.2",
+        "iionly/tidypics": "1.10.11"
     },
     "scripts": {
         "test": "phpunit",

@@ -7,10 +7,9 @@
  */
 
 // get the photo entity
-$lang = get_current_language();
 $photo_guid = (int) get_input('guid');
 $photo = get_entity($photo_guid);
-if (!$photo) {
+if (!$photo || !elgg_instanceof($photo, 'object', 'image')) {
 	register_error(elgg_echo('noaccess'));
 	$_SESSION['last_forward_from'] = current_page_url();
 	forward('');
@@ -40,31 +39,13 @@ if (elgg_get_plugin_setting('tagging', 'tidypics')) {
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
 elgg_push_breadcrumb(elgg_echo('tidypics:albums'), 'photos/all');
-
-if($owner->title3){
-	$title_group = gc_explode_translation($owner->title3,$lang);
-}else{
-	$title_group = $owner->name;
-}
-
 if (elgg_instanceof($owner, 'group')) {
-	elgg_push_breadcrumb($title_group, "photos/group/$owner->guid/all");
+	elgg_push_breadcrumb($owner->name, "photos/group/$owner->guid/all");
 } else {
-	elgg_push_breadcrumb($title_group, "photos/owner/$owner->username");
+	elgg_push_breadcrumb($owner->name, "photos/owner/$owner->username");
 }
-
-if($album->title3){
-	$album_title = gc_explode_translation($album->title3,$lang);
-}else{
-	$album_title = $album->title;
-}
-
-elgg_push_breadcrumb($album_title, $album->getURL());
-if($photo->title3){
-    elgg_push_breadcrumb(gc_explode_translation($photo->title3, $lang));
-}else{
- elgg_push_breadcrumb($photo->title);   
-}
+elgg_push_breadcrumb($album->getTitle(), $album->getURL());
+elgg_push_breadcrumb($photo->getTitle());
 
 if (elgg_is_logged_in()) {
 	if ($owner instanceof ElggGroup) {
@@ -97,15 +78,11 @@ if (elgg_get_plugin_setting('download_link', 'tidypics')) {
 }
 
 $content = elgg_view_entity($photo, array('full_view' => true));
-if (empty(gc_explode_translation($photo->title3, $lang))){
-	$title = $photo->title;
-}else{
-$title = gc_explode_translation($photo->title3, $lang);
-}
+
 $body = elgg_view_layout('content', array(
 	'filter' => false,
 	'content' => $content,
-	'title' => $title,
+	'title' => $photo->getTitle(),
 	'sidebar' => elgg_view('photos/sidebar_im', array(
 		'page' => 'tp_view',
 		'image' => $photo,

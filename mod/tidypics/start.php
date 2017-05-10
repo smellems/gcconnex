@@ -67,6 +67,10 @@ function tidypics_init() {
 	// Register for search
 	elgg_register_entity_type('object', 'image');
 	elgg_register_entity_type('object', 'album');
+	elgg_register_entity_type('object', 'tidypics_batch');
+
+	// Override search for tidypics_batch subtype to not return any results
+	elgg_register_plugin_hook_handler('search', 'object:tidypics_batch', 'tidypics_batch_no_search_results');
 
 	// Register for the entity menu
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'tidypics_entity_menu_setup');
@@ -92,6 +96,8 @@ function tidypics_init() {
 
 		//register title urls for widgets
 		elgg_register_plugin_hook_handler("entity:url", "object", "tidypics_widget_urls");
+		// handle the availability of the Tidypics group widgets
+		elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", "tidypics_tool_widgets_handler");
 	}
 
 	// RSS extensions for embedded media
@@ -707,4 +713,43 @@ function tidypics_get_last_log_line($filename) {
 
 function tidypics_get_log_location($time) {
 	return elgg_get_config('dataroot') . 'tidypics_log' . '/' . $time . '.txt';
+}
+
+// subtype tidypics_batch is registered only to be included in activity page filter
+// but we don't want any results for this subtype returned in a search
+function tidypics_batch_no_search_results($hook, $handler, $return, $params) {
+	return false;
+}
+
+// Add or remove a group's Tidypics widgets based on the corresponding group tools option
+function tidypics_tool_widgets_handler($hook, $type, $return_value, $params) {
+	if (!empty($params) && is_array($params)) {
+		$entity = elgg_extract("entity", $params);
+
+		if (!empty($entity) && elgg_instanceof($entity, "group")) {
+			if (!is_array($return_value)) {
+				$return_value = array();
+			}
+
+			if (!isset($return_value["enable"])) {
+				$return_value["enable"] = array();
+			}
+			if (!isset($return_value["disable"])) {
+				$return_value["disable"] = array();
+			}
+
+			if ($entity->tp_images_enable == "yes") {
+				$return_value["enable"][] = "groups_latest_photos";
+			} else {
+				$return_value["disable"][] = "groups_latest_photos";
+			}
+			if ($entity->photos_enable == "yes") {
+				$return_value["enable"][] = "groups_latest_albums";
+			} else {
+				$return_value["disable"][] = "groups_latest_albums";
+			}
+		}
+	}
+
+	return $return_value;
 }
