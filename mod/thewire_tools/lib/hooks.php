@@ -86,13 +86,22 @@ function thewire_tools_route_thewire($hook_name, $entity_type, $return, $params)
  * @return ElggMenuItem[]
  */
 function thewire_tools_owner_block_menu($hook_name, $entity_type, $return, $params) {
-	
 	$group = elgg_extract("entity", $params);
-	if (elgg_instanceof($group, "group") && $group->thewire_enable != "no") {
-		$url = "thewire/group/" . $group->getGUID();
-		$item = new ElggMenuItem("thewire", elgg_echo("thewire_tools:group:title"), $url);
-		$return[] = $item;
+	if (!elgg_instanceof($group, "group")) {
+		return;
 	}
+	
+	if ($group->thewire_enable == "no") {
+		return;
+	}
+
+	if (!$group->canEdit() && !$group->isMember()) {
+		return;
+	}
+	
+	$url = "thewire/group/" . $group->getGUID();
+	$item = new ElggMenuItem("thewire", elgg_echo("thewire_tools:group:title"), $url);
+	$return[] = $item;
 	
 	return $return;
 }
@@ -227,8 +236,7 @@ function thewire_tools_register_river_menu_items($hook_name, $entity_type, $retu
 		}
 		$options = array(
 			"name" => "reply",
-			"text" => '<i class="fa fa-reply fa-lg icon-unsel"><span class="wb-inv">'.elgg_echo('reply').'</span></i>', //Nick P - I put this in here because it won't override in our theme. fight me
-            'title' => elgg_echo('reply'),
+			"text" => elgg_echo("reply"),
 			"href" => "thewire/reply/" . $entity->getGUID(),
 			"priority" => 150,
 		);
