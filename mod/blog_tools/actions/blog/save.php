@@ -22,7 +22,6 @@ $error = FALSE;
 $error_forward_url = REFERER;
 $user = elgg_get_logged_in_user_entity();
 
-
 // edit or create a new entity
 $guid = get_input('guid');
 
@@ -52,17 +51,11 @@ $old_status = $blog->status;
 // set defaults and required values.
 $values = array(
 	'title' => '',
-	'title2' => '',
-	'title3' => '',
 	'description' => '',
-	'description2' => '',
-	'description3' => '',
 	'status' => 'draft',
 	'access_id' => ACCESS_DEFAULT,
 	'comments_on' => 'On',
 	'excerpt' => '',
-	'excerpt2' => '',
-	'excerpt3' => '',
 	'tags' => '',
 	'publication_date' => '',
 	'expiration_date' => '',
@@ -70,28 +63,7 @@ $values = array(
 );
 
 // fail if a required entity isn't set
-//$required = array('title', 'description');
-$cart = array(); //Create a array to compare if english or french title and description is in.
-foreach ($values as $name => $default) {
-
-	 $cart[] = array($name => $values);
-}
-
-if ($cart['title'] && $cart['title2'] == ''){
-	$error = elgg_echo("blog:error:missing:title");
-
-}
-
-if ($cart['description'] && $cart['description2'] == '') {
-	$error = elgg_echo("blog:error:missing:description");
-}
-
-
-
-// cyu - implement minor edit functionality as per requirements document (notification)
-$minor_edit = get_input('chk_blog_minor_edit');
-$blog->entity_minor_edit = $minor_edit[0];
-
+$required = array('title', 'description');
 
 // load from POST and do sanity and access checking
 foreach ($values as $name => $default) {
@@ -109,12 +81,6 @@ foreach ($values as $name => $default) {
 	switch ($name) {
 		case 'tags':
 			$values[$name] = string_to_tag_array($value);
-			break;
-
-		case 'excerpt2':
-			if ($value) {
-				$values[$name] = elgg_get_excerpt($value);
-			}
 			break;
 
 		case 'excerpt':
@@ -158,13 +124,6 @@ foreach ($values as $name => $default) {
 	}
 }
 
-if (!$values['title']){
-	$values['title'] = $values['title2'];
-}
-//implode for tranlation
-$values['title3'] = gc_implode_translation($values['title'], $values['title2']);
-$values['excerpt3'] = gc_implode_translation($values['excerpt'], $values['excerpt2']);
-$values['description3'] =gc_implode_translation($values['description'], $values['description2']);
 // if preview, force status to be draft
 if ($save == false) {
 	$values['status'] = 'draft';
