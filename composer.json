@@ -26,7 +26,8 @@
         "coldtrick/translation_editor": "v4.0.1",
         "coldtrick/widget_manager": "v5.2",
         "iionly/tidypics": "1.10.11",
-        "iionly/event_calendar": "1.10.3"
+        "iionly/event_calendar": "1.10.3",
+        "iionly/poll": "1.10.8"
     },
     "scripts": {
         "test": "phpunit",
