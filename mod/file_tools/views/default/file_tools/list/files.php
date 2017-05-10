@@ -64,7 +64,7 @@ if (empty($files_content)) {
 		
 		$files_content .= "<a id='file_tools_select_all' class='float-alt' href='javascript:void(0);'>";
 		$files_content .= "<span>" . elgg_echo("file_tools:list:select_all") . "</span>";
-		$files_content .= "<span class='hidden  wb-invisible'>" . elgg_echo("file_tools:list:deselect_all") . "</span>";		// added  wb-invisible class
+		$files_content .= "<span class='hidden'>" . elgg_echo("file_tools:list:deselect_all") . "</span>";
 		$files_content .= "</a>";
 		
 		$files_content .= "</div>";

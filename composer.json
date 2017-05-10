@@ -18,7 +18,8 @@
         "au/mt_activity_tabs": "2.0.0",
         "beck24/embed_extender": "1.8.3",
         "coldtrick/analytics": "v3.1.1",
-        "coldtrick/blog_tools": "v4.1"
+        "coldtrick/blog_tools": "v4.1",
+        "coldtrick/file_tools": "v2.0"
     },
     "scripts": {
         "test": "phpunit",
