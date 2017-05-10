@@ -14,25 +14,11 @@ if (empty($count)) {
 $content_type = $widget->content_type;
 
 if (empty($content_type)) {
-	// set default content type filter
-	if (elgg_is_active_plugin("blog")) {
-		$content_type = "blog";
-	} elseif (elgg_is_active_plugin("file")) {
-		$content_type = "file";
-	} elseif (elgg_is_active_plugin("pages")) {
-		$content_type = "page";
-	} elseif (elgg_is_active_plugin("bookmarks")) {
-		$content_type = "bookmarks";
-	} elseif (elgg_is_active_plugin("thewire")) {
-		$content_type = "thewire";
-	} elseif (elgg_is_active_plugin("videolist")) {
-		$content_type = "videolist_item";
-	} elseif (elgg_is_active_plugin("event_manager")) {
-		$content_type = "event";
-	} elseif (elgg_is_active_plugin("tasks")) {
-		$content_type = "task_top";
-	} elseif (elgg_is_active_plugin("groups")) {
-		$content_type = "groupforumtopic";
+	foreach (widget_manager_widgets_content_by_tag_get_supported_content() as $plugin => $subtype) {
+		if (elgg_is_active_plugin($plugin)) {
+			$content_type = $subtype;
+			break;
+		}
 	}
 }
 
@@ -134,6 +120,10 @@ if ($names_where && $values_where) {
 	$wheres[] = "($values_where AND $access)";
 }
 
+if ($widget->order_by == 'alpha') {
+	$joins[] = "JOIN {$dbprefix}objects_entity oe ON e.guid = oe.guid";
+}
+
 $options = array(
 	"type" => "object",
 	"subtypes" => $content_type,
@@ -166,6 +156,10 @@ if ($widget->context == "groups") {
 	if (!empty($container_guids)) {
 		$options["container_guids"] = $container_guids;
 	}
+}
+
+if ($widget->order_by == 'alpha') {
+	$options['order_by'] = 'oe.title ASC';
 }
 
 elgg_push_context("search");
@@ -251,7 +245,7 @@ if (in_array($display_option, array("slim","simple"))) {
 				if ($show_avatar) {
 					$icon = elgg_view_entity_icon($owner, "small");
 				}
-
+				
 				$text = elgg_view("output/url", array("href" => $entity_url, "text" => $entity->title));
 				$text .= "<br />";
 				$text .= "<a href='" . $owner->getURL() . "'>" . $owner->name . "</a>";

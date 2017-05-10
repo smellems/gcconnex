@@ -3,7 +3,7 @@
 define("ACCESS_LOGGED_OUT", -5);
 define("MULTI_DASHBOARD_MAX_TABS", 7);
 
-require_once(dirname(__FILE__) . "/vendor/autoload.php");
+@include_once(dirname(__FILE__) . "/vendor/autoload.php");
 require_once(dirname(__FILE__) . "/lib/functions.php");
 require_once(dirname(__FILE__) . "/lib/events.php");
 require_once(dirname(__FILE__) . "/lib/hooks.php");
@@ -37,6 +37,10 @@ function widget_manager_init() {
 	
 	$group_enable = elgg_get_plugin_setting("group_enable", "widget_manager");
 	if (elgg_is_active_plugin("groups") && in_array($group_enable, array("yes", "forced"))) {
+		
+		elgg_extend_view("groups/edit", "widget_manager/forms/groups_widget_access");
+		elgg_register_action("widget_manager/groups/update_widget_access", dirname(__FILE__) . "/actions/groups/update_widget_access.php");
+		
 		
 		// cleanup widgets in group context
 		elgg_extend_view("page/layouts/widgets/add_panel", "widget_manager/group_tool_widgets", 400);
@@ -74,8 +78,8 @@ function widget_manager_init() {
 	elgg_extend_view("css/admin", "css/widget_manager/admin");
 	elgg_extend_view("css/admin", "css/widget_manager/global");
 	
-	elgg_extend_view("js/elgg", "js/widget_manager/site");
-	elgg_extend_view("js/admin", "js/widget_manager/admin");
+	elgg_extend_view("js/elgg", "js/widget_manager/site.js");
+	elgg_extend_view("js/admin", "js/widget_manager/admin.js");
 	
 	elgg_register_plugin_hook_handler("format", "friendly:time", "widget_manager_friendly_time_hook");
 	
@@ -129,9 +133,8 @@ function widget_manager_init() {
 		elgg_register_action("multi_dashboard/reorder", dirname(__FILE__) . "/actions/multi_dashboard/reorder.php");
 	}
 	
-
+	elgg_register_ajax_view("page/layouts/widgets/add_panel");
 	elgg_register_ajax_view("widget_manager/widgets/settings");
-
 	elgg_register_ajax_view("widgets/user_search/content");
 	
 	// register actions
