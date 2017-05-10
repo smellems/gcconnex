@@ -20,7 +20,8 @@
         "coldtrick/analytics": "v3.1.1",
         "coldtrick/blog_tools": "v4.1",
         "coldtrick/file_tools": "v2.0",
-        "coldtrick/friend_request": "v4.1"
+        "coldtrick/friend_request": "v4.1",
+        "coldtrick/group_tools": "v6.0.3"
     },
     "scripts": {
         "test": "phpunit",

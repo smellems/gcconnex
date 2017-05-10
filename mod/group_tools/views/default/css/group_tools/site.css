@@ -1,16 +1,4 @@
-<?php
-
-?>
-
-#group_tools_group_membershipreq .search_listing:hover {
-	border-color: #333333;
-}
-
-.group_tools_widget_group_members .usericon {
-	float: left;
-	margin: 0 5px 5px 0;
-}
-
+/** Group tools CSS */
 #invite_to_group .ui-helper-hidden-accessible {
 	display: none;
 }
@@ -33,20 +21,16 @@
 	cursor: pointer;
 }
 
-#group_tools_status_open {
+.group-tools-status-open {
 	color: green;
 }
 
-#group_tools_status_closed {
+.group-tools-status-closed {
 	color: orange;
 }
 
 .group-tools-highlight {
 	border: 1px solid red;
-}
-
-#friends_toggle {
-	z-index: 1;
 }
 
 .group-tools-suggested-groups .elgg-item {
@@ -65,19 +49,14 @@
 	padding: 10px;
 }
 
-.elgg-icon-invisible-group {
-	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/group_tools/_graphics/invisible_group2.png) no-repeat left;
-	vertical-align: top;
-}
-
 #group-tools-related-groups-form input.elgg-input-autocomplete {
 	width: 80%;
 }
 
-.group-tools-group-edit-section > div {
-	margin-bottom: 15px;
+#group-tools-group-edit-tabbed ~ div {
+	display: none;
 }
 
-.group-tools-group-edit-section .elgg-input-radios {
-	white-space: nowrap;
+.group-tools-group-edit-section > div {
+	margin-bottom: 15px;
 }

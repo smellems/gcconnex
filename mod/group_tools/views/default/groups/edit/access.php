@@ -1,16 +1,12 @@
 <?php
 
 /**
- * Group Tools
- *
  * Group edit form
  *
  * This view contains everything related to group access.
  * eg: how can people join this group, who can see the group, etc
  *
  * @package ElggGroups
- * @author ColdTrick IT Solutions
- * 
  */
 
 $entity = elgg_extract("entity", $vars, false);
@@ -39,13 +35,13 @@ $default_access = elgg_extract("group_default_access", $vars, ACCESS_DEFAULT);
 	<div>
 		<label for="groups-vis"><?php echo elgg_echo("groups:visibility"); ?></label><br />
 		<?php
-		$vis_options = array(
+		$visibility_options = array(
 			ACCESS_PRIVATE => elgg_echo("groups:access:group"),
 			ACCESS_LOGGED_IN => elgg_echo("LOGGED_IN"),
 			ACCESS_PUBLIC => elgg_echo("PUBLIC"),
 		);
 		if (elgg_get_config("walled_garden")) {
-			unset($vis_options[ACCESS_PUBLIC]);
+			unset($visibility_options[ACCESS_PUBLIC]);
 			
 			if ($visibility == ACCESS_PUBLIC) {
 				$visibility = ACCESS_LOGGED_IN;
@@ -56,7 +52,10 @@ $default_access = elgg_extract("group_default_access", $vars, ACCESS_DEFAULT);
 			"name" => "vis",
 			"id" => "groups-vis",
 			"value" => $visibility,
-			"options_values" => $vis_options
+			"options_values" => $visibility_options,
+			'entity' => $entity,
+			'entity_type' => 'group',
+			'entity_subtype' => '',
 		));
 		?>
 	</div>
