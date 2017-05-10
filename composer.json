@@ -19,7 +19,8 @@
         "beck24/embed_extender": "1.8.3",
         "coldtrick/analytics": "v3.1.1",
         "coldtrick/blog_tools": "v4.1",
-        "coldtrick/file_tools": "v2.0"
+        "coldtrick/file_tools": "v2.0",
+        "coldtrick/friend_request": "v4.1"
     },
     "scripts": {
         "test": "phpunit",
