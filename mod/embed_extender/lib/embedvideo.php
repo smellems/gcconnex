@@ -59,8 +59,6 @@ function videoembed_create_embed_object($url, $guid, $videowidth=0, $input) {
 		return videoembed_teachertube_handler($url, $guid, $videowidth);
 	} else if (strpos($url, 'hulu.com') != false) {
 		return videoembed_hulu_handler($url, $guid, $videowidth);
-	}  else if (strpos($url, 'soundcloud.com') != false) {
-		return videoembed_soundcloud_handler($url, $guid, $videowidth);
 	}
 
 	if (!$input) {
@@ -112,7 +110,7 @@ function videoembed_add_object($type, $url, $guid, $width, $height) {
 			$videodiv .= "<embed id=\"VideoPlayback\" src=\"https://video.google.com/googleplayer.swf?docid={$url}&hl=en&fs=true\" style=\"width:{$width}px;height:{$height}px\" allowFullScreen=\"true\" allowScriptAccess=\"always\" type=\"application/x-shockwave-flash\"> </embed>";
 			break;
 		case 'vimeo':
-			$videodiv .= "<object width=\"$width\" height=\"$height\"><param name=\"allowfullscreen\" value=\"true\" /><param name=\"allowscriptaccess\" value=\"always\" /><param name=\"movie\" value=\"https://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" /><embed src=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"$width\" height=\"$height\"></embed></object>";
+			$videodiv .= "<object width=\"$width\" height=\"$height\"><param name=\"allowfullscreen\" value=\"true\" /><param name=\"allowscriptaccess\" value=\"always\" /><param name=\"movie\" value=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" /><embed src=\"http://vimeo.com/moogaloop.swf?clip_id={$url}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=&amp;fullscreen=1\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"$width\" height=\"$height\"></embed></object>";
 			break;
 		case 'metacafe':
 			$videodiv .= "<embed src=\"http://www.metacafe.com/fplayer/{$url}.swf\" width=\"$width\" height=\"$height\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\"></embed>";
@@ -121,7 +119,7 @@ function videoembed_add_object($type, $url, $guid, $width, $height) {
 			$videodiv .= "<embed src=\"http://www.veoh.com/veohplayer.swf?permalinkId={$url}&player=videodetailsembedded&videoAutoPlay=0\" allowFullScreen=\"true\" width=\"$width\" height=\"$height\" bgcolor=\"#FFFFFF\" type=\"application/x-shockwave-flash\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"></embed>";
 			break;
 		case 'dm':
-			$videodiv .= "<object width=\"$width\" height=\"$height\"><param name=\"movie\" value=\"https://www.dailymotion.com/swf/{$url}\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowScriptAccess\" value=\"always\"></param><embed src=\"http://www.dailymotion.com/swf/{$url}\" type=\"application/x-shockwave-flash\" width=\"$width\" height=\"$height\" allowFullScreen=\"true\" allowScriptAccess=\"always\"></embed></object>";
+			$videodiv .= "<object width=\"$width\" height=\"$height\"><param name=\"movie\" value=\"http://www.dailymotion.com/swf/{$url}\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowScriptAccess\" value=\"always\"></param><embed src=\"http://www.dailymotion.com/swf/{$url}\" type=\"application/x-shockwave-flash\" width=\"$width\" height=\"$height\" allowFullScreen=\"true\" allowScriptAccess=\"always\"></embed></object>";
 			break;
 		case 'blip':
 			$videodiv .= "<embed src=\"http://blip.tv/play/{$url}\" type=\"application/x-shockwave-flash\" width=\"$width\" height=\"$height\" allowscriptaccess=\"always\" allowfullscreen=\"true\"></embed>";
@@ -131,23 +129,6 @@ function videoembed_add_object($type, $url, $guid, $width, $height) {
 			break;
 		case 'hulu':
 			$videodiv .= "<object width=\"{$width}\" height=\"{$height}\"><param name=\"movie\" value=\"http://www.hulu.com/embed/{$url}\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.hulu.com/embed/{$url}\" type=\"application/x-shockwave-flash\" allowFullScreen=\"true\"  width=\"{$width}\" height=\"{$height}\"></embed></object>";
-			break;
-
-        case 'soundcloud':
-			$videodiv .= '<div class="soundcloud-' . $guid . '">
-<script> 
-
-    $.getJSON("https://soundcloud.com/oembed", 
-          {url: "' . $url . '", format: "json"},
-    function(data) {
-        // Stick the html content returned in the object into the page
-        $(".soundcloud-' . $guid . '").html(data["html"]);
-    });
-
-    
-</script>
-
-</div>';
 			break;
 	}
 
@@ -171,91 +152,6 @@ function videoembed_calc_size(&$width, &$height, $aspect_ratio, $toolbar_height)
 
 	$height = round($width / $aspect_ratio) + $toolbar_height;
 }
-
-
-
-
-
-
-/**
- * main youtube interface
- *
- * @param string $url
- * @param integer $guid unique identifier of the widget
- * @param integer $videowidth  optional override of admin set width
- * @return string css style, video div, and flash <object>
- */
-function videoembed_soundcloud_handler($url, $guid, $videowidth) {
-	// this extracts the core part of the url needed for embeding
-	//$videourl = videoembed_youtube_parse_url($url);
-	//if (!isset($videourl)) {
-		//return '<p><b>' . elgg_echo('embedvideo:parseerror', array('red')) . '</b></p>';
-	//
-
-	videoembed_calc_size($videowidth, $videoheight, 425/320, 24);
-
-	$embed_object = videoembed_add_css($guid, $videowidth, $videoheight);
-
-	$embed_object .= videoembed_add_object('soundcloud', $url, $guid, $videowidth, $videoheight);
-
-	return $embed_object;
-}
-
-/**
- * parse youtube url
- *
- * @param string $url
- * @return string subdomain.youtube.com/v/hash
- */
-function videoembed_soundcloud_parse_url($url) {
-
-	if (strpos($url, 'feature=hd') != false) {
-		// this is high def with a different aspect ratio
-	}
-
-	// This provides some security against inserting bad content.
-	// Divides url into http://, www or localization, domain name, path.
-	if (!preg_match('/(https?:\/\/)([a-zA-Z]{2,3}\.)(youtube\.com\/)(.*)/', $url, $matches)) {
-		//echo "malformed youtube url";
-		return;
-	}
-
-	$domain = $matches[2] . $matches[3];
-	$path = $matches[4];
-
-	$parts = parse_url($url);
-	parse_str($parts['query'], $vars);
-	$hash = $vars['v'];
-
-	return $domain . 'v/' . $hash;
-}
-
-/**
- * parse youtu.be url
- *
- * @param string $url
- * @return string youtube.com/v/hash
- */
-function videoembed_soundcloud_shortener_parse_url($url, $guid, $videowidth) {
-	$path = parse_url($url, PHP_URL_PATH);
-	$videourl = 'youtube.com/v' . $path;
-
-	videoembed_calc_size($videowidth, $videoheight, 425/320, 24);
-
-	$embed_object = videoembed_add_css($guid, $videowidth, $videoheight);
-
-	$embed_object .= videoembed_add_object('youtube', $videourl, $guid, $videowidth, $videoheight);
-
-	return $embed_object;
-}
-
-
-
-
-
-
-
-
 
 /**
  * main youtube interface
@@ -445,19 +341,18 @@ function videoembed_vimeo_parse_url($url) {
 	}
 
 	if (strpos($url, 'groups') != false) {
-		if (!preg_match('/(https:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/', $url, $matches)) {
+		if (!preg_match('/(http:\/\/)(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)/', $url, $matches)) {
 			//echo "malformed vimeo group url";
 			return;
 		}
 
 		$hash = $matches[6];
 	} else {
-        
-		if (!preg_match('/(https:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
+		if (!preg_match('/(http:\/\/)(www\.)?(vimeo.com\/)([0-9]*)/', $url, $matches)) {
 			//echo "malformed vimeo url";
 			return;
 		}
-       
+
 		$hash = $matches[4];
 	}
 
@@ -625,7 +520,6 @@ function videoembed_veoh_parse_embed($url) {
  * @return string css style, video div, and flash <object>
  */
 function videoembed_dm_handler($url, $guid, $videowidth) {
-
 	// this extracts the core part of the url needed for embeding
 	$videourl = videoembed_dm_parse_url($url);
 	if (!isset($videourl)) {

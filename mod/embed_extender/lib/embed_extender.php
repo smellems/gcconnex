@@ -17,7 +17,7 @@ function embed_extender_parser($input, $view, $context)
 		return $input;
 	}
 
-	if ($context == 'widgets' || $context == 'profile' || $context == 'custom_index_widgets wire' || $context == 'groups'){
+	if ($context == 'widgets' || $context == 'profile'){
 		$width = elgg_get_plugin_setting('widget_width', 'embed_extender');
 		if (!isset($width) || !is_numeric($width) || $width < 0) {
 			$width = 240; //Size for widgets and messageboard
@@ -33,7 +33,7 @@ function embed_extender_parser($input, $view, $context)
 						,'#(((http://)?)|(^./))(((www.)?)|(^./))youtu\.be/([^\[\]()<.,\s\n\t\r]+)#i'
 						,'/(http:\/\/)?(www\.)?(vimeo\.com\/groups)(.*)(\/videos\/)([0-9]*)(\/)?/'
 						,'/(http:\/\/)(www\.)?(metacafe\.com\/watch\/)([0-9a-zA-Z_-]*)(\/[0-9a-zA-Z_-]*)(\/)/'
-						 ,'/(http:\/\/)?(www\.)?(vimeo.com\/)([^a-zA-Z][0-9]*)(\/)?/','/(http:\/\/)?(www\.)?(dailymotion.com\/video)([^a-zA-Z][0-9]*)(\/)?/', /*'/(http:\/\/)?(www\.)?(soundcloud.com)([^a-zA-Z][0-9]*)(\/)?/'*/); //Disbaled soundcloud again, will look at it later
+						 ,'/(http:\/\/)?(www\.)?(vimeo.com\/)([^a-zA-Z][0-9]*)(\/)?/');
 	
 	$custom_provider = elgg_get_plugin_setting('custom_provider', 'embed_extender');		
 
