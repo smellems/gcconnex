@@ -62,6 +62,7 @@ function group_visibility($event, $type, $object) {
 				break;
 		}
 
+
 		/*
 		 * Here we have some trickiness, because save is called twice with the visibility being
 		 * reset the second time.  So we have to make sure we're only updating the visibility
@@ -210,13 +211,11 @@ function pagesetup() {
 
 			if (($any_member && $group->isMember()) || $group->canEdit()) {
 				// register our title menu
-                //Nick - Changing the title menu into 'group_ddb' which is a custom menu for groups
-				elgg_register_menu_item('group_ddb', array(
+				elgg_register_menu_item('title', array(
 					'name' => 'add_subgroup',
 					'href' => "groups/subgroups/add/{$group->guid}",
 					'text' => elgg_echo('au_subgroups:add:subgroup'),
-					'link_class' => 'elgg-button elgg-button-action',
-                    'priority'=>450,
+					'link_class' => 'elgg-button elgg-button-action'
 				));
 			}
 		}

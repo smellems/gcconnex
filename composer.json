@@ -8,16 +8,13 @@
     "type": "project",
     "require": {
         "php": "~5.4",
-        "ext-mysql": "*",
-        "ext-gd": "*",
-        "ext-json": "*",
-        "ext-xml": "*",
         "symfony/http-foundation": "~2.6",
         "mrclay/minify": "~2.0",
         "knplabs/gaufrette": "~0.1.0",
         "tedivm/stash": "0.14.*",
         "ircmaxell/password-compat": "~1.0",
-        "elgg/login_as": "~1.9"
+        "elgg/login_as": "~1.9",
+        "au/au_subgroups": "2.1.1"
     },
     "scripts": {
         "test": "phpunit",

@@ -1,9 +1,6 @@
 == VERSION HISTORY ==
 
-
-GC Change 
-
-GC 1.0 - Updated French language file - Charles de Grasse October 29, 2013
+x.x
 
 2.1.0 (09/12/2015):
  - remove hack to workaround https://github.com/Elgg/Elgg/issues/8927
